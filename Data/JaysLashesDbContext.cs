@@ -250,7 +250,309 @@ namespace JricaStudioWebApi.Data
             int utcOpenHourOfTheDay = 23;
             int utcCloseHourOfTheDay = 7;
 
+            foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
+            {
 
+
+                modelBuilder.Entity<BusinessHours>().HasData(new BusinessHours
+                {
+                    Id = Guid.NewGuid(),
+                    Day = day,
+                    LocalTimeOffset = TimeSpan.FromHours(10),
+                    OpenTime = TimeOnly.FromTimeSpan(TimeSpan.FromHours(utcOpenHourOfTheDay)),
+                    CloseTime = TimeOnly.FromTimeSpan(TimeSpan.FromHours(utcCloseHourOfTheDay)),
+                    IsDisabled = false
+                });
+            }
+
+
+
+
+            modelBuilder.Entity<ProductCategory>().HasData(new ProductCategory
+            {
+                Id = lashExtensionProductCategoryId,
+                Name = "Eye Lash Extensions"
+
+            });
+
+            modelBuilder.Entity<ServiceCategory>().HasData(new ServiceCategory
+            {
+                Id = lashExtensionServiceCategoryId,
+                Name = "Eye Lash Extensions"
+
+            });
+
+            modelBuilder.Entity<ProductCategory>().HasData(new ProductCategory
+            {
+                Id = lotionProductCategoryId,
+                Name = "Lotion"
+
+            });
+
+            modelBuilder.Entity<ServiceCategory>().HasData(new ServiceCategory
+            {
+                Id = eyeBrowServiceCategoryId,
+                Name = "Eye Brow Shaping"
+
+            });
+
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Aveeno Body Lotion",
+                Description = "Description",
+                Price = 10.95m,
+                Quantity = 0,
+                ProductCategoryId = lotionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Vaseline Body Lotion",
+                Description = "Description",
+                Price = 10.95m,
+                Quantity = 0,
+                ProductCategoryId = lotionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Nivea Body Lotion",
+                Description = "Description",
+                Price = 10.95m,
+                Quantity = 0,
+                ProductCategoryId = lotionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Curel Body Lotion",
+                Description = "Description",
+                Price = 10.95m,
+                Quantity = 0,
+                ProductCategoryId = lotionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = classicSetExtentionsId,
+                Name = "Classic Style Eyelash Extensions",
+                Description = "Description",
+                Price = 30.60m,
+                Quantity = 1,
+                ProductCategoryId = lashExtensionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Volume Style Eyelash Extensions",
+                Description = "Description",
+                Price = 35.60m,
+                Quantity = 1,
+                ProductCategoryId = lashExtensionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            });
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Wet Look Style Eyelash Extensions",
+                Description = "Description",
+                Price = 30.60m,
+                Quantity = 1,
+                ProductCategoryId = lashExtensionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "3D Style Eyelash Extensions",
+                Description = "Description",
+                Price = 35.60m,
+                Quantity = 1,
+                ProductCategoryId = lashExtensionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+
+            });
+
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = serviceId,
+                Name = "2D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+
+            });
+
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "3D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "4D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "5D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "6D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "7D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "8D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "9D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "10D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "Classic Eye Brow Trim and Shape",
+                Description = "Description",
+                Price = 90.00m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = eyeBrowServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "Volume Eye Brow Trim and Shape",
+                Description = "Description",
+                Price = 90.00m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = eyeBrowServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "Classic Eye Brow lamination",
+                Description = "Description",
+                Price = 90.00m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = eyeBrowServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
+
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "Volume Eye Brow Lamination",
+                Description = "Description",
+                Price = 90.00m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = eyeBrowServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
+
+            modelBuilder.Entity<ServiceShowCase>().HasData(new ServiceShowCase
+            {
+                Id = Guid.NewGuid(),
+                ServiceId = serviceId
+            });
+
+
+            for (int i = 1; i < 4; i++)
+            {
+                modelBuilder.Entity<BlockOutDate>().HasData(new BlockOutDate
+                {
+                    Id = Guid.NewGuid(),
+                    Date = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(2 * i))
+                });
+            }
+
+
+
+
+
+            modelBuilder.Entity<ProductShowcase>().HasData(new ProductShowcase
+            {
+                Id = Guid.NewGuid(),
+                ProductId = classicSetExtentionsId
+            });
 
 
         }
