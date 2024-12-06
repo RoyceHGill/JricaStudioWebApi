@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace JricaStudioWebApi.Migrations
 {
     /// <inheritdoc />
@@ -319,7 +321,29 @@ namespace JricaStudioWebApi.Migrations
             migrationBuilder.InsertData(
                 table: "Admins",
                 columns: new[] { "Id", "AdminKey", "Created", "FirstName", "LastName", "Password", "Phone", "ResetKey", "ResetKeySent", "Updated", "Username" },
-                values: new object[] { new Guid("6dec7b6f-a681-473a-b7ed-d5c21eea2295"), new Guid("b147adde-d04b-49d6-9098-198058f3c1ce"), new DateTime(2024, 12, 6, 21, 49, 7, 946, DateTimeKind.Utc).AddTicks(7814), "Jayrica", "Cunanan", "$2a$11$agCkxS16HN/a7mYaTzw9U.Avqkt8FfRMftnTQAM5IB.1FnpF/Bpxu", "0422453888", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "jricastudio@gmail.com" });
+                values: new object[] { new Guid("dc9bdbde-d17c-4da2-bafb-bb6c0bc1d671"), new Guid("46d8c932-c050-41da-a831-bc6e224e19e7"), new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4568), "Jayrica", "Cunanan", "$2a$11$WSuEOsWTlNd3EzujL1LuceEanbg5OLKP05.Q5bwm1hxiZnWL/.sV.", "0422453888", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "jricastudio@gmail.com" });
+
+            migrationBuilder.InsertData(
+                table: "ImageUploads",
+                columns: new[] { "Id", "ContentType", "Created", "FileName", "StoredFileName", "Updated" },
+                values: new object[,]
+                {
+                    { new Guid("02e6864f-fc41-4ec1-8e37-de1f61da47d2"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4007), "TestImage6", "3zfuxuhv.ywl", null },
+                    { new Guid("6193155f-f657-41ff-86ce-e28c11a2aaf6"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(3948), "TestImage1", "11ttlqaw.vsn", null },
+                    { new Guid("7466aaa8-52e7-4916-a6a4-7ece2e9ef285"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(3981), "TestImage4", "32yxavjz.hjr", null },
+                    { new Guid("838dbf70-2d54-4922-a70b-f65f5b2b5c79"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4547), "TestImage4", "wadrnorw.xsk", null },
+                    { new Guid("91bfef6f-15e8-4c64-8387-eb8ca877ded8"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(3971), "TestImage3", "2erqdsnh.xkw", null },
+                    { new Guid("9f7221a9-1e9d-47d8-a501-4ea1a29bd627"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4519), "TestImage2", "mh1dphso.33f", null },
+                    { new Guid("a458442f-a34f-4182-8760-6b38f5cd5262"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(3994), "TestImage5", "3gwatyly.tmr", null },
+                    { new Guid("a53b6178-aa88-40d7-a99e-c03fbfecedbd"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4530), "TestImage3", "oppo4oeg.r1c", null },
+                    { new Guid("a9e9d381-97b7-4f4b-83fc-77a27a90f66f"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(3885), "TestImage0", "03seysrb.iob", null },
+                    { new Guid("bbad4d5c-33eb-49b5-a24b-b897dfd57667"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4044), "TestImage9", "tlpnh5rl.p4z", null },
+                    { new Guid("c549bb5f-7a7c-4823-a9a0-3f5eae123d2a"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(3960), "TestImage2", "2ddusinf.dmp", null },
+                    { new Guid("cbd3bbf7-f66f-44dd-bf20-bd7707988f53"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4509), "TestImage1", "jgis2bc2.zqn", null },
+                    { new Guid("dd1549cb-022d-49c5-936f-c052f1d8c90f"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4493), "TestImage0", "5ofg5qo1.csx", null },
+                    { new Guid("ede998c4-01d3-4b94-9f4e-71bcecefcb6b"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4019), "TestImage7", "jecm3swk.x5i", null },
+                    { new Guid("fd14a98d-4f3e-4477-853a-2e9c79ef4f6c"), "image", new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4031), "TestImage8", "rvx3w5e2.vn2", null }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AppointmentProducts_AppointmentId",

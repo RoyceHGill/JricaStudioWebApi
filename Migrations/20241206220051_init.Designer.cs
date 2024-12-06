@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JricaStudioWebApi.Migrations
 {
     [DbContext(typeof(JaysLashesDbContext))]
-    [Migration("20241206214908_init")]
+    [Migration("20241206220051_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -69,12 +69,12 @@ namespace JricaStudioWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6dec7b6f-a681-473a-b7ed-d5c21eea2295"),
-                            AdminKey = new Guid("b147adde-d04b-49d6-9098-198058f3c1ce"),
-                            Created = new DateTime(2024, 12, 6, 21, 49, 7, 946, DateTimeKind.Utc).AddTicks(7814),
+                            Id = new Guid("dc9bdbde-d17c-4da2-bafb-bb6c0bc1d671"),
+                            AdminKey = new Guid("46d8c932-c050-41da-a831-bc6e224e19e7"),
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4568),
                             FirstName = "Jayrica",
                             LastName = "Cunanan",
-                            Password = "$2a$11$agCkxS16HN/a7mYaTzw9U.Avqkt8FfRMftnTQAM5IB.1FnpF/Bpxu",
+                            Password = "$2a$11$WSuEOsWTlNd3EzujL1LuceEanbg5OLKP05.Q5bwm1hxiZnWL/.sV.",
                             Phone = "0422453888",
                             ResetKey = new Guid("00000000-0000-0000-0000-000000000000"),
                             ResetKeySent = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -263,6 +263,128 @@ namespace JricaStudioWebApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ImageUploads");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a9e9d381-97b7-4f4b-83fc-77a27a90f66f"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(3885),
+                            FileName = "TestImage0",
+                            StoredFileName = "03seysrb.iob"
+                        },
+                        new
+                        {
+                            Id = new Guid("6193155f-f657-41ff-86ce-e28c11a2aaf6"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(3948),
+                            FileName = "TestImage1",
+                            StoredFileName = "11ttlqaw.vsn"
+                        },
+                        new
+                        {
+                            Id = new Guid("c549bb5f-7a7c-4823-a9a0-3f5eae123d2a"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(3960),
+                            FileName = "TestImage2",
+                            StoredFileName = "2ddusinf.dmp"
+                        },
+                        new
+                        {
+                            Id = new Guid("91bfef6f-15e8-4c64-8387-eb8ca877ded8"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(3971),
+                            FileName = "TestImage3",
+                            StoredFileName = "2erqdsnh.xkw"
+                        },
+                        new
+                        {
+                            Id = new Guid("7466aaa8-52e7-4916-a6a4-7ece2e9ef285"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(3981),
+                            FileName = "TestImage4",
+                            StoredFileName = "32yxavjz.hjr"
+                        },
+                        new
+                        {
+                            Id = new Guid("a458442f-a34f-4182-8760-6b38f5cd5262"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(3994),
+                            FileName = "TestImage5",
+                            StoredFileName = "3gwatyly.tmr"
+                        },
+                        new
+                        {
+                            Id = new Guid("02e6864f-fc41-4ec1-8e37-de1f61da47d2"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4007),
+                            FileName = "TestImage6",
+                            StoredFileName = "3zfuxuhv.ywl"
+                        },
+                        new
+                        {
+                            Id = new Guid("ede998c4-01d3-4b94-9f4e-71bcecefcb6b"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4019),
+                            FileName = "TestImage7",
+                            StoredFileName = "jecm3swk.x5i"
+                        },
+                        new
+                        {
+                            Id = new Guid("fd14a98d-4f3e-4477-853a-2e9c79ef4f6c"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4031),
+                            FileName = "TestImage8",
+                            StoredFileName = "rvx3w5e2.vn2"
+                        },
+                        new
+                        {
+                            Id = new Guid("bbad4d5c-33eb-49b5-a24b-b897dfd57667"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4044),
+                            FileName = "TestImage9",
+                            StoredFileName = "tlpnh5rl.p4z"
+                        },
+                        new
+                        {
+                            Id = new Guid("dd1549cb-022d-49c5-936f-c052f1d8c90f"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4493),
+                            FileName = "TestImage0",
+                            StoredFileName = "5ofg5qo1.csx"
+                        },
+                        new
+                        {
+                            Id = new Guid("cbd3bbf7-f66f-44dd-bf20-bd7707988f53"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4509),
+                            FileName = "TestImage1",
+                            StoredFileName = "jgis2bc2.zqn"
+                        },
+                        new
+                        {
+                            Id = new Guid("9f7221a9-1e9d-47d8-a501-4ea1a29bd627"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4519),
+                            FileName = "TestImage2",
+                            StoredFileName = "mh1dphso.33f"
+                        },
+                        new
+                        {
+                            Id = new Guid("a53b6178-aa88-40d7-a99e-c03fbfecedbd"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4530),
+                            FileName = "TestImage3",
+                            StoredFileName = "oppo4oeg.r1c"
+                        },
+                        new
+                        {
+                            Id = new Guid("838dbf70-2d54-4922-a70b-f65f5b2b5c79"),
+                            ContentType = "image",
+                            Created = new DateTime(2024, 12, 6, 22, 0, 50, 670, DateTimeKind.Utc).AddTicks(4547),
+                            FileName = "TestImage4",
+                            StoredFileName = "wadrnorw.xsk"
+                        });
                 });
 
             modelBuilder.Entity("JricaStudioWebApi.Entities.Policy", b =>
