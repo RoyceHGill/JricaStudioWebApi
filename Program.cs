@@ -64,10 +64,10 @@ namespace JricaStudioWebApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
 
-                app.UseCors(policy => policy.WithOrigins("https://localhost:7239/", "https://localhost:7239").AllowAnyMethod().WithHeaders(HeaderNames.ContentType));
+                app.UseCors(policy => policy.WithOrigins("https://localhost:7239/", "https://localhost:7239").AllowAnyMethod().WithHeaders(HeaderNames.ContentType, "adminkey"));
             }
 
-            app.UseCors(policy => policy.WithOrigins("https://www.jricastudio.com/", "https://www.jricastudio.com", "https://polite-flower-07d8d6d0f.4.azurestaticapps.net/", "https://polite-flower-07d8d6d0f.4.azurestaticapps.net", "https://jricastudio.com/", "https://jricastudio.com").AllowAnyMethod().WithHeaders(HeaderNames.ContentType));
+            app.UseCors(policy => policy.WithOrigins("https://www.jricastudio.com/", "https://www.jricastudio.com", "https://polite-flower-07d8d6d0f.4.azurestaticapps.net/", "https://polite-flower-07d8d6d0f.4.azurestaticapps.net", "https://jricastudio.com/", "https://jricastudio.com").AllowAnyMethod().WithHeaders(HeaderNames.ContentType, "adminkey"));
 
             app.UseHttpsRedirection();
 

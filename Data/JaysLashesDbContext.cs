@@ -94,146 +94,146 @@ namespace JricaStudioWebApi.Data
             var serviceId = Guid.NewGuid();
 
 
-            //var serviceImagePath = "./wwwroot" + FileResources.serviceImageFilePath;
+            var serviceImagePath = "./wwwroot" + FileResources.serviceImageFilePath;
 
-            //DirectoryInfo serviceImageDirectory = new DirectoryInfo(serviceImagePath);
+            DirectoryInfo serviceImageDirectory = new DirectoryInfo(serviceImagePath);
 
-            //if (serviceImageDirectory.EnumerateFiles().Count() == 0)
-            //{
-            //    var TestServiceImagesPath = Path.Combine("./wwwroot/", "Images/", "TestImages/", "ServiceImages");
+            if (serviceImageDirectory.EnumerateFiles().Count() == 0)
+            {
+                var TestServiceImagesPath = Path.Combine("./wwwroot/", "Images/", "TestImages/", "ServiceImages");
 
-            //    DirectoryInfo TestServiceImageDirectory = new DirectoryInfo(TestServiceImagesPath);
-
-
-            //    // read files from Test image folder save them as if they were uploaded
-
-            //    if (TestServiceImageDirectory.EnumerateFiles().Any())
-            //    {
-
-            //        var files = TestServiceImageDirectory.EnumerateFiles().ToList();
-            //        foreach (var file in files)
-            //        {
-            //            if (file != null)
-            //            {
-
-            //                byte[] data = new byte[file.Length];
-
-            //                using (var memStream = new MemoryStream())
-            //                {
-            //                    using (var fileStream = File.OpenRead(file.FullName))
-            //                    {
-            //                        fileStream.CopyTo(memStream);
-            //                        data = memStream.ToArray();
-            //                        fileStream.Close();
-            //                    }
-            //                    memStream.Position = 0;
-            //                    memStream.Close();
-            //                }
-
-            //                var newFileName = Path.GetRandomFileName();
+                DirectoryInfo TestServiceImageDirectory = new DirectoryInfo(TestServiceImagesPath);
 
 
-            //                using (var stream = new MemoryStream(data))
-            //                {
-            //                    var targetfile = Path.Combine(serviceImagePath, newFileName);
-            //                    using (var fileStream = new FileStream(targetfile, FileMode.Create))
-            //                    {
-            //                        stream.WriteTo(fileStream);
-            //                        fileStream.Close();
-            //                    }
-            //                    stream.Position = 0;
-            //                    stream.Close();
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
+                // read files from Test image folder save them as if they were uploaded
 
-            //var serviceImageFiles = serviceImageDirectory.EnumerateFiles().ToList();
-            //// Store uploads in a list and use them iteratively through the context file.
-            //for (int i = 0; i < serviceImageFiles.Count; i++)
-            //{
-            //    testServiceImagesUploadIds.Add(Guid.NewGuid());
-            //    modelBuilder.Entity<ImageUpload>().HasData(new ImageUpload()
-            //    {
-            //        Id = testServiceImagesUploadIds[i],
-            //        StoredFileName = serviceImageFiles[i].Name,
-            //        FileName = "TestImage" + i,
-            //        ContentType = "image"
-            //    });
+                if (TestServiceImageDirectory.EnumerateFiles().Any())
+                {
 
-            //}
+                    var files = TestServiceImageDirectory.EnumerateFiles().ToList();
+                    foreach (var file in files)
+                    {
+                        if (file != null)
+                        {
+
+                            byte[] data = new byte[file.Length];
+
+                            using (var memStream = new MemoryStream())
+                            {
+                                using (var fileStream = File.OpenRead(file.FullName))
+                                {
+                                    fileStream.CopyTo(memStream);
+                                    data = memStream.ToArray();
+                                    fileStream.Close();
+                                }
+                                memStream.Position = 0;
+                                memStream.Close();
+                            }
+
+                            var newFileName = Path.GetRandomFileName();
 
 
-            //var productImagePath = "./wwwroot" + FileResources.productImageFilePath;
+                            using (var stream = new MemoryStream(data))
+                            {
+                                var targetfile = Path.Combine(serviceImagePath, newFileName);
+                                using (var fileStream = new FileStream(targetfile, FileMode.Create))
+                                {
+                                    stream.WriteTo(fileStream);
+                                    fileStream.Close();
+                                }
+                                stream.Position = 0;
+                                stream.Close();
+                            }
+                        }
+                    }
+                }
+            }
 
-            //DirectoryInfo productImageDirectory = new DirectoryInfo(productImagePath);
+            var serviceImageFiles = serviceImageDirectory.EnumerateFiles().ToList();
+            // Store uploads in a list and use them iteratively through the context file.
+            for (int i = 0; i < serviceImageFiles.Count; i++)
+            {
+                testServiceImagesUploadIds.Add(Guid.NewGuid());
+                modelBuilder.Entity<ImageUpload>().HasData(new ImageUpload()
+                {
+                    Id = testServiceImagesUploadIds[i],
+                    StoredFileName = serviceImageFiles[i].Name,
+                    FileName = "TestImage" + i,
+                    ContentType = "image"
+                });
 
-            //if (productImageDirectory.EnumerateFiles().Count() == 0)
-            //{
-            //    var testProductImagesPath = Path.Combine("./wwwroot/", "Images/", "TestImages/", "ProductImages");
-
-            //    DirectoryInfo testProductImageDirectory = new DirectoryInfo(testProductImagesPath);
-
-
-            //    // read files from Test image folder save them as if they were uploaded
-
-            //    if (testProductImageDirectory.EnumerateFiles().Any())
-            //    {
-
-            //        var files = testProductImageDirectory.EnumerateFiles().ToList();
-            //        foreach (var file in files)
-            //        {
-            //            if (file != null)
-            //            {
-
-            //                byte[] data = new byte[file.Length];
-
-            //                using (var memStream = new MemoryStream())
-            //                {
-            //                    using (var fileStream = File.OpenRead(file.FullName))
-            //                    {
-            //                        fileStream.CopyTo(memStream);
-            //                        data = memStream.ToArray();
-            //                        fileStream.Close();
-            //                    }
-            //                    memStream.Position = 0;
-            //                    memStream.Close();
-            //                }
-
-            //                var newFileName = Path.GetRandomFileName();
+            }
 
 
-            //                using (var stream = new MemoryStream(data))
-            //                {
-            //                    var targetfile = Path.Combine(productImagePath, newFileName);
-            //                    using (var fileStream = new FileStream(targetfile, FileMode.Create))
-            //                    {
-            //                        stream.WriteTo(fileStream);
-            //                        fileStream.Close();
-            //                    }
-            //                    stream.Position = 0;
-            //                    stream.Close();
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
+            var productImagePath = "./wwwroot" + FileResources.productImageFilePath;
 
-            //var productImageFiles = productImageDirectory.EnumerateFiles().ToList();
-            //// Store uploads in a list and use them iteratively through the context file.
-            //for (int i = 0; i < productImageFiles.Count; i++)
-            //{
-            //    testProductImagesUploadIds.Add(Guid.NewGuid());
-            //    modelBuilder.Entity<ImageUpload>().HasData(new ImageUpload()
-            //    {
-            //        Id = testProductImagesUploadIds[i],
-            //        StoredFileName = productImageFiles[i].Name,
-            //        FileName = "TestImage" + i,
-            //        ContentType = "image"
-            //    });
+            DirectoryInfo productImageDirectory = new DirectoryInfo(productImagePath);
 
-            //}
+            if (productImageDirectory.EnumerateFiles().Count() == 0)
+            {
+                var testProductImagesPath = Path.Combine("./wwwroot/", "Images/", "TestImages/", "ProductImages");
+
+                DirectoryInfo testProductImageDirectory = new DirectoryInfo(testProductImagesPath);
+
+
+                // read files from Test image folder save them as if they were uploaded
+
+                if (testProductImageDirectory.EnumerateFiles().Any())
+                {
+
+                    var files = testProductImageDirectory.EnumerateFiles().ToList();
+                    foreach (var file in files)
+                    {
+                        if (file != null)
+                        {
+
+                            byte[] data = new byte[file.Length];
+
+                            using (var memStream = new MemoryStream())
+                            {
+                                using (var fileStream = File.OpenRead(file.FullName))
+                                {
+                                    fileStream.CopyTo(memStream);
+                                    data = memStream.ToArray();
+                                    fileStream.Close();
+                                }
+                                memStream.Position = 0;
+                                memStream.Close();
+                            }
+
+                            var newFileName = Path.GetRandomFileName();
+
+
+                            using (var stream = new MemoryStream(data))
+                            {
+                                var targetfile = Path.Combine(productImagePath, newFileName);
+                                using (var fileStream = new FileStream(targetfile, FileMode.Create))
+                                {
+                                    stream.WriteTo(fileStream);
+                                    fileStream.Close();
+                                }
+                                stream.Position = 0;
+                                stream.Close();
+                            }
+                        }
+                    }
+                }
+            }
+
+            var productImageFiles = productImageDirectory.EnumerateFiles().ToList();
+            // Store uploads in a list and use them iteratively through the context file.
+            for (int i = 0; i < productImageFiles.Count; i++)
+            {
+                testProductImagesUploadIds.Add(Guid.NewGuid());
+                modelBuilder.Entity<ImageUpload>().HasData(new ImageUpload()
+                {
+                    Id = testProductImagesUploadIds[i],
+                    StoredFileName = productImageFiles[i].Name,
+                    FileName = "TestImage" + i,
+                    ContentType = "image"
+                });
+
+            }
 
 
             modelBuilder.Entity<Admin>().HasData(new Admin()
@@ -268,291 +268,291 @@ namespace JricaStudioWebApi.Data
 
 
 
-            //modelBuilder.Entity<ProductCategory>().HasData(new ProductCategory
-            //{
-            //    Id = lashExtensionProductCategoryId,
-            //    Name = "Eye Lash Extensions"
+            modelBuilder.Entity<ProductCategory>().HasData(new ProductCategory
+            {
+                Id = lashExtensionProductCategoryId,
+                Name = "Eye Lash Extensions"
 
-            //});
+            });
 
-            //modelBuilder.Entity<ServiceCategory>().HasData(new ServiceCategory
-            //{
-            //    Id = lashExtensionServiceCategoryId,
-            //    Name = "Eye Lash Extensions"
+            modelBuilder.Entity<ServiceCategory>().HasData(new ServiceCategory
+            {
+                Id = lashExtensionServiceCategoryId,
+                Name = "Eye Lash Extensions"
 
-            //});
+            });
 
-            //modelBuilder.Entity<ProductCategory>().HasData(new ProductCategory
-            //{
-            //    Id = lotionProductCategoryId,
-            //    Name = "Lotion"
+            modelBuilder.Entity<ProductCategory>().HasData(new ProductCategory
+            {
+                Id = lotionProductCategoryId,
+                Name = "Lotion"
 
-            //});
+            });
 
-            //modelBuilder.Entity<ServiceCategory>().HasData(new ServiceCategory
-            //{
-            //    Id = eyeBrowServiceCategoryId,
-            //    Name = "Eye Brow Shaping"
+            modelBuilder.Entity<ServiceCategory>().HasData(new ServiceCategory
+            {
+                Id = eyeBrowServiceCategoryId,
+                Name = "Eye Brow Shaping"
 
-            //});
+            });
 
-            //modelBuilder.Entity<Product>().HasData(new Product
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "Aveeno Body Lotion",
-            //    Description = "Description",
-            //    Price = 10.95m,
-            //    Quantity = 0,
-            //    ProductCategoryId = lotionProductCategoryId,
-            //    ImageUploadId = GetRandomId(testProductImagesUploadIds)
-            //});
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Aveeno Body Lotion",
+                Description = "Description",
+                Price = 10.95m,
+                Quantity = 0,
+                ProductCategoryId = lotionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Product>().HasData(new Product
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "Vaseline Body Lotion",
-            //    Description = "Description",
-            //    Price = 10.95m,
-            //    Quantity = 0,
-            //    ProductCategoryId = lotionProductCategoryId,
-            //    ImageUploadId = GetRandomId(testProductImagesUploadIds)
-            //});
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Vaseline Body Lotion",
+                Description = "Description",
+                Price = 10.95m,
+                Quantity = 0,
+                ProductCategoryId = lotionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Product>().HasData(new Product
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "Nivea Body Lotion",
-            //    Description = "Description",
-            //    Price = 10.95m,
-            //    Quantity = 0,
-            //    ProductCategoryId = lotionProductCategoryId,
-            //    ImageUploadId = GetRandomId(testProductImagesUploadIds)
-            //});
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Nivea Body Lotion",
+                Description = "Description",
+                Price = 10.95m,
+                Quantity = 0,
+                ProductCategoryId = lotionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Product>().HasData(new Product
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "Curel Body Lotion",
-            //    Description = "Description",
-            //    Price = 10.95m,
-            //    Quantity = 0,
-            //    ProductCategoryId = lotionProductCategoryId,
-            //    ImageUploadId = GetRandomId(testProductImagesUploadIds)
-            //});
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Curel Body Lotion",
+                Description = "Description",
+                Price = 10.95m,
+                Quantity = 0,
+                ProductCategoryId = lotionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Product>().HasData(new Product
-            //{
-            //    Id = classicSetExtentionsId,
-            //    Name = "Classic Style Eyelash Extensions",
-            //    Description = "Description",
-            //    Price = 30.60m,
-            //    Quantity = 1,
-            //    ProductCategoryId = lashExtensionProductCategoryId,
-            //    ImageUploadId = GetRandomId(testProductImagesUploadIds)
-            //});
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = classicSetExtentionsId,
+                Name = "Classic Style Eyelash Extensions",
+                Description = "Description",
+                Price = 30.60m,
+                Quantity = 1,
+                ProductCategoryId = lashExtensionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Product>().HasData(new Product
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "Volume Style Eyelash Extensions",
-            //    Description = "Description",
-            //    Price = 35.60m,
-            //    Quantity = 1,
-            //    ProductCategoryId = lashExtensionProductCategoryId,
-            //    ImageUploadId = GetRandomId(testProductImagesUploadIds)
-            //});
-            //modelBuilder.Entity<Product>().HasData(new Product
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "Wet Look Style Eyelash Extensions",
-            //    Description = "Description",
-            //    Price = 30.60m,
-            //    Quantity = 1,
-            //    ProductCategoryId = lashExtensionProductCategoryId,
-            //    ImageUploadId = GetRandomId(testProductImagesUploadIds)
-            //});
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Volume Style Eyelash Extensions",
+                Description = "Description",
+                Price = 35.60m,
+                Quantity = 1,
+                ProductCategoryId = lashExtensionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            });
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Wet Look Style Eyelash Extensions",
+                Description = "Description",
+                Price = 30.60m,
+                Quantity = 1,
+                ProductCategoryId = lashExtensionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Product>().HasData(new Product
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "3D Style Eyelash Extensions",
-            //    Description = "Description",
-            //    Price = 35.60m,
-            //    Quantity = 1,
-            //    ProductCategoryId = lashExtensionProductCategoryId,
-            //    ImageUploadId = GetRandomId(testProductImagesUploadIds)
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "3D Style Eyelash Extensions",
+                Description = "Description",
+                Price = 35.60m,
+                Quantity = 1,
+                ProductCategoryId = lashExtensionProductCategoryId,
+                ImageUploadId = GetRandomId(testProductImagesUploadIds)
 
-            //});
+            });
 
-            //modelBuilder.Entity<Service>().HasData(new Service
-            //{
-            //    Id = serviceId,
-            //    Name = "2D Lashes Infill",
-            //    Description = "Description",
-            //    Price = 120m,
-            //    Duration = TimeSpan.FromMinutes(180),
-            //    ServiceCategoryId = lashExtensionServiceCategoryId,
-            //    ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = serviceId,
+                Name = "2D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
 
-            //});
+            });
 
-            //modelBuilder.Entity<Service>().HasData(new Service
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "3D Lashes Infill",
-            //    Description = "Description",
-            //    Price = 120m,
-            //    Duration = TimeSpan.FromMinutes(180),
-            //    ServiceCategoryId = lashExtensionServiceCategoryId,
-            //    ImageUploadId = GetRandomId(testServiceImagesUploadIds)
-            //});
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "3D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Service>().HasData(new Service
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "4D Lashes Infill",
-            //    Description = "Description",
-            //    Price = 120m,
-            //    Duration = TimeSpan.FromMinutes(180),
-            //    ServiceCategoryId = lashExtensionServiceCategoryId,
-            //    ImageUploadId = GetRandomId(testServiceImagesUploadIds)
-            //});
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "4D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Service>().HasData(new Service
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "5D Lashes Infill",
-            //    Description = "Description",
-            //    Price = 120m,
-            //    Duration = TimeSpan.FromMinutes(180),
-            //    ServiceCategoryId = lashExtensionServiceCategoryId,
-            //    ImageUploadId = GetRandomId(testServiceImagesUploadIds)
-            //});
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "5D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Service>().HasData(new Service
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "6D Lashes Infill",
-            //    Description = "Description",
-            //    Price = 120m,
-            //    Duration = TimeSpan.FromMinutes(180),
-            //    ServiceCategoryId = lashExtensionServiceCategoryId,
-            //    ImageUploadId = GetRandomId(testServiceImagesUploadIds)
-            //});
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "6D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Service>().HasData(new Service
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "7D Lashes Infill",
-            //    Description = "Description",
-            //    Price = 120m,
-            //    Duration = TimeSpan.FromMinutes(180),
-            //    ServiceCategoryId = lashExtensionServiceCategoryId,
-            //    ImageUploadId = GetRandomId(testServiceImagesUploadIds)
-            //});
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "7D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Service>().HasData(new Service
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "8D Lashes Infill",
-            //    Description = "Description",
-            //    Price = 120m,
-            //    Duration = TimeSpan.FromMinutes(180),
-            //    ServiceCategoryId = lashExtensionServiceCategoryId,
-            //    ImageUploadId = GetRandomId(testServiceImagesUploadIds)
-            //});
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "8D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Service>().HasData(new Service
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "9D Lashes Infill",
-            //    Description = "Description",
-            //    Price = 120m,
-            //    Duration = TimeSpan.FromMinutes(180),
-            //    ServiceCategoryId = lashExtensionServiceCategoryId,
-            //    ImageUploadId = GetRandomId(testServiceImagesUploadIds)
-            //});
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "9D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Service>().HasData(new Service
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "10D Lashes Infill",
-            //    Description = "Description",
-            //    Price = 120m,
-            //    Duration = TimeSpan.FromMinutes(180),
-            //    ServiceCategoryId = lashExtensionServiceCategoryId,
-            //    ImageUploadId = GetRandomId(testServiceImagesUploadIds)
-            //});
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "10D Lashes Infill",
+                Description = "Description",
+                Price = 120m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = lashExtensionServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Service>().HasData(new Service
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "Classic Eye Brow Trim and Shape",
-            //    Description = "Description",
-            //    Price = 90.00m,
-            //    Duration = TimeSpan.FromMinutes(180),
-            //    ServiceCategoryId = eyeBrowServiceCategoryId,
-            //    ImageUploadId = GetRandomId(testServiceImagesUploadIds)
-            //});
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "Classic Eye Brow Trim and Shape",
+                Description = "Description",
+                Price = 90.00m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = eyeBrowServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Service>().HasData(new Service
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "Volume Eye Brow Trim and Shape",
-            //    Description = "Description",
-            //    Price = 90.00m,
-            //    Duration = TimeSpan.FromMinutes(180),
-            //    ServiceCategoryId = eyeBrowServiceCategoryId,
-            //    ImageUploadId = GetRandomId(testServiceImagesUploadIds)
-            //});
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "Volume Eye Brow Trim and Shape",
+                Description = "Description",
+                Price = 90.00m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = eyeBrowServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Service>().HasData(new Service
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "Classic Eye Brow lamination",
-            //    Description = "Description",
-            //    Price = 90.00m,
-            //    Duration = TimeSpan.FromMinutes(180),
-            //    ServiceCategoryId = eyeBrowServiceCategoryId,
-            //    ImageUploadId = GetRandomId(testServiceImagesUploadIds)
-            //});
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "Classic Eye Brow lamination",
+                Description = "Description",
+                Price = 90.00m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = eyeBrowServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<Service>().HasData(new Service
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "Volume Eye Brow Lamination",
-            //    Description = "Description",
-            //    Price = 90.00m,
-            //    Duration = TimeSpan.FromMinutes(180),
-            //    ServiceCategoryId = eyeBrowServiceCategoryId,
-            //    ImageUploadId = GetRandomId(testServiceImagesUploadIds)
-            //});
+            modelBuilder.Entity<Service>().HasData(new Service
+            {
+                Id = Guid.NewGuid(),
+                Name = "Volume Eye Brow Lamination",
+                Description = "Description",
+                Price = 90.00m,
+                Duration = TimeSpan.FromMinutes(180),
+                ServiceCategoryId = eyeBrowServiceCategoryId,
+                ImageUploadId = GetRandomId(testServiceImagesUploadIds)
+            });
 
-            //modelBuilder.Entity<ServiceShowCase>().HasData(new ServiceShowCase
-            //{
-            //    Id = Guid.NewGuid(),
-            //    ServiceId = serviceId
-            //});
-
-
-            //for (int i = 1; i < 4; i++)
-            //{
-            //    modelBuilder.Entity<BlockOutDate>().HasData(new BlockOutDate
-            //    {
-            //        Id = Guid.NewGuid(),
-            //        Date = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(2 * i))
-            //    });
-            //}
+            modelBuilder.Entity<ServiceShowCase>().HasData(new ServiceShowCase
+            {
+                Id = Guid.NewGuid(),
+                ServiceId = serviceId
+            });
 
 
+            for (int i = 1; i < 4; i++)
+            {
+                modelBuilder.Entity<BlockOutDate>().HasData(new BlockOutDate
+                {
+                    Id = Guid.NewGuid(),
+                    Date = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(2 * i))
+                });
+            }
 
 
 
-            //modelBuilder.Entity<ProductShowcase>().HasData(new ProductShowcase
-            //{
-            //    Id = Guid.NewGuid(),
-            //    ProductId = classicSetExtentionsId
-            //});
+
+
+            modelBuilder.Entity<ProductShowcase>().HasData(new ProductShowcase
+            {
+                Id = Guid.NewGuid(),
+                ProductId = classicSetExtentionsId
+            });
 
 
         }
