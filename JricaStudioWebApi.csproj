@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Services\Contracts\" />
     <Folder Include="wwwroot\Images\ProductImages\" />
     <Folder Include="wwwroot\Images\ServiceImages\" />
     <Folder Include="wwwroot\Images\TestImages\ProductImages\" />
