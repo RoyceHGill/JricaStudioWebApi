@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace JricaStudioWebApi.Attributes
 {
+
+    /// <summary>
+    /// The Purposed of this class is to: Authorize the Admin Key provided through the header of requests made to the Server. 
+    /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
     public class AdminKeyAttribute : Attribute, IAsyncActionFilter
     {
-
-
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             try
