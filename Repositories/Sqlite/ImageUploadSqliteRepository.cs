@@ -17,13 +17,13 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
         public async Task<ImageUpload> AddImageUploadResult(UploadResultDto dto)
         {
-            if (_dbContext.ImageUploads.Any(i => i.FileName.Equals(dto.Filename))) 
+            if (_dbContext.ImageUploads.Any(i => i.FileName.Equals(dto.Filename)))
             {
                 return await _dbContext.ImageUploads.FirstAsync(i => i.FileName.Equals(dto.Filename));
             }
 
             var result = _dbContext.ImageUploads.Add(new ImageUpload()
-            { 
+            {
                 ContentType = dto.ContentType,
                 FileName = dto.Filename,
                 StoredFileName = dto.StoredFileName
@@ -68,9 +68,5 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             return product.ImageUpload;
         }
 
-        public Task<ImageUpload> UpdateImageUploadResult(Guid id, UploadResultDto dto)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

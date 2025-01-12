@@ -28,28 +28,27 @@ namespace JricaStudioWebApi
     Password = Environment.GetEnvironmentVariable("SQLiteDBPassword")
 #endif
             };
-
-            // Add services to the container.
             builder.Services.AddDbContext<JaysLashesDbContext>(options =>
                             options.UseSqlite(connectionString.ToString()));
 
             builder.Services.AddHttpContextAccessor();
-            builder.Services.AddTransient<IEncryptionService, EncryptionService>();
-            builder.Services.AddScoped<IStringEncryptionService, StringEncryptionService>();
-            builder.Services.AddTransient<IEmailSenderService, EmailSenderService>();
 
+            builder.Services.AddTransient<IEncryptionService, EncryptionService>();
+            builder.Services.AddTransient<IImageAccessService, ImageAccessService>();
+
+            builder.Services.AddSingleton<IEmailSenderService, EmailSenderService>();
+
+            builder.Services.AddScoped<IStringEncryptionService, StringEncryptionService>();
             builder.Services.AddScoped<IProductRepository, ProductSqliteRepository>();
             builder.Services.AddScoped<IServiceRepository, ServiceSqliteRepository>();
             builder.Services.AddScoped<IAppointmentRepository, AppointmentSqliteRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ISchedulingRepository, SchedulingSqliteRepository>();
             builder.Services.AddScoped<IAdminRepository, AdminSqliteRepository>();
-            builder.Services.AddTransient<IImageAccessService, ImageAccessService>();
-            builder.Services.AddTransient<IImageUploadRepository, ImageUploadSqliteRepository>();
+            builder.Services.AddScoped<IImageUploadRepository, ImageUploadSqliteRepository>();
             builder.Services.AddScoped<ISchedulingService, SchedulingService>();
             builder.Services.AddScoped<IPolicyRepository, PolicyRepository>();
 
-            // Add services to the container.
             builder.Services.AddDistributedMemoryCache();
             builder.Services.AddSession(options =>
             {
