@@ -6,9 +6,24 @@ namespace JricaStudioWebApi.Repositories.Contracts
 {
     public interface IAdminRepository
     {
+        /// <summary>
+        /// Get the Administrator detail from user name provided
+        /// </summary>
+        /// <param name="username">User's Email</param>
+        /// <returns>Admin Details </returns>
         Task<Admin> GetAdminUser(string username);
-        Task<Admin> GetAdminUser(Guid id);
-        Task<IEnumerable<Admin>> GetAdminUsers();
+        /// <summary>
+        /// Get Administrator details for provided ID.
+        /// </summary>
+        /// <param name="adminId"></param>
+        /// <returns>Administrator's details</returns>
+        Task<Admin> GetAdminUser(Guid adminId);
+        /// <summary>
+        /// Update the Administrator's password with the provided details. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         Task<Admin> UpdatePassword(Guid id, UserCredentialsUpdateDto dto);
         Task<Admin> UpdatePassword(Guid key, ResetPasswordDto dto);
         Task<Admin> UpdateAdmin(Guid id, UpdateAdminDto admin);

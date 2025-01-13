@@ -23,12 +23,6 @@ namespace JricaStudioWebApi.Repositories.Sqlite
         {
             return await _dbContext.Admins.SingleOrDefaultAsync(a => a.Id == Id);
         }
-
-        public async Task<IEnumerable<Admin>> GetAdminUsers()
-        {
-            return await _dbContext.Admins.ToListAsync();
-        }
-
         public async Task<Admin> InitiatePasswordReset(string email)
         {
             var admin = _dbContext.Admins.SingleOrDefault(s => s.Username.Equals(email));

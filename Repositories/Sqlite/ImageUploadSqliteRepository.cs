@@ -7,6 +7,7 @@ using JricaStudioWebApi.Models.Dtos;
 
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
+    /// <inheritdoc cref="IImageUploadRepository"/>
     public class ImageUploadSqliteRepository : IImageUploadRepository
     {
         private readonly JaysLashesDbContext _dbContext;

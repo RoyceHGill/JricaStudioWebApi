@@ -6,7 +6,7 @@ namespace JricaStudioWebApi.Attributes
 {
 
     /// <summary>
-    /// The Purposed of this class is to: Authorize the Admin Key provided through the header of requests made to the Server. 
+    /// Placing this attribute above a rest controller end point uses the AdminKey in the header of the request to authorize the request. 
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
     public class AdminKeyAttribute : Attribute, IAsyncActionFilter
