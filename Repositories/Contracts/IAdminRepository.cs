@@ -19,15 +19,30 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <returns>Administrator's details</returns>
         Task<Admin> GetAdminUser(Guid adminId);
         /// <summary>
-        /// Update the Administrator's password with the provided details. 
+        /// Update the Administrator's password with the provided details. Only to be used on Authorized Requests.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="dto"></param>
-        /// <returns></returns>
-        Task<Admin> UpdatePassword(Guid id, UserCredentialsUpdateDto dto);
-        Task<Admin> UpdatePassword(Guid key, ResetPasswordDto dto);
-        Task<Admin> UpdateAdmin(Guid id, UpdateAdminDto admin);
-        Task<bool> ValidateAdminKey(Guid key);
+        /// <param name="id">Guid Representing Administrator in the database.</param>
+        /// <param name="credentialsDto">Data Transfer Object Containing Old and new login information..</param>
+        /// <returns>Returns Updated Administrator Details of affects Entity.</returns>
+        Task<Admin> UpdatePassword(Guid id, UserCredentialsUpdateDto credentialsDto);
+        /// <summary>
+        /// Update the password of the administrator with the provided details, Only to be used in Authorized request in certain circumstances .
+        /// </summary>
+        /// <param name="resetKey">Password Reset Key Associated with the Administrator that is Reseting their password.</param>
+        /// <param name="resetDto">Data Transfer object containing new password </param>
+        /// <returns>Returns the updated Administrator details</returns>
+        Task<Admin> UpdatePassword(Guid resetKey, ResetPasswordDto resetDto);
+        /// <summary>
+        /// Checks the Key provided is a valid key within the database.
+        /// </summary>
+        /// <param name="adminKey">Guid Administrator key for authorized access </param>
+        /// <returns>Returns true if the key provided exists in the database.</returns>
+        Task<bool> ValidateAdminKey(Guid adminKey);
+        /// <summary>
+        /// Begins the Password reset process, generating a new key for reseting a password. 
+        /// </summary>
+        /// <param name="email">the email associated with the administrator's account.</param>
+        /// <returns>Administrators details with updated reset password key.</returns>
         Task<Admin> InitiatePasswordReset(string email);
     }
 }

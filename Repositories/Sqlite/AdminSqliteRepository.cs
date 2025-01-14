@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
+    /// <inheritdoc cref="IAdminRepository"/>
     public class AdminSqliteRepository : IAdminRepository
     {
         private readonly JaysLashesDbContext _dbContext;
@@ -41,9 +42,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
             return result.Entity;
         }
-
         
-
         public async Task<Admin> UpdatePassword(Guid key, ResetPasswordDto dto)
         {
             var admin = await _dbContext.Admins.SingleOrDefaultAsync(a => a.ResetKey == key);
@@ -62,29 +61,6 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             }
 
             return default;
-        }
-
-        public async Task<Admin> UpdateAdmin(Guid Id, UpdateAdminDto dto)
-        {
-            try
-            {
-
-                var admin = await GetAdminUser(Id);
-
-                admin.FirstName = dto.FirstName;
-                admin.LastName = dto.LastName;
-                admin.Phone = dto.Phone;
-
-                var result = _dbContext.Admins.Update(admin);
-                _dbContext.SaveChanges();
-                return result.Entity;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
         }
 
         public async Task<Admin> UpdatePassword(Guid id, UserCredentialsUpdateDto dto)
@@ -112,11 +88,6 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
                 throw;
             }
-        }
-
-        public Task<Admin> UpdatePassword(Guid Id, string existingPassword, string password)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<bool> ValidateAdminKey(Guid key)
