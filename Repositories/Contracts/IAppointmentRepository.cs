@@ -67,20 +67,51 @@ namespace JricaStudioWebApi.Repositories.Contracts
         Task<IEnumerable<AppointmentService>> GetServices(Guid appoitmentId);
 
         /// <summary>
-        /// 
+        /// Remove the product from the appointment. Delete the record of the appointment product from the database. 
         /// </summary>
-        /// <param name="appointmentProductId"></param>
-        /// <returns></returns>
+        /// <param name="appointmentProductId">GUID appointment product record's ID</param>
+        /// <returns>The list of appointment products for an appointment after changes.</returns>
         Task<IEnumerable<AppointmentProduct>> DeleteAppointmentProduct(Guid appointmentProductId);
+        /// <summary>
+        /// Remove the service from the appointment. Delete the record of the appointment service from the database. 
+        /// </summary>
+        /// <param name="appointmentServiceId">GUID appointment service record's ID</param>
+        /// <returns>The list of appointment services for an appointment after changes.</returns>
         Task<IEnumerable<AppointmentService>> DeleteAppointmentService(Guid appointmentServiceId);
 
+        /// <summary>
+        /// Creates an appointment for the user.
+        /// </summary>
+        /// <param name="appointmentToAdd">Object responsible for transferring information to create an appointment in the database</param>
+        /// <returns>The Created Appointment</returns>
         Task<Appointment> AddAppointment(AppointmentToAddDto appointmentToAdd);
+
+        /// <summary>
+        /// Used by the administrator of the site to create appointments. 
+        /// </summary>
+        /// <param name="appointmentToAdd">Appointment Details</param>
+        /// <returns>The Created appointment</returns>
         Task<Appointment> AddAppointment(AppointmentAdminToAddDto appointmentToAdd);
 
-        Task<bool> GetAppointmentExists(Guid id);
+        /// <summary>
+        /// Get appointment details for the ID provided
+        /// </summary>
+        /// <param name="appointmentId">GUID ID for Appointment</param>
+        /// <returns>The requested appointment Details</returns>
         Task<Appointment> GetAppointment(Guid appointmentId);
+
+        /// <summary>
+        /// Gets the administrator's version of the appointment details, only used in authorized requests.
+        /// </summary>
+        /// <param name="appointmentId">GUID ID for Appointment.</param>
+        /// <returns>The requested appointment details.</returns>
         Task<Appointment> GetAdminAppointment(Guid appointmentId);
 
+        /// <summary>
+        /// Get the Information necessary for Appointment Indemnity page this includes some User information.
+        /// </summary>
+        /// <param name="appointmentId">GUID ID for Appointment.</param>
+        /// <returns>The requested appointment details.</returns>
         Task<Appointment> GetAppointmentIndemnity(Guid appointmentId);
         Task<Appointment> GetAppointmentFinalization(Guid appointmentId);
         Task<IEnumerable<Appointment>> GetAppointmentRequests();

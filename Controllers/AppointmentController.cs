@@ -56,14 +56,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [HttpGet("Exists/{id:guid}")]
-        public async Task<ActionResult<AppointmentExistsDto>> GetAppointmentExistance(Guid id)
-        {
-            return new AppointmentExistsDto()
-            {
-                AppointmentExists = await _repository.GetAppointmentExists(id)
-            };
-        }
+        
 
         [HttpGet("Service/{id:guid}")]
         public async Task<ActionResult<IEnumerable<AppointmentServiceDto>>> GetServices(Guid id)
