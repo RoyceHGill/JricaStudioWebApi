@@ -7,10 +7,23 @@ using JricaStudioWebApi.Models.Dtos.Admin;
 
 namespace JricaStudioWebApi.Repositories.Contracts
 {
+    /// <summary>
+    /// Data storage Interface, responsible for servicing the application with data related to appointments. 
+    /// </summary>
     public interface IAppointmentRepository
     {
-        Task<AppointmentProduct> AddProduct(AppointmentProductToAddDto addDto);
-        Task<AppointmentService> AddService(AppointmentServiceToAddDto addDto);
+        /// <summary>
+        /// Adds a record to the AppointmentProduct table that represents many to many relationship between a products and an appointments. 
+        /// </summary>
+        /// <param name="addDto">Container with both product and appointment details needed to create database relationship and record of the appointment </param>
+        /// <returns>The newly created record from the database.</returns>
+        Task<AppointmentProduct> AddProductToAppointment(AppointmentProductToAddDto addDto);
+        /// <summary>
+        /// Add a record the AppointmentService table in the database, this represents a many to many relationship between services and appointments
+        /// </summary>
+        /// <param name="addDto">A container with information responsible for creating the database relationship</param>
+        /// <returns></returns>
+        Task<AppointmentService> AddServiceToAppointment(AppointmentServiceToAddDto addDto);
 
         Task<AppointmentProduct> AdminAddProduct(AppointmentProductToAddDto addDto);
         Task<AppointmentService> AdminAddService(AppointmentServiceToAddDto addDto);

@@ -584,7 +584,7 @@ namespace JricaStudioWebApi.Controllers
         {
             try
             {
-                var result = await _repository.AddService(addDto);
+                var result = await _repository.AddServiceToAppointment(addDto);
 
                 if (result == null)
                 {
@@ -608,7 +608,7 @@ namespace JricaStudioWebApi.Controllers
         {
             try
             {
-                var result = await _repository.AddProduct(addDto);
+                var result = await _repository.AddProductToAppointment(addDto);
 
                 if (result == null)
                 {
@@ -715,7 +715,7 @@ namespace JricaStudioWebApi.Controllers
 
                 foreach (var item in dto.ServicesToAdd)
                 {
-                    await _repository.AddService(new AppointmentServiceToAddDto()
+                    await _repository.AddServiceToAppointment(new AppointmentServiceToAddDto()
                     {
                         AppointmentId = appointment.Id,
                         ServiceId = item.ServiceId
@@ -726,7 +726,7 @@ namespace JricaStudioWebApi.Controllers
                 {
                     foreach (var item in dto.ProductsToAdd)
                     {
-                        await _repository.AddProduct(new AppointmentProductToAddDto()
+                        await _repository.AddProductToAppointment(new AppointmentProductToAddDto()
                         {
                             AppointmentId = appointment.Id,
                             ProductId = item.ProductId

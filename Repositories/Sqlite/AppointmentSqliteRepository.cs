@@ -24,7 +24,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             _encryptionService = encryptionService;
         }
 
-        public async Task<AppointmentProduct> AddProduct(AppointmentProductToAddDto addDto)
+        public async Task<AppointmentProduct> AddProductToAppointment(AppointmentProductToAddDto addDto)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             }
 
         }
-        public async Task<AppointmentService> AddService(AppointmentServiceToAddDto addDto)
+        public async Task<AppointmentService> AddServiceToAppointment(AppointmentServiceToAddDto addDto)
         {
             try
             {
