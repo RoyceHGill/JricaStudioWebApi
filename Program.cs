@@ -33,10 +33,10 @@ namespace JricaStudioWebApi
 
             builder.Services.AddHttpContextAccessor();
 
-            builder.Services.AddTransient<IEncryptionService, EncryptionService>();
-            builder.Services.AddTransient<IImageAccessService, ImageAccessService>();
+            builder.Services.AddScoped<IEncryptionService, EncryptionService>();
+            builder.Services.AddScoped<IImageAccessService, ImageAccessService>();
 
-            builder.Services.AddSingleton<IEmailSenderService, EmailSenderService>();
+            builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();
 
             builder.Services.AddScoped<IStringEncryptionService, StringEncryptionService>();
             builder.Services.AddScoped<IProductRepository, ProductSqliteRepository>();
