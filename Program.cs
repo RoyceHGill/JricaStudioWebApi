@@ -52,7 +52,7 @@ namespace JricaStudioWebApi
             builder.Services.AddDistributedMemoryCache();
             builder.Services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.IdleTimeout = TimeSpan.FromSeconds(1);
             });
 
             builder.Services.AddControllers();
