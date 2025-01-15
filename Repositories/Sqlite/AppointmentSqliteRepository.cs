@@ -204,9 +204,9 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             return await _jaysLashesDbContext.AppointmentProducts.Where(ap => ap.Id == id).Include(ap => ap.Product).Include(ap => ap.Appointment).SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<AppointmentProduct>> GetProducts(Guid id)
+        public async Task<IEnumerable<AppointmentProduct>> GetProducts(Guid appointmentId)
         {
-            return await _jaysLashesDbContext.AppointmentProducts.Include(ap => ap.Product).ThenInclude(p => p.ImageUpload).Include(ap => ap.Appointment).Where(ap => ap.AppointmentId == id).AsNoTracking().ToListAsync();
+            return await _jaysLashesDbContext.AppointmentProducts.Include(ap => ap.Product).ThenInclude(p => p.ImageUpload).Include(ap => ap.Appointment).Where(ap => ap.AppointmentId == appointmentId).AsNoTracking().ToListAsync();
         }
 
         public async Task<AppointmentService> GetService(Guid id)
