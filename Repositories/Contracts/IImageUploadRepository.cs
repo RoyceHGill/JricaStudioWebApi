@@ -5,12 +5,17 @@ namespace JricaStudioWebApi.Repositories.Contracts
 {
     public interface IImageUploadRepository
     {
+
+        #region Create
         /// <summary>
         /// Creates and record of the uploaded image in the Database so it can be accessed later. 
         /// </summary>
         /// <param name="uploadDto">Data Transfer Object</param>
         /// <returns>returns the Data Base Entity</returns>
         Task<ImageUpload> AddImageUploadResult(UploadResultDto uploadDto);
+        #endregion
+
+        #region Read
         /// <summary>
         /// Given the filename for the image your to get the Upload result record. 
         /// </summary>
@@ -30,15 +35,23 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <returns>returns a record of an image upload from the database</returns>
         Task<ImageUpload> GetProductImageUploadResult(Guid productId);
         /// <summary>
+        /// Retrieve all upload results from the database.
+        /// </summary>
+        /// <returns>Collection of all upload result records from the database.</returns>
+        Task<IEnumerable<ImageUpload>> GetAll();
+        #endregion
+
+        #region Update
+
+        #endregion
+
+        #region Delete
+        /// <summary>
         /// Given the Id for an upload result, have the Upload result removed from the database.
         /// </summary>
         /// <param name="uploadId">GGuid representing the upload result</param>
         /// <returns>Returns a copy of the affected record</returns>
         Task<ImageUpload> DeleteImageUploadResult(Guid uploadId);
-        /// <summary>
-        /// Retrieve all upload results from the database.
-        /// </summary>
-        /// <returns>Collection of all upload result records from the database.</returns>
-        Task<IEnumerable<ImageUpload>> GetAll();
+        #endregion
     }
 }

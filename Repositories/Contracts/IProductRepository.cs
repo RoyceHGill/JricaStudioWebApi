@@ -9,6 +9,23 @@ namespace JricaStudioWebApi.Repositories.Contracts
 {
     public interface IProductRepository
     {
+
+        #region Create
+        /// <summary>
+        /// Create a new Product in the database.
+        /// </summary>
+        /// <param name="dto">New product details.</param>
+        /// <returns>The created product.</returns>
+        Task<Product> AddProduct(AdminProductToAddDto dto);
+        /// <summary>
+        /// Add a new product Category. 
+        /// </summary>
+        /// <param name="dto">Category Details</param>
+        /// <returns>Created category</returns>
+        Task<ProductCategory> AddProductCategory(AddProductCategoryDto dto);
+        #endregion
+
+        #region Read
         /// <summary>
         /// Receive the specified number of random products, upto the number of total products in the database.
         /// </summary>
@@ -61,21 +78,15 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <param name="categoryId">ID representing  the Category</param>
         /// <returns>All product with the came category.</returns>
         Task<IEnumerable<Product>> GetProductByCategory(Guid categoryId);
-
         /// <summary>
-        /// Create a new Product in the database.
+        /// Query the database with a filter to get back products that match or partially match your search.
         /// </summary>
-        /// <param name="dto">New product details.</param>
-        /// <returns>The created product.</returns>
-        Task<Product> AddProduct(AdminProductToAddDto dto);
+        /// <param name="filter">query details</param>
+        /// <returns>collection of matching products.</returns>
+        Task<IEnumerable<Product>> SearchProducts(ProductFilterDto filter);
+        #endregion
 
-        /// <summary>
-        /// Remove a product from that database.
-        /// </summary>
-        /// <param name="id">The Id of the product.</param>
-        /// <returns>The removed product.</returns>
-        Task<Product> DeleteProduct(Guid id);
-
+        #region Update
         /// <summary>
         /// Change the details of a product.
         /// </summary>
@@ -93,27 +104,6 @@ namespace JricaStudioWebApi.Repositories.Contracts
         Task<Product> UpdateProductQuantity(Guid Id, ProductUpdateQuantityDto productUpdateQuantityDto);
 
         /// <summary>
-        /// Query the database with a filter to get back products that match or partially match your search.
-        /// </summary>
-        /// <param name="filter">query details</param>
-        /// <returns>collection of matching products.</returns>
-        Task<IEnumerable<Product>> SearchProducts(ProductFilterDto filter);
-
-        /// <summary>
-        /// Add a new product Category. 
-        /// </summary>
-        /// <param name="dto">Category Details</param>
-        /// <returns>Created category</returns>
-        Task<ProductCategory> AddProductCategory(AddProductCategoryDto dto);
-
-        /// <summary>
-        /// Remove a Category from the database. 
-        /// </summary>
-        /// <param name="id">The Id of the Category</param>
-        /// <returns>The product Category removed.</returns>
-        Task<ProductCategory> DeleteProductCategory(Guid id);
-
-        /// <summary>
         /// Update the image upload details for the product.
         /// </summary>
         /// <param name="id">ID of the product you want to change.</param>
@@ -127,6 +117,23 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <param name="dto"></param>
         /// <returns></returns>
         Task<Product> UpdateProductShowCase(UpdateProductShowcaseDto dto);
+        #endregion
 
+        #region Delete
+        /// <summary>
+        /// Remove a product from that database.
+        /// </summary>
+        /// <param name="id">The Id of the product.</param>
+        /// <returns>The removed product.</returns>
+        Task<Product> DeleteProduct(Guid id);
+
+        /// <summary>
+        /// Remove a Category from the database. 
+        /// </summary>
+        /// <param name="id">The Id of the Category</param>
+        /// <returns>The product Category removed.</returns>
+        Task<ProductCategory> DeleteProductCategory(Guid id);
+        #endregion
+        
     }
 }

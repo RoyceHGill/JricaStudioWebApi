@@ -12,6 +12,8 @@ namespace JricaStudioWebApi.Repositories.Contracts
     /// </summary>
     public interface IAppointmentRepository
     {
+
+        #region Create
         /// <summary>
         /// Adds a record to the AppointmentProduct table that represents many to many relationship between a products and an appointments. 
         /// Request is subject to User Restrictive Access.
@@ -30,7 +32,6 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <summary>
         /// Adds a record to the AppointmentProduct table that represents many to many relationship between a products and an appointments.
         /// Only implemented by Authorized Request.
-
         /// </summary>
         /// <param name="addDto">Container with both product and appointment details needed to create database relationship and record of the appointment.</param>
         /// <returns>The newly created record from the database.</returns>
@@ -43,41 +44,6 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <param name="addDto">A container with information responsible for creating the database relationship.</param>
         /// <returns>The newly create record from the database.</returns>
         Task<AppointmentService> AdminAddService(AppointmentServiceToAddDto addDto);
-
-
-        /// <summary>
-        /// Alter the Quantity attribute for the entity an entity in the database.
-        /// </summary>
-        /// <param name="appointmentProductId">Identifier Representing the Appointment Product Entity in the Database.</param>
-        /// <param name="qtyDto">Container with the updated information</param>
-        /// <returns>The updated Entity</returns>
-        Task<AppointmentProduct> UpdateProductQty(Guid appointmentProductId, AppointmentProductQuantityUpdateDto qtyDto);
-
-        /// <summary>
-        /// Get all appointment products with a relationship with the give appointment's Id.
-        /// </summary>
-        /// <param name="appointmentId">GUID Appointment Identifier</param>
-        /// <returns>Collection of products on the appointment</returns>
-        Task<IEnumerable<AppointmentProduct>> GetProducts(Guid appointmentId);
-        /// <summary>
-        /// Get all appointment Services with a relationship with the given appointment's Id. 
-        /// </summary>
-        /// <param name="appoitmentId">GUID Appointment Identifier</param>
-        /// <returns>Collection of services on the appointment</</returns>
-        Task<IEnumerable<AppointmentService>> GetServices(Guid appoitmentId);
-
-        /// <summary>
-        /// Remove the product from the appointment. Delete the record of the appointment product from the database. 
-        /// </summary>
-        /// <param name="appointmentProductId">GUID appointment product record's ID</param>
-        /// <returns>The list of appointment products for an appointment after changes.</returns>
-        Task<IEnumerable<AppointmentProduct>> DeleteAppointmentProduct(Guid appointmentProductId);
-        /// <summary>
-        /// Remove the service from the appointment. Delete the record of the appointment service from the database. 
-        /// </summary>
-        /// <param name="appointmentServiceId">GUID appointment service record's ID</param>
-        /// <returns>The list of appointment services for an appointment after changes.</returns>
-        Task<IEnumerable<AppointmentService>> DeleteAppointmentService(Guid appointmentServiceId);
 
         /// <summary>
         /// Creates an appointment for the user.
@@ -92,6 +58,22 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <param name="appointmentToAdd">Appointment Details</param>
         /// <returns>The Created appointment</returns>
         Task<Appointment> AddAppointment(AppointmentAdminToAddDto appointmentToAdd);
+
+        #endregion
+
+        #region Read
+        /// <summary>
+        /// Get all appointment products with a relationship with the give appointment's Id.
+        /// </summary>
+        /// <param name="appointmentId">GUID Appointment Identifier</param>
+        /// <returns>Collection of products on the appointment</returns>
+        Task<IEnumerable<AppointmentProduct>> GetProducts(Guid appointmentId);
+        /// <summary>
+        /// Get all appointment Services with a relationship with the given appointment's Id. 
+        /// </summary>
+        /// <param name="appoitmentId">GUID Appointment Identifier</param>
+        /// <returns>Collection of services on the appointment</</returns>
+        Task<IEnumerable<AppointmentService>> GetServices(Guid appoitmentId);
 
         /// <summary>
         /// Get appointment details for the ID provided
@@ -141,6 +123,32 @@ namespace JricaStudioWebApi.Repositories.Contracts
         Task<IEnumerable<Appointment>> GetAppointments(AdminAppointmentSearchFilterDto filter);
 
         /// <summary>
+        /// Get the appointment that are confirmed for a particular date. 
+        /// </summary>
+        /// <param name="date">Query date.</param>
+        /// <returns>A collection of appointment for the date.</returns>
+        Task<IEnumerable<Appointment>> GetBookedAppointmentsByDate(DateTime date);
+
+        /// <summary>
+        /// Get the appointment that are confirmed between two date times. 
+        /// </summary>
+        /// <param name="startdate">The start date. </param>
+        /// <param name="endDate">The end date.</param>
+        /// <returns>A collection of appointment for the date.</returns>
+        Task<IEnumerable<Appointment>> GetBookedAppointmentsByRange(DateTime startdate, DateTime endDate);
+
+        #endregion
+
+        #region Update
+        /// <summary>
+        /// Alter the Quantity attribute for the entity an entity in the database.
+        /// </summary>
+        /// <param name="appointmentProductId">Identifier Representing the Appointment Product Entity in the Database.</param>
+        /// <param name="qtyDto">Container with the updated information</param>
+        /// <returns>The updated Entity</returns>
+        Task<AppointmentProduct> UpdateProductQty(Guid appointmentProductId, AppointmentProductQuantityUpdateDto qtyDto);
+
+        /// <summary>
         /// Update the appointment and users Indemnity Information.
         /// </summary>
         /// <param name="id">Appointment ID</param>
@@ -187,20 +195,26 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <returns>The updated appointment.</returns>
         Task<Appointment> UpdateAppointment(Guid appointmentId, UpdateAppointmentDto dto);
 
+
+        #endregion
+
+        #region Delete
         /// <summary>
-        /// Get the appointment that are confirmed for a particular date. 
+        /// Remove the product from the appointment. Delete the record of the appointment product from the database. 
         /// </summary>
-        /// <param name="date">Query date.</param>
-        /// <returns>A collection of appointment for the date.</returns>
-        Task<IEnumerable<Appointment>> GetBookedAppointmentsByDate(DateTime date);
+        /// <param name="appointmentProductId">GUID appointment product record's ID</param>
+        /// <returns>The list of appointment products for an appointment after changes.</returns>
+        Task<IEnumerable<AppointmentProduct>> DeleteAppointmentProduct(Guid appointmentProductId);
 
         /// <summary>
-        /// Get the appointment that are confirmed between two date times. 
+        /// Remove the service from the appointment. Delete the record of the appointment service from the database. 
         /// </summary>
-        /// <param name="startdate">The start date. </param>
-        /// <param name="endDate">The end date.</param>
-        /// <returns>A collection of appointment for the date.</returns>
-        Task<IEnumerable<Appointment>> GetBookedAppointmentsByRange(DateTime startdate, DateTime endDate);
+        /// <param name="appointmentServiceId">GUID appointment service record's ID</param>
+        /// <returns>The list of appointment services for an appointment after changes.</returns>
+        Task<IEnumerable<AppointmentService>> DeleteAppointmentService(Guid appointmentServiceId);
 
+        #endregion
+
+        
     }
 }

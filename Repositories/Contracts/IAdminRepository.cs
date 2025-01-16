@@ -6,6 +6,12 @@ namespace JricaStudioWebApi.Repositories.Contracts
 {
     public interface IAdminRepository
     {
+
+        #region Create
+
+        #endregion
+
+        #region Read
         /// <summary>
         /// Get the Administrator detail from user name provided
         /// </summary>
@@ -19,7 +25,9 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <param name="adminId"></param>
         /// <returns>Administrator's details</returns>
         Task<Admin> GetAdminUser(Guid adminId);
+        #endregion
 
+        #region Update
         /// <summary>
         /// Update the Administrator's password with the provided details. Only to be used on Authorized Requests.
         /// </summary>
@@ -35,6 +43,11 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <param name="resetDto">Data Transfer object containing new password </param>
         /// <returns>Returns the updated Administrator details</returns>
         Task<Admin> UpdatePassword(Guid resetKey, ResetPasswordDto resetDto);
+        #endregion
+
+        #region Delete
+
+        #endregion
 
         /// <summary>
         /// Checks the Key provided is a valid key within the database.
@@ -49,5 +62,6 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <param name="email">the email associated with the administrator's account.</param>
         /// <returns>Administrators details with updated reset password key.</returns>
         Task<Admin> InitiatePasswordReset(string email);
+
     }
 }

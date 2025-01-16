@@ -99,7 +99,7 @@ namespace JricaStudioWebApi.Controllers
                     return StatusCode(StatusCodes.Status415UnsupportedMediaType, "There was a Problem processing the image file");
                 }
 
-                var newService = await _serviceRepository.CreateNewService(dto, result.Id);
+                var newService = await _serviceRepository.AddNewService(dto, result.Id);
 
                 if (newService == null)
                 {
@@ -321,7 +321,7 @@ namespace JricaStudioWebApi.Controllers
         {
             try
             {
-                var services = await _serviceRepository.QueryServices(dto);
+                var services = await _serviceRepository.SearchServices(dto);
 
                 if (services == null)
                 {
