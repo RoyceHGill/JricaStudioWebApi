@@ -113,11 +113,39 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <param name="appointmentId">GUID ID for Appointment.</param>
         /// <returns>The requested appointment details.</returns>
         Task<Appointment> GetAppointmentIndemnity(Guid appointmentId);
+
+        /// <summary>
+        /// Get the information necessary for the Appointment finalization page for the client. 
+        /// </summary>
+        /// <param name="appointmentId">GUID ID for Appointment.</param>
+        /// <returns>Appointment details and User details needed for finalization page on client. </returns>
         Task<Appointment> GetAppointmentFinalization(Guid appointmentId);
+
+        /// <summary>
+        /// Get a collection of appointments with the status of awaiting approval signifying that the appointment is a request from a user.
+        /// </summary>
+        /// <returns>A collection of appointments with the status of awaiting approval. </returns>
         Task<IEnumerable<Appointment>> GetAppointmentRequests();
+
+        /// <summary>
+        /// Get a collection of appointments with the status of Confirmed signifying that the appointment is approved and time is allocated.
+        /// </summary>
+        /// <returns>A collection of appointments with the status of Confirmed.</returns>
         Task<IEnumerable<Appointment>> GetUpcomingAppointments();
+
+        /// <summary>
+        /// Query the database with a filter. Used for searching for appointments by an administrator.
+        /// </summary>
+        /// <param name="filter">collection of parameters seeking a match in the database.</param>
+        /// <returns>All appointment with data that is a partial match in the database.</returns>
         Task<IEnumerable<Appointment>> GetAppointments(AdminAppointmentSearchFilterDto filter);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="indemnityDto"></param>
+        /// <returns></returns>
         Task<Appointment> UpdateAppointmentIndemnityQuestions(Guid id, UpdateAppointmentIndemnityDto indemnityDto);
         Task<Appointment> UpdateAppointmentTimes(Guid id, UpdateAppointmentTimesDto timesDto);
         Task<Appointment> UpdateAppointmentStatus(Guid id, AppointmentStatus status);
