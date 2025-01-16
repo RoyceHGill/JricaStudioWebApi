@@ -141,19 +141,65 @@ namespace JricaStudioWebApi.Repositories.Contracts
         Task<IEnumerable<Appointment>> GetAppointments(AdminAppointmentSearchFilterDto filter);
 
         /// <summary>
-        /// 
+        /// Update the appointment and users Indemnity Information.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="indemnityDto"></param>
-        /// <returns></returns>
+        /// <param name="id">Appointment ID</param>
+        /// <param name="indemnityDto">information about user and appointment.</param>
+        /// <returns>The Updated appointment.</returns>
         Task<Appointment> UpdateAppointmentIndemnityQuestions(Guid id, UpdateAppointmentIndemnityDto indemnityDto);
+
+        /// <summary>
+        /// Update the time the appointment will be on.
+        /// </summary>
+        /// <param name="id">Appointment Id</param>
+        /// <param name="timesDto">Information about when the appointment should be.</param>
+        /// <returns>The updated appointment.</returns>
         Task<Appointment> UpdateAppointmentTimes(Guid id, UpdateAppointmentTimesDto timesDto);
+
+        /// <summary>
+        /// Update the appointment status. 
+        /// </summary>
+        /// <param name="id">The appointment ID</param>
+        /// <param name="status">The status, can not change the status beyond awaiting appointment</param>
+        /// <returns>The updated appointment.</returns>
         Task<Appointment> UpdateAppointmentStatus(Guid id, AppointmentStatus status);
+
+        /// <summary>
+        /// Changes the appointment status to confrimed. 
+        /// </summary>
+        /// <param name="id">Appointment ID</param>
+        /// <returns>The updated appointment.</returns>
         Task<Appointment> UpdateAppointmentStatusSubmission(Guid id);
+
+        /// <summary>
+        /// Changes the User's ID on the appointment table to reflect the user changing from a temporary user to a new user.
+        /// </summary>
+        /// <param name="id">Appointment id </param>
+        /// <param name="dto">User information</param>
+        /// <returns>The updated Appointment.</returns>
         Task<Appointment> UpdateAppointmentUser(Guid id, UpdateAppointmentUserDto dto);
+
+        /// <summary>
+        /// Changed the appointment Details to the provided details.
+        /// </summary>
+        /// <param name="appointmentId">Appointment ID</param>
+        /// <param name="dto">New appointment information.</param>
+        /// <returns>The updated appointment.</returns>
         Task<Appointment> UpdateAppointment(Guid appointmentId, UpdateAppointmentDto dto);
 
+        /// <summary>
+        /// Get the appointment that are confirmed for a particular date. 
+        /// </summary>
+        /// <param name="date">Query date.</param>
+        /// <returns>A collection of appointment for the date.</returns>
         Task<IEnumerable<Appointment>> GetBookedAppointmentsByDate(DateTime date);
+
+        /// <summary>
+        /// Get the appointment that are confirmed between two date times. 
+        /// </summary>
+        /// <param name="startdate">The start date. </param>
+        /// <param name="endDate">The end date.</param>
+        /// <returns>A collection of appointment for the date.</returns>
         Task<IEnumerable<Appointment>> GetBookedAppointmentsByRange(DateTime startdate, DateTime endDate);
 
     }

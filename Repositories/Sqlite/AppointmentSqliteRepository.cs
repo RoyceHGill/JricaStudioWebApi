@@ -13,6 +13,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
+    /// <inheritdoc cref="IAppointmentRepository" />
     public class AppointmentSqliteRepository : IAppointmentRepository
     {
         private readonly JaysLashesDbContext _jaysLashesDbContext;
