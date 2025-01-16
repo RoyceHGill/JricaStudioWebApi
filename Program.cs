@@ -50,10 +50,6 @@ namespace JricaStudioWebApi
             builder.Services.AddScoped<IPolicyRepository, PolicyRepository>();
 
             builder.Services.AddDistributedMemoryCache();
-            builder.Services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromSeconds(1);
-            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -76,8 +72,6 @@ namespace JricaStudioWebApi
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
-            app.UseSession();
 
             app.MapControllers();
 
