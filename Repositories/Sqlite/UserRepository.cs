@@ -10,6 +10,7 @@ using JricaStudioWebApi.Services.Contracts;
 
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
+    /// <inheritdoc cref="IUserRepository"/>
     public class UserRepository : IUserRepository
     {
         private readonly JaysLashesDbContext _jaysLashesDbContext;
