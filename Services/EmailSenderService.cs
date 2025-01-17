@@ -5,6 +5,7 @@ using System.Net.Mail;
 
 namespace JricaStudioWebApi.Services
 {
+    /// <inheritdoc cref="IEmailSenderService"/>
     public class EmailSenderService : IEmailSenderService
     {
         private readonly string _username;

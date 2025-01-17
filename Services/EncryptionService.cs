@@ -5,6 +5,7 @@ using System.Text;
 
 namespace JricaStudioWebApi.Services
 {
+    /// <inheritdoc cref="IEncryptionService" />
     public class EncryptionService : IEncryptionService
     {
         private readonly string _encryptionKey;
