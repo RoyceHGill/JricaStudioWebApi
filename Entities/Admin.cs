@@ -2,6 +2,9 @@
 
 namespace JricaStudioWebApi.Entities
 {
+    /// <summary>
+    /// An Administrator of the Application and database. 
+    /// </summary>
     public class Admin : BaseModel
     {
         public string Username { get; set; }

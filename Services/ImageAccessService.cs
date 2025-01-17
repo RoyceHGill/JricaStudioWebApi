@@ -12,6 +12,7 @@ using System.Runtime.CompilerServices;
 
 namespace JricaStudioWebApi.Services
 {
+    /// <inheritdoc cref="IImageAccessService"/>
     public class ImageAccessService : IImageAccessService
     {
         private readonly IWebHostEnvironment _webHostEnvironment;

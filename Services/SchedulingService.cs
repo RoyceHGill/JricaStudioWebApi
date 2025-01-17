@@ -4,6 +4,7 @@ using JricaStudioWebApi.Services.Contracts;
 
 namespace JricaStudioWebApi.Services
 {
+    /// <inheritdoc cref="ISchedulingService"/>
     public class SchedulingService : ISchedulingService
     {
 
