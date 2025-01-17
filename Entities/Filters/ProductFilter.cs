@@ -1,5 +1,8 @@
 ﻿namespace JricaStudioWebApi.Entities.Filters
 {
+    /// <summary>
+    /// Query builder for product to search against database.
+    /// </summary>
     public class ProductFilter
     {
         public Guid Id { get; set; }
