@@ -11,6 +11,7 @@ using JricaStudioWebApi.Models.Dtos.Admin;
 
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
+    /// <inheritdoc cref="IServiceRepository"/>
     public class ServiceSqliteRepository : IServiceRepository
     {
         private readonly JaysLashesDbContext _dbContext;
@@ -78,7 +79,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             return await _dbContext.ServiceCategories.FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public async Task<Service> CreateNewService(AdminServiceToAddDto<IFormFile> dto, Guid id)
+        public async Task<Service> AddNewService(AdminServiceToAddDto<IFormFile> dto, Guid id)
         {
             var existingService = _dbContext.ServiceCategories.FirstOrDefault(s => s.Name.Equals(dto.Name));
 
@@ -147,7 +148,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             return default;
         }
 
-        public async Task<IEnumerable<Service>> QueryServices(ServiceFilterDto dto)
+        public async Task<IEnumerable<Service>> SearchServices(ServiceFilterDto dto)
         {
             var query = _dbContext.Services.AsQueryable();
 

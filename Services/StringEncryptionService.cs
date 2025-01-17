@@ -4,6 +4,7 @@ using System.Text;
 
 namespace JricaStudioWebApi.Services
 {
+    /// <inheritdoc cref="IStringEncryptionService"/>
     public class StringEncryptionService : IStringEncryptionService
     {
         private readonly IEncryptionService _encryptionService;

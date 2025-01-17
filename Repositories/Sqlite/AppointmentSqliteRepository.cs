@@ -13,6 +13,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
+    /// <inheritdoc cref="IAppointmentRepository" />
     public class AppointmentSqliteRepository : IAppointmentRepository
     {
         private readonly JaysLashesDbContext _jaysLashesDbContext;
@@ -24,7 +25,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             _encryptionService = encryptionService;
         }
 
-        public async Task<AppointmentProduct> AddProduct(AppointmentProductToAddDto addDto)
+        public async Task<AppointmentProduct> AddProductToAppointment(AppointmentProductToAddDto addDto)
         {
             try
             {
@@ -78,7 +79,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             }
 
         }
-        public async Task<AppointmentService> AddService(AppointmentServiceToAddDto addDto)
+        public async Task<AppointmentService> AddServiceToAppointment(AppointmentServiceToAddDto addDto)
         {
             try
             {
@@ -204,9 +205,9 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             return await _jaysLashesDbContext.AppointmentProducts.Where(ap => ap.Id == id).Include(ap => ap.Product).Include(ap => ap.Appointment).SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<AppointmentProduct>> GetProducts(Guid id)
+        public async Task<IEnumerable<AppointmentProduct>> GetProducts(Guid appointmentId)
         {
-            return await _jaysLashesDbContext.AppointmentProducts.Include(ap => ap.Product).ThenInclude(p => p.ImageUpload).Include(ap => ap.Appointment).Where(ap => ap.AppointmentId == id).AsNoTracking().ToListAsync();
+            return await _jaysLashesDbContext.AppointmentProducts.Include(ap => ap.Product).ThenInclude(p => p.ImageUpload).Include(ap => ap.Appointment).Where(ap => ap.AppointmentId == appointmentId).AsNoTracking().ToListAsync();
         }
 
         public async Task<AppointmentService> GetService(Guid id)

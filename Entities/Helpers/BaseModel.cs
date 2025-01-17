@@ -4,7 +4,10 @@ using System.Runtime.CompilerServices;
 
 namespace JricaStudioWebApi.Entities.Helpers
 {
-    public class BaseModel
+    /// <summary>
+    /// It is a class that has all of the attributes needed for en the entity to exist and operate within the database. 
+    /// </summary>
+    abstract public class BaseModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

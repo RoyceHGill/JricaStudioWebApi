@@ -11,6 +11,7 @@ using NuGet.Protocol;
 
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
+    /// <inheritdoc cref="ISchedulingRepository"/>
     public class SchedulingSqliteRepository : ISchedulingRepository
     {
         private readonly JaysLashesDbContext _jaysLashesDbContext;

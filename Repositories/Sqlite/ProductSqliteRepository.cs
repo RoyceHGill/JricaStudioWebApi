@@ -17,6 +17,7 @@ using JricaStudioWebApi.Models.Dtos;
 
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
+    /// <inheritdoc cref="IProductRepository"/>
     public class ProductSqliteRepository : IProductRepository
     {
         private readonly JaysLashesDbContext _dbContext;
@@ -84,7 +85,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
                 throw;
             }
 
-            
+
         }
 
         public async Task<IEnumerable<Product>> GetFilteredProducts(ProductFilter productFilter)
@@ -146,7 +147,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
                 throw;
             }
-            
+
         }
 
         public async Task<Product> UpdateProductQuantity(Guid id, ProductUpdateQuantityDto productUpdateQuantityDto)
@@ -213,8 +214,8 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
                 throw;
             }
-            
-            
+
+
         }
 
         public async Task<IEnumerable<Product>> SearchProducts(ProductFilterDto filter)
@@ -225,7 +226,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
                 if (!filter.SearchString.IsNullOrEmpty())
                 {
-                    query = query.Where(p => p.Name.ToLower().Contains(filter.SearchString.ToLower()) 
+                    query = query.Where(p => p.Name.ToLower().Contains(filter.SearchString.ToLower())
                         || p.Description.ToLower().Contains(filter.SearchString.ToLower()));
                 }
 
@@ -250,7 +251,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
                 var existingCategory = _dbContext.ProductCategories.SingleOrDefaultAsync(p => p.Name == dto.Name);
 
                 var newProductCategory = new ProductCategory
-                { 
+                {
                     Name = dto.Name
                 };
 
@@ -294,7 +295,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             }
             catch (Exception e)
             {
-                
+
                 throw;
             }
         }
@@ -317,7 +318,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
                     Quantity = dto.Quantity,
                     ProductCategoryId = dto.ProductCategoryid,
                     ImageUploadId = dto.ImageUploadId,
-                    
+
 
                 };
 
@@ -388,7 +389,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
                 await _dbContext.SaveChangesAsync();
 
-                var updateProduct = await _dbContext.Products.Include(p => p.ImageUpload).Include(p => p.ProductCategory).SingleAsync(p=> p.Id == dto.ProductId);
+                var updateProduct = await _dbContext.Products.Include(p => p.ImageUpload).Include(p => p.ProductCategory).SingleAsync(p => p.Id == dto.ProductId);
 
                 return updateProduct;
             }
