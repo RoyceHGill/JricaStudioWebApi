@@ -1,14 +1,14 @@
-﻿using JricaStudioWebApi.Models.Dtos;
+﻿using JricaStudioSharedLibrary.Dtos;
 using JricaStudioWebApi.Data;
 using JricaStudioWebApi.Entities;
 using JricaStudioWebApi.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
-using JricaStudioWebApi.Models.enums;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.enums;
+using JricaStudioSharedLibrary.Dtos.Admin;
 using JricaStudioWebApi.Services.Contracts;
-using JricaStudioWebApi.Models.Dtos;
+using JricaStudioSharedLibrary.Dtos;
 using JricaStudioWebApi.Extentions;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos.Admin;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JricaStudioWebApi.Repositories.Sqlite

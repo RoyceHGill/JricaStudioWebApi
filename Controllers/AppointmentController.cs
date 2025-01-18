@@ -4,11 +4,11 @@ using JricaStudioWebApi.Repositories.Contracts;
 using JricaStudioWebApi.Extentions;
 using JricaStudioWebApi.Services.Contracts;
 using JricaStudioWebApi.Attributes;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.enums;
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Models.Extentions;
-using JricaStudioWebApi.Models.Constants;
+using JricaStudioSharedLibrary.Dtos;
+using JricaStudioSharedLibrary.enums;
+using JricaStudioSharedLibrary.Dtos.Admin;
+using JricaStudioSharedLibrary.Extentions;
+using JricaStudioSharedLibrary.Constants;
 using Microsoft.JSInterop.Infrastructure;
 
 namespace JricaStudioWebApi.Controllers
@@ -56,7 +56,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        
+
 
         [HttpGet("Service/{id:guid}")]
         public async Task<ActionResult<IEnumerable<AppointmentServiceDto>>> GetServices(Guid id)

@@ -1,13 +1,13 @@
-﻿using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Models.enums;
+﻿using JricaStudioSharedLibrary.Dtos.Admin;
+using JricaStudioSharedLibrary.enums;
 using JricaStudioWebApi.Data;
 using JricaStudioWebApi.Entities;
 using JricaStudioWebApi.Extentions;
 using JricaStudioWebApi.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos;
+using JricaStudioSharedLibrary.Dtos.Admin;
 
 namespace JricaStudioWebApi.Repositories.Sqlite
 {

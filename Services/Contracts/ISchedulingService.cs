@@ -1,4 +1,4 @@
-﻿using JricaStudioWebApi.Models.Dtos;
+﻿using JricaStudioSharedLibrary.Dtos;
 using JricaStudioWebApi.Entities;
 
 namespace JricaStudioWebApi.Services.Contracts

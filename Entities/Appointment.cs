@@ -1,5 +1,5 @@
 ﻿using JricaStudioWebApi.Entities.Helpers;
-using JricaStudioWebApi.Models.enums;
+using JricaStudioSharedLibrary.enums;
 using NuGet.Packaging.Signing;
 
 namespace JricaStudioWebApi.Entities

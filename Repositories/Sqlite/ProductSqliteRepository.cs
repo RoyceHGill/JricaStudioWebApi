@@ -5,15 +5,15 @@ using JricaStudioWebApi.Extentions;
 using JricaStudioWebApi.Repositories.Contracts;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
-using JricaStudioWebApi.Models.Dtos;
+using JricaStudioSharedLibrary.Dtos;
 using NuGet.Protocol.Core.Types;
 using SQLitePCL;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos.Admin;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos.Admin;
 using Microsoft.AspNetCore.Http.HttpResults;
-using JricaStudioWebApi.Models.Dtos;
+using JricaStudioSharedLibrary.Dtos;
 
 namespace JricaStudioWebApi.Repositories.Sqlite
 {

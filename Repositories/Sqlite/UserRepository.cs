@@ -2,10 +2,10 @@
 using JricaStudioWebApi.Entities;
 using JricaStudioWebApi.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
-using JricaStudioWebApi.Models.Dtos;
+using JricaStudioSharedLibrary.Dtos;
 using JricaStudioWebApi.Extentions;
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Models.Dtos;
+using JricaStudioSharedLibrary.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos;
 using JricaStudioWebApi.Services.Contracts;
 
 namespace JricaStudioWebApi.Repositories.Sqlite

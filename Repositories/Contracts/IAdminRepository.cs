@@ -1,5 +1,5 @@
 ﻿
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos.Admin;
 using JricaStudioWebApi.Entities;
 
 namespace JricaStudioWebApi.Repositories.Contracts

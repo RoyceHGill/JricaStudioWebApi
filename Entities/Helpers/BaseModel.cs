@@ -15,6 +15,7 @@ namespace JricaStudioWebApi.Entities.Helpers
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime Created { get; set; } = DateTime.UtcNow;
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime? Updated { get; set; }
     }
 }

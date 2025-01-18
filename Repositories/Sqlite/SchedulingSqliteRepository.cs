@@ -1,12 +1,12 @@
 ﻿
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos.Admin;
 using JricaStudioWebApi.Data;
 using JricaStudioWebApi.Entities;
 using JricaStudioWebApi.Repositories.Contracts;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.JSInterop.Infrastructure;
-using JricaStudioWebApi.Models.Dtos.Admin.BusinessHours;
+using JricaStudioSharedLibrary.Dtos.Admin.BusinessHours;
 using NuGet.Protocol;
 
 namespace JricaStudioWebApi.Repositories.Sqlite

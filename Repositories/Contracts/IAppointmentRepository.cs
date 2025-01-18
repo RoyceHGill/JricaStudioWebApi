@@ -1,9 +1,9 @@
 ﻿using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.enums;
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos;
+using JricaStudioSharedLibrary.enums;
+using JricaStudioSharedLibrary.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos;
+using JricaStudioSharedLibrary.Dtos.Admin;
 
 namespace JricaStudioWebApi.Repositories.Contracts
 {

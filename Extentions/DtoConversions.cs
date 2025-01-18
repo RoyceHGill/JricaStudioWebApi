@@ -1,12 +1,13 @@
 ﻿
-using JricaStudioWebApi.Models.Dtos;
+using JricaStudioSharedLibrary.Dtos;
 using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos.Admin;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NuGet.Protocol.Plugins;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using JricaStudioWebApi.Models.Dtos.Admin.BusinessHours;
-using JricaStudioWebApi.Models.Dtos.BusinessHours;
+using JricaStudioSharedLibrary.Dtos.Admin.BusinessHours;
+using JricaStudioSharedLibrary.Dtos.BusinessHours;
+
 
 namespace JricaStudioWebApi.Extentions
 {

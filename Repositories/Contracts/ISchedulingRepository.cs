@@ -1,6 +1,6 @@
-﻿using JricaStudioWebApi.Models.Dtos.Admin;
+﻿using JricaStudioSharedLibrary.Dtos.Admin;
 using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Models.Dtos.Admin.BusinessHours;
+using JricaStudioSharedLibrary.Dtos.Admin.BusinessHours;
 
 namespace JricaStudioWebApi.Repositories.Contracts
 {

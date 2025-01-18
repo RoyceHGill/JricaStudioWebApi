@@ -3,7 +3,7 @@ using JricaStudioWebApi.Entities;
 using JricaStudioWebApi.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using JricaStudioWebApi.Models.Dtos;
+using JricaStudioSharedLibrary.Dtos;
 
 namespace JricaStudioWebApi.Repositories.Sqlite
 {

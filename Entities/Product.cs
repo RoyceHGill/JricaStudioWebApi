@@ -1,5 +1,6 @@
 ﻿using JricaStudioWebApi.Entities.Helpers;
-using JricaStudioWebApi.Models.Dtos;
+using JricaStudioSharedLibrary.Dtos;
+using Microsoft.EntityFrameworkCore;
 
 namespace JricaStudioWebApi.Entities
 {
@@ -18,6 +19,7 @@ namespace JricaStudioWebApi.Entities
         /// </summary>
         public string Description { get; set; }
 
+        [Precision(18, 2)]
         /// <summary>
         /// The Cost of purchase.
         /// </summary>

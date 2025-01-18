@@ -4,9 +4,9 @@ using JricaStudioWebApi.Repositories.Contracts;
 using JricaStudioWebApi.Repositories.Sqlite;
 using JricaStudioWebApi.Services.Contracts;
 using JricaStudioWebApi.Services;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
+using Microsoft.Data.SqlClient;
 
 namespace JricaStudioWebApi
 {
@@ -16,20 +16,18 @@ namespace JricaStudioWebApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            var baseConnectionString = builder.Configuration.GetConnectionString("JaysLashesContext") ?? throw new InvalidOperationException("Connection string 'JaysLashesContext' not found.");
-
-            var connectionString = new SqliteConnectionStringBuilder(baseConnectionString)
-            {
-                Mode = SqliteOpenMode.ReadWriteCreate,
-
 #if DEBUG
-                Password = builder.Configuration.GetValue<string>("SQLiteDBPassword")
+            var connectionString = builder.Configuration.GetConnectionString("JaysLashesLocalDBTest") ?? throw new InvalidOperationException("Connection string 'JaysLashesLocalDBTest' not found.");
+
 #else
-    Password = Environment.GetEnvironmentVariable("SQLiteDBPassword")
+            var connectionString = Environment.GetEnvironmentVariable("JaysLashesAzureDB") ?? throw new InvalidOperationException("Connection string 'JaysLashesAzureDB' not found.");
 #endif
-            };
+
+
             builder.Services.AddDbContext<JaysLashesDbContext>(options =>
-                            options.UseSqlite(connectionString.ToString()));
+            {
+                options.UseSqlServer(connectionString.ToString());
+            });
 
             builder.Services.AddHttpContextAccessor();
 
