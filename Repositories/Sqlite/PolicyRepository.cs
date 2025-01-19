@@ -1,12 +1,11 @@
-﻿using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Data;
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Repositories.Contracts;
+﻿using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Data;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 
-namespace JricaStudioWebApi.Repositories.Sqlite
+namespace JricaStudioWebAPI.Repositories.SqLite
 {
-    /// <inheritdoc/>
     public class PolicyRepository : IPolicyRepository
     {
         private readonly JaysLashesDbContext _dbContext;

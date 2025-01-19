@@ -1,10 +1,10 @@
-﻿using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.Dtos.Admin;
+﻿using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Models.Dtos.Admin;
 using System.Security.Principal;
 
-namespace JricaStudioWebApi.Repositories.Contracts
+namespace JricaStudioWebAPI.Repositories.Contracts
 {
     public interface IServiceRepository
     {
@@ -16,7 +16,7 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <param name="dto">new Service Details</param>
         /// <param name="uploadId">The image upload Id</param>
         /// <returns>The created service.</returns>
-        Task<Service> AddNewService(AdminServiceToAddDto<IFormFile> dto, Guid uploadId);
+        Task<Service?> AddNewService(AdminServiceToAddDto<IFormFile> dto, Guid uploadId);
 
         /// <summary>
         /// Create a new Service Category.
@@ -78,7 +78,7 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// </summary>
         /// <param name="id">Id for the service.</param>
         /// <returns>Service Details.</returns>
-        Task<Service> GetService(Guid id);
+        Task<Service?> GetService(Guid id);
         #endregion
 
         #region Update

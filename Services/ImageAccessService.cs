@@ -1,18 +1,17 @@
 ﻿
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Repositories.Contracts;
-using JricaStudioWebApi.Services.Contracts;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Repositories.Contracts;
+using JricaStudioWebAPI.Services.Contracts;
 using Microsoft.AspNetCore.Hosting;
-using JricaStudioWebApi.Models.Constants;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioWebAPI.Models.Constants;
+using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Models.Dtos.Admin;
 using System.Collections.Immutable;
 using System.Net;
 using System.Runtime.CompilerServices;
 
-namespace JricaStudioWebApi.Services
+namespace JricaStudioWebAPI.Services
 {
-    /// <inheritdoc cref="IImageAccessService"/>
     public class ImageAccessService : IImageAccessService
     {
         private readonly IWebHostEnvironment _webHostEnvironment;

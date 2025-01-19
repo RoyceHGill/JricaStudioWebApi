@@ -1,16 +1,15 @@
-﻿using JricaStudioWebApi.Data;
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Repositories.Contracts;
+﻿using JricaStudioWebAPI.Data;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Extentions;
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Services.Contracts;
+using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Extentions;
+using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Services.Contracts;
 
-namespace JricaStudioWebApi.Repositories.Sqlite
+namespace JricaStudioWebAPI.Repositories.SqLite
 {
-    /// <inheritdoc cref="IUserRepository"/>
     public class UserRepository : IUserRepository
     {
         private readonly JaysLashesDbContext _jaysLashesDbContext;

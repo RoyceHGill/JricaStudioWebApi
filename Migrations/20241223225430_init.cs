@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace JricaStudioWebApi.Migrations
+namespace JricaStudioWebAPI.Migrations
 {
     /// <inheritdoc />
     public partial class init : Migration

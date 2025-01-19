@@ -1,26 +1,26 @@
-﻿using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Data;
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Repositories.Contracts;
+﻿using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Data;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 
-namespace JricaStudioWebApi.Repositories.Sqlite
+namespace JricaStudioWebAPI.Repositories.SqLite
 {
-    /// <inheritdoc cref="IAdminRepository"/>
-    public class AdminSqliteRepository : IAdminRepository
+    /// <inheritdoc cref="IAdministratorRepository"/>
+    public class AdministratorSqLiteRepository : IAdministratorRepository
     {
         private readonly JaysLashesDbContext _dbContext;
-        public AdminSqliteRepository(JaysLashesDbContext dbContext)
+        public AdministratorSqLiteRepository(JaysLashesDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<Admin> GetAdminUser(string username)
+        public async Task<Admin> GetAdministratorUser(string userName)
         {
-            return await _dbContext.Admins.SingleOrDefaultAsync(a => a.Username.Equals(username));
+            return await _dbContext.Admins.SingleOrDefaultAsync(a => a.Username.Equals(userName));
         }
 
-        public async Task<Admin> GetAdminUser(Guid Id)
+        public async Task<Admin> GetAdministratorUser(Guid Id)
         {
             return await _dbContext.Admins.SingleOrDefaultAsync(a => a.Id == Id);
         }
@@ -43,13 +43,13 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             return result.Entity;
         }
         
-        public async Task<Admin> UpdatePassword(Guid key, ResetPasswordDto dto)
+        public async Task<Admin> UpdatePassword(Guid key, ResetPasswordDto updatePassword)
         {
             var admin = await _dbContext.Admins.SingleOrDefaultAsync(a => a.ResetKey == key);
 
             if (admin != null && admin.ResetKeySent > DateTime.UtcNow.AddHours(-1))
             {
-                admin.Password = BCrypt.Net.BCrypt.HashPassword(dto.NewPassword);
+                admin.Password = BCrypt.Net.BCrypt.HashPassword(updatePassword.NewPassword);
                 admin.ResetKeySent = DateTime.MinValue;
                 admin.Updated = DateTime.UtcNow;
 
@@ -63,19 +63,19 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             return default;
         }
 
-        public async Task<Admin> UpdatePassword(Guid id, UserCredentialsUpdateDto dto)
+        public async Task<Admin> UpdatePassword(Guid id, UserCredentialsUpdateDto userCredentials)
         {
             try
             {
                 var admin = await _dbContext.Admins.SingleOrDefaultAsync(a => a.Id == id);
 
 
-                if (admin == null || !BCrypt.Net.BCrypt.Verify(dto.OldPassword, admin.Password))
+                if (admin == null || !BCrypt.Net.BCrypt.Verify(userCredentials.OldPassword, admin.Password))
                 {
                     return default;
                 }
                 admin.Updated = DateTime.UtcNow;
-                admin.Password = BCrypt.Net.BCrypt.HashPassword(dto.NewPassword);
+                admin.Password = BCrypt.Net.BCrypt.HashPassword(userCredentials.NewPassword);
 
                 var result = _dbContext.Admins.Update(admin);
 
@@ -90,7 +90,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             }
         }
 
-        public async Task<bool> ValidateAdminKey(Guid key)
+        public async Task<bool> ValidateAdministratorKey(Guid key)
         {
             return _dbContext.Admins.Any(a => a.AdminKey == key);
         }

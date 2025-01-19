@@ -1,11 +1,10 @@
 ﻿using Azure.Identity;
-using JricaStudioWebApi.Services.Contracts;
+using JricaStudioWebAPI.Services.Contracts;
 using System.Net;
 using System.Net.Mail;
 
-namespace JricaStudioWebApi.Services
+namespace JricaStudioWebAPI.Services
 {
-    /// <inheritdoc cref="IEmailSenderService"/>
     public class EmailSenderService : IEmailSenderService
     {
         private readonly string _username;

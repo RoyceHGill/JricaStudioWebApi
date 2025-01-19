@@ -1,11 +1,11 @@
-﻿using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Attributes;
-using JricaStudioWebApi.Extentions;
-using JricaStudioWebApi.Repositories.Contracts;
+﻿using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Attributes;
+using JricaStudioWebAPI.Extentions;
+using JricaStudioWebAPI.Repositories.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JricaStudioWebApi.Controllers
+namespace JricaStudioWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -18,7 +18,7 @@ namespace JricaStudioWebApi.Controllers
             _policyRepository = policyRepository;
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPost]
         public async Task<ActionResult<PolicyAdminDto>> PostPolicy(AddPolicyDto addPolicyDto)
         {
@@ -42,7 +42,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult<PolicyAdminDto>> DeletePolicy(Guid id)
         {
@@ -88,7 +88,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpGet("admin")]
         public async Task<ActionResult<IEnumerable<PolicyAdminDto>>> GetAdministratorPolicies()
         {

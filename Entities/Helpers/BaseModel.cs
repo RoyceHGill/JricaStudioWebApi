@@ -2,12 +2,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 
-namespace JricaStudioWebApi.Entities.Helpers
+namespace JricaStudioWebAPI.Entities.Helpers
 {
-    /// <summary>
-    /// It is a class that has all of the attributes needed for en the entity to exist and operate within the database. 
-    /// </summary>
-    abstract public class BaseModel
+    public class BaseModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

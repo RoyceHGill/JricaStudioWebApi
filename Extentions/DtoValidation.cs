@@ -1,11 +1,11 @@
 ﻿
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.enums;
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Models.enums;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Models.Dtos.Admin;
 using System.Globalization;
 
-namespace JricaStudioWebApi.Extentions
+namespace JricaStudioWebAPI.Extentions
 {
     public static class DtoValidation
     {

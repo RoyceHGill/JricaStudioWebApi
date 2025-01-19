@@ -1,10 +1,9 @@
-﻿using JricaStudioWebApi.Services.Contracts;
+﻿using JricaStudioWebAPI.Services.Contracts;
 using System.Buffers.Text;
 using System.Text;
 
-namespace JricaStudioWebApi.Services
+namespace JricaStudioWebAPI.Services
 {
-    /// <inheritdoc cref="IStringEncryptionService"/>
     public class StringEncryptionService : IStringEncryptionService
     {
         private readonly IEncryptionService _encryptionService;
