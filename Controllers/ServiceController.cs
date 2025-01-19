@@ -1,15 +1,15 @@
-﻿using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Extentions;
-using JricaStudioWebApi.Repositories.Contracts;
+﻿using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Extentions;
+using JricaStudioWebAPI.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Attributes;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.Constants;
-using JricaStudioWebApi.Services.Contracts;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Attributes;
+using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Models.Constants;
+using JricaStudioWebAPI.Services.Contracts;
+using JricaStudioWebAPI.Models.Dtos.Admin;
 
-namespace JricaStudioWebApi.Controllers
+namespace JricaStudioWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,7 +24,7 @@ namespace JricaStudioWebApi.Controllers
             _imageAccessService = imageAccess;
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPatch]
         public async Task<ActionResult<ImageUpdateResultDto>> PatchServiceImage([FromForm] Guid id, IFormFile imageFile)
         {
@@ -60,13 +60,13 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPut("{id:guid}")]
-        public async Task<ActionResult<ServiceEditResultDto>> PutService(Guid id, AdminEditServiceDto dto)
+        public async Task<ActionResult<ServiceEditResultDto>> PutService(Guid id, AdminEditServiceDto editServiceDTO)
         {
             try
             {
-                var result = await _serviceRepository.UpdateServiceDetails(id, dto);
+                var result = await _serviceRepository.UpdateServiceDetails(id, editServiceDTO);
                 if (result == null)
                 {
                     return NotFound("could not find Service.");
@@ -80,26 +80,26 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPost]
-        public async Task<ActionResult<UploadResultDto>> PostNewService([FromForm] AdminServiceToAddDto<IFormFile> dto)
+        public async Task<ActionResult<UploadResultDto>> PostNewService([FromForm] AdminServiceToAddDto<IFormFile> serviceToAdd)
         {
             try
             {
                 var existingServices = await _serviceRepository.GetAllServices();
-                if (existingServices.Any(s => s.Name.Equals(dto.Name)))
+                if (existingServices.Any(s => s.Name.Equals(serviceToAdd.Name)))
                 {
                     return Conflict();
                 }
 
-                var result = await _imageAccessService.SaveImage(dto.ImageFile, FileResources.serviceImageFilePath);
+                var result = await _imageAccessService.SaveImage(serviceToAdd.ImageFile, FileResources.serviceImageFilePath);
 
                 if (result == default)
                 {
                     return StatusCode(StatusCodes.Status415UnsupportedMediaType, "There was a Problem processing the image file");
                 }
 
-                var newService = await _serviceRepository.AddNewService(dto, result.Id);
+                var newService = await _serviceRepository.AddNewService(serviceToAdd, result.Id);
 
                 if (newService == null)
                 {
@@ -180,15 +180,15 @@ namespace JricaStudioWebApi.Controllers
             
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPut("serviceShowcase")]
-        public async Task<ActionResult<ServiceDto>> PutServiceShowCase(UpdateServiceShowcaseDto dto)
+        public async Task<ActionResult<ServiceDto>> PutServiceShowCase(UpdateServiceShowcaseDto showcaseUpdate)
         {
-            var service = await _serviceRepository.UpdateServiceShowCase(dto);
+            var service = await _serviceRepository.UpdateServiceShowCase(showcaseUpdate);
 
             if (service == null)
             {
-                return BadRequest(dto);
+                return BadRequest(showcaseUpdate);
             }
 
             var category = await _serviceRepository.GetServiceCategory(service.ServiceCategoryId);
@@ -266,9 +266,9 @@ namespace JricaStudioWebApi.Controllers
             return Ok(categoies.ConvetToDtos());
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpGet("Admin")]
-        public async Task<ActionResult<IEnumerable<ServiceAdminPageDto>>> GetAdminServices()
+        public async Task<ActionResult<IEnumerable<ServiceAdminPageDto>>> GetAdministratorServices()
         {
             try
             {
@@ -291,7 +291,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult<ServiceDto>> DeleteService(Guid id)
         {
@@ -315,13 +315,13 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPost("Search")]
-        public async Task<ActionResult<IEnumerable<ServiceAdminPageDto>>> SearchServices(ServiceFilterDto dto)
+        public async Task<ActionResult<IEnumerable<ServiceAdminPageDto>>> SearchServices(ServiceFilterDto serviceFilter)
         {
             try
             {
-                var services = await _serviceRepository.SearchServices(dto);
+                var services = await _serviceRepository.SearchServices(serviceFilter);
 
                 if (services == null)
                 {
@@ -338,13 +338,13 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPost("Category")]
-        public async Task<ActionResult<AdminServiceCategoryDto>> PostCategory([FromBody] AddServiceCategoryDto dto)
+        public async Task<ActionResult<AdminServiceCategoryDto>> PostCategory([FromBody] AddServiceCategoryDto categoryToAdd)
         {
             try
             {
-                var result = await _serviceRepository.AddServiceCategory(dto);
+                var result = await _serviceRepository.AddServiceCategory(categoryToAdd);
 
                 if (result == null)
                 {
@@ -361,7 +361,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpDelete("Category/{id:guid}")]
         public async Task<ActionResult<AdminServiceCategoryDto>> DeleteServiceCategory(Guid id)
         {
@@ -385,7 +385,7 @@ namespace JricaStudioWebApi.Controllers
         }
 
         [HttpGet("previouslyOrdered/{userId:guid}")]
-        public async Task<ActionResult<PreviousServiceDto>> GetPrevouslyOrderedService(Guid userId)
+        public async Task<ActionResult<PreviousServiceDto>> GetPreviouslyOrderedService(Guid userId)
         {
             try
             {

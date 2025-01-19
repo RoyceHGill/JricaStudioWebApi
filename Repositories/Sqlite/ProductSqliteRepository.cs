@@ -1,28 +1,28 @@
-﻿using JricaStudioWebApi.Data;
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Entities.Filters;
-using JricaStudioWebApi.Extentions;
-using JricaStudioWebApi.Repositories.Contracts;
+﻿using JricaStudioWebAPI.Data;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Entities.Filters;
+using JricaStudioWebAPI.Extentions;
+using JricaStudioWebAPI.Repositories.Contracts;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
-using JricaStudioWebApi.Models.Dtos;
+using JricaStudioWebAPI.Models.Dtos;
 using NuGet.Protocol.Core.Types;
 using SQLitePCL;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioWebAPI.Models.Dtos.Admin;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioWebAPI.Models.Dtos.Admin;
 using Microsoft.AspNetCore.Http.HttpResults;
-using JricaStudioWebApi.Models.Dtos;
+using JricaStudioWebAPI.Models.Dtos;
 
-namespace JricaStudioWebApi.Repositories.Sqlite
+namespace JricaStudioWebAPI.Repositories.SqLite
 {
     /// <inheritdoc cref="IProductRepository"/>
-    public class ProductSqliteRepository : IProductRepository
+    public class ProductSqLiteRepository : IProductRepository
     {
         private readonly JaysLashesDbContext _dbContext;
 
-        public ProductSqliteRepository(JaysLashesDbContext jaysLashesDbContext)
+        public ProductSqLiteRepository(JaysLashesDbContext jaysLashesDbContext)
         {
             _dbContext = jaysLashesDbContext;
         }
@@ -118,7 +118,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             return products;
         }
 
-        public async Task<Product> UpdateProduct(Guid id, EditProductDto productUpdateDto)
+        public async Task<Product> UpdateProduct(Guid id, EditProductDto productUpdate)
         {
             try
             {
@@ -129,12 +129,12 @@ namespace JricaStudioWebApi.Repositories.Sqlite
                     return default;
                 }
 
-                product.Name = productUpdateDto.Name;
-                product.Description = productUpdateDto.Description;
-                product.Price = productUpdateDto.Price;
-                product.Quantity = productUpdateDto.Quantity;
-                product.ImageUploadId = productUpdateDto.ImageUploadId;
-                product.ProductCategoryId = productUpdateDto.ProductCategoryid;
+                product.Name = productUpdate.Name;
+                product.Description = productUpdate.Description;
+                product.Price = productUpdate.Price;
+                product.Quantity = productUpdate.Quantity;
+                product.ImageUploadId = productUpdate.ImageUploadId;
+                product.ProductCategoryId = productUpdate.ProductCategoryid;
 
                 var result = _dbContext.Update(product);
 
@@ -150,12 +150,12 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
         }
 
-        public async Task<Product> UpdateProductQuantity(Guid id, ProductUpdateQuantityDto productUpdateQuantityDto)
+        public async Task<Product> UpdateProductQuantity(Guid id, ProductUpdateQuantityDto quantityUpdate)
         {
 
             var product = await _dbContext.Products.SingleAsync(p => p.Id == id);
 
-            product.Quantity = productUpdateQuantityDto.Quantity;
+            product.Quantity = quantityUpdate.Quantity;
 
             var result = _dbContext.SaveChangesAsync();
 
@@ -172,11 +172,11 @@ namespace JricaStudioWebApi.Repositories.Sqlite
         {
             var count = _dbContext.Products.Count();
 
-            List<Product> products = new List<Product>();
+            var products = new List<Product>();
 
-            List<int> chosenIndexes = new List<int>();
+            var chosenIndexes = new List<int>();
 
-            Random random = new Random();
+            var random = new Random();
 
             while (products.Count < targetLength)
             {
@@ -226,8 +226,8 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
                 if (!filter.SearchString.IsNullOrEmpty())
                 {
-                    query = query.Where(p => p.Name.ToLower().Contains(filter.SearchString.ToLower())
-                        || p.Description.ToLower().Contains(filter.SearchString.ToLower()));
+                    query = query.Where(p => p.Name.Contains(filter.SearchString, StringComparison.CurrentCultureIgnoreCase)
+                        || p.Description.Contains(filter.SearchString, StringComparison.CurrentCultureIgnoreCase));
                 }
 
                 if (filter.ProductCategoryId != Guid.Empty)
@@ -244,15 +244,15 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             }
         }
 
-        public async Task<ProductCategory> AddProductCategory(AddProductCategoryDto dto)
+        public async Task<ProductCategory> AddProductCategory(AddProductCategoryDto categoryToAdd)
         {
             try
             {
-                var existingCategory = _dbContext.ProductCategories.SingleOrDefaultAsync(p => p.Name == dto.Name);
+                var existingCategory = _dbContext.ProductCategories.SingleOrDefaultAsync(p => p.Name == categoryToAdd.Name);
 
                 var newProductCategory = new ProductCategory
                 {
-                    Name = dto.Name
+                    Name = categoryToAdd.Name
                 };
 
                 if (await existingCategory != null) { throw new Exception("Conflict"); }
@@ -300,11 +300,11 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             }
         }
 
-        public async Task<Product> AddProduct(AdminProductToAddDto dto)
+        public async Task<Product> AddProduct(AdminProductToAddDto productToAdd)
         {
             try
             {
-                var existingProducts = await _dbContext.Products.SingleOrDefaultAsync(p => p.Name == dto.Name);
+                var existingProducts = await _dbContext.Products.SingleOrDefaultAsync(p => p.Name == productToAdd.Name);
                 if (existingProducts != null)
                 {
                     throw new Exception("Conflict");
@@ -312,12 +312,12 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
                 var entity = new Product()
                 {
-                    Name = dto.Name,
-                    Description = dto.Description,
-                    Price = dto.Price,
-                    Quantity = dto.Quantity,
-                    ProductCategoryId = dto.ProductCategoryid,
-                    ImageUploadId = dto.ImageUploadId,
+                    Name = productToAdd.Name,
+                    Description = productToAdd.Description,
+                    Price = productToAdd.Price,
+                    Quantity = productToAdd.Quantity,
+                    ProductCategoryId = productToAdd.ProductCategoryid,
+                    ImageUploadId = productToAdd.ImageUploadId,
 
 
                 };
@@ -363,7 +363,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             }
         }
 
-        public async Task<Product> UpdateProductShowCase(UpdateProductShowcaseDto dto)
+        public async Task<Product> UpdateProductShowCase(UpdateProductShowcaseDto showcaseUpdate)
         {
             try
             {
@@ -373,23 +373,23 @@ namespace JricaStudioWebApi.Repositories.Sqlite
                 {
                     var addResult = _dbContext.ProductShowcases.Add(new ProductShowcase()
                     {
-                        ProductId = dto.ProductId,
+                        ProductId = showcaseUpdate.ProductId,
                     });
 
                     await _dbContext.SaveChangesAsync();
 
-                    var product = await _dbContext.Products.Include(p => p.ProductCategory).Include(p => p.ImageUpload).SingleOrDefaultAsync(p => p.Id == dto.ProductId);
+                    var product = await _dbContext.Products.Include(p => p.ProductCategory).Include(p => p.ImageUpload).SingleOrDefaultAsync(p => p.Id == showcaseUpdate.ProductId);
 
                     return product;
                 }
 
-                productShowcase.ProductId = dto.ProductId;
+                productShowcase.ProductId = showcaseUpdate.ProductId;
 
                 var result = _dbContext.ProductShowcases.Update(productShowcase);
 
                 await _dbContext.SaveChangesAsync();
 
-                var updateProduct = await _dbContext.Products.Include(p => p.ImageUpload).Include(p => p.ProductCategory).SingleAsync(p => p.Id == dto.ProductId);
+                var updateProduct = await _dbContext.Products.Include(p => p.ImageUpload).Include(p => p.ProductCategory).SingleAsync(p => p.Id == showcaseUpdate.ProductId);
 
                 return updateProduct;
             }

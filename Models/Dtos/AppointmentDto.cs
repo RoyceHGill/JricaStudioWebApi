@@ -1,11 +1,11 @@
-﻿using JricaStudioWebApi.Models.enums;
+﻿using JricaStudioWebAPI.Models.enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JricaStudioWebApi.Models.Dtos
+namespace JricaStudioWebAPI.Models.Dtos
 {
     public class AppointmentDto
     {

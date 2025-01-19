@@ -1,10 +1,9 @@
-﻿using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Services.Contracts;
+﻿using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Services.Contracts;
 
-namespace JricaStudioWebApi.Services
+namespace JricaStudioWebAPI.Services
 {
-    /// <inheritdoc cref="ISchedulingService"/>
     public class SchedulingService : ISchedulingService
     {
 

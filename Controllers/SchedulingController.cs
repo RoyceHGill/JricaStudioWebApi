@@ -1,14 +1,14 @@
-﻿using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Attributes;
-using JricaStudioWebApi.Extentions;
-using JricaStudioWebApi.Repositories.Contracts;
-using JricaStudioWebApi.Services.Contracts;
+﻿using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Attributes;
+using JricaStudioWebAPI.Extentions;
+using JricaStudioWebAPI.Repositories.Contracts;
+using JricaStudioWebAPI.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using JricaStudioWebApi.Models.Dtos.Admin.BusinessHours;
-using JricaStudioWebApi.Models.Dtos.BusinessHours;
+using JricaStudioWebAPI.Models.Dtos.Admin.BusinessHours;
+using JricaStudioWebAPI.Models.Dtos.BusinessHours;
 
-namespace JricaStudioWebApi.Controllers
+namespace JricaStudioWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -113,7 +113,7 @@ namespace JricaStudioWebApi.Controllers
 
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpGet("AdminBusinessHours")]
         public async Task<ActionResult<IEnumerable<AdminBusinessHoursDto>>> GetAdminBusinessHours()
         {
@@ -162,7 +162,7 @@ namespace JricaStudioWebApi.Controllers
 
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPut("BusinessHours")]
         public async Task<ActionResult<IEnumerable<AdminBusinessHoursDto>>> PutAdminBusinessHours(IEnumerable<AdminBusinessHoursDto> dtos)
         {
@@ -196,7 +196,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpGet("BlockOutDates")]
         public async Task<ActionResult<IEnumerable<BlockOutDatesAdminDto>>> GetAdminBlockOutDates()
         {
@@ -220,7 +220,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPost("BlockOutDates")]
         public async Task<ActionResult<IEnumerable<BlockOutDatesAdminDto>>> PostNewBlockOutDate(BlockOutDateToAddDto dto)
         {
@@ -249,7 +249,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpDelete("BlockOutDates/{id:guid}")]
         public async Task<ActionResult<IEnumerable<BlockOutDatesAdminDto>>> DeleteBlockOutDate(Guid id)
         {
@@ -271,7 +271,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        private IEnumerable<AdminBusinessHoursDto> ConvertTimesToUtc(IEnumerable<AdminBusinessHoursDto> businessHoursDtos)
+        static private IEnumerable<AdminBusinessHoursDto> ConvertTimesToUtc(IEnumerable<AdminBusinessHoursDto> businessHoursDtos)
         {
             foreach (var item in businessHoursDtos)
             {

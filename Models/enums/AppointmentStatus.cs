@@ -1,4 +1,4 @@
-﻿namespace JricaStudioWebApi.Models.enums
+﻿namespace JricaStudioWebAPI.Models.enums
 {
     public enum AppointmentStatus
     {

@@ -1,15 +1,17 @@
-﻿using JricaStudioWebApi.Repositories.Contracts;
+﻿// Ignore Spelling: Jrica
+
+using JricaStudioWebAPI.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace JricaStudioWebApi.Attributes
+namespace JricaStudioWebAPI.Attributes
 {
 
     /// <summary>
     /// Placing this attribute above a rest controller end point uses the AdminKey in the header of the request to authorize the request. 
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
-    public class AdminKeyAttribute : Attribute, IAsyncActionFilter
+    public class AdministratorKeyAttribute : Attribute, IAsyncActionFilter
     {
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
@@ -19,9 +21,9 @@ namespace JricaStudioWebApi.Attributes
                 {
                     Guid adminKey = Guid.Parse(result);
 
-                    var adminRepo = context.HttpContext.RequestServices.GetRequiredService<IAdminRepository>();
+                    var adminRepo = context.HttpContext.RequestServices.GetRequiredService<IAdministratorRepository>();
 
-                    if (await adminRepo.ValidateAdminKey(adminKey))
+                    if (await adminRepo.ValidateAdministratorKey(adminKey))
                     {
                         await next();
                     }

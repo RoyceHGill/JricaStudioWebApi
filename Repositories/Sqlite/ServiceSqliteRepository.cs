@@ -1,27 +1,26 @@
-﻿using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Models.enums;
-using JricaStudioWebApi.Data;
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Extentions;
-using JricaStudioWebApi.Repositories.Contracts;
+﻿using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Models.enums;
+using JricaStudioWebAPI.Data;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Extentions;
+using JricaStudioWebAPI.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioWebAPI.Models.Dtos;
 
-namespace JricaStudioWebApi.Repositories.Sqlite
+namespace JricaStudioWebAPI.Repositories.SqLite
 {
     /// <inheritdoc cref="IServiceRepository"/>
-    public class ServiceSqliteRepository : IServiceRepository
+    public class ServiceSqLiteRepository : IServiceRepository
     {
         private readonly JaysLashesDbContext _dbContext;
 
-        public ServiceSqliteRepository(JaysLashesDbContext jaysLashesDbContext)
+        public ServiceSqLiteRepository(JaysLashesDbContext jaysLashesDbContext)
         {
             _dbContext = jaysLashesDbContext;
         }
 
-        public async Task<Service> GetService(Guid id)
+        public async Task<Service?> GetService(Guid id)
         {
             return await _dbContext.Services.FirstOrDefaultAsync(s => s.Id == id);
         }
@@ -33,22 +32,22 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
         public async Task<IEnumerable<Service>> GetRandomServices(int requestedServices)
         {
-            var count = _dbContext.Services.Count();
+            var totalServicesCount = _dbContext.Services.Count();
 
-            if (count <= requestedServices)
+            if (totalServicesCount <= requestedServices)
             {
-                return _dbContext.Services.Include(s=>s.ImageUpload).ToList();
+                return await _dbContext.Services.Include(s=>s.ImageUpload).ToListAsync();
             }
 
-            List<Service> services = new List<Service>();
+            var services = new List<Service>();
 
-            List<int> chosenIdexes = new List<int>();
+            var chosenIdexes = new List<int>();
 
-            Random random = new Random();
+            var random = new Random();
 
             while (services.Count < requestedServices)
             {
-                var index = random.Next(0, count);
+                var index = random.Next(0, totalServicesCount);
                 if (chosenIdexes.Contains(index))
                 {
                     continue;
@@ -56,10 +55,10 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
                 chosenIdexes.Add(index);
 
-                var service = _dbContext.Services.Skip(index).Include(s => s.ImageUpload).FirstOrDefault();
+                var service = _dbContext.Services.Skip(index).Include(s => s.ImageUpload).First() ;
 
                 services.Add(service);
-                if (services.Count == count)
+                if (services.Count == totalServicesCount)
                 {
                     break;
                 }
@@ -79,16 +78,16 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             return await _dbContext.ServiceCategories.FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public async Task<Service> AddNewService(AdminServiceToAddDto<IFormFile> dto, Guid id)
+        public async Task<Service?> AddNewService(AdminServiceToAddDto<IFormFile> serviceToAdd, Guid id)
         {
-            var existingService = _dbContext.ServiceCategories.FirstOrDefault(s => s.Name.Equals(dto.Name));
+            var existingService = _dbContext.ServiceCategories.FirstOrDefault(s => s.Name.Equals(serviceToAdd.Name));
 
             if (existingService != null)
             {
                 throw new InvalidOperationException("Service Name Conflict");
             }
 
-            var newService = dto.ConvertToEntity(id);
+            var newService = serviceToAdd.ConvertToEntity(id);
 
             var result = await _dbContext.Services.AddAsync(newService);
             await _dbContext.SaveChangesAsync();
@@ -96,7 +95,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             return result.Entity;
         }
 
-        public async Task<Service> UpdateServiceDetails(Guid id, AdminEditServiceDto dto)
+        public async Task<Service> UpdateServiceDetails(Guid id, AdminEditServiceDto serviceUpdate)
         {
             var service = _dbContext.Services.SingleOrDefault(s => s.Id == id);
             if (service == null)
@@ -104,11 +103,11 @@ namespace JricaStudioWebApi.Repositories.Sqlite
                 return null;
             }
 
-            service.Name = dto.Name;
-            service.Description = dto.Description;
-            service.ServiceCategoryId = dto.ServiceCategoryId;
-            service.Duration = dto.Duration;
-            service.Price = dto.Price;
+            service.Name = serviceUpdate.Name;
+            service.Description = serviceUpdate.Description;
+            service.ServiceCategoryId = serviceUpdate.ServiceCategoryId;
+            service.Duration = serviceUpdate.Duration;
+            service.Price = serviceUpdate.Price;
 
             await _dbContext.SaveChangesAsync();
 
@@ -148,29 +147,29 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             return default;
         }
 
-        public async Task<IEnumerable<Service>> SearchServices(ServiceFilterDto dto)
+        public async Task<IEnumerable<Service>> SearchServices(ServiceFilterDto serviceFilter)
         {
             var query = _dbContext.Services.AsQueryable();
 
-            if (dto.CategoryId != Guid.Empty)
+            if (serviceFilter.CategoryId != Guid.Empty)
             {
-                query = query.Where(s => s.ServiceCategoryId == dto.CategoryId);
+                query = query.Where(s => s.ServiceCategoryId == serviceFilter.CategoryId);
             }
 
-            if (!dto.SearchString.IsNullOrEmpty())
+            if (!serviceFilter.SearchString.IsNullOrEmpty())
             {
-                query = query.Where(s => s.Name.ToLower().Contains(dto.SearchString.ToLower()) || s.Name.ToLower().Equals(dto.SearchString.ToLower())
-                                            || s.Description.ToLower().Contains(dto.SearchString.ToLower()) || s.Description.ToLower().Equals(dto.SearchString.ToLower()));
+                query = query.Where(s => s.Name.Contains(serviceFilter.SearchString, StringComparison.CurrentCultureIgnoreCase) || s.Name.ToLower().Equals(serviceFilter.SearchString.ToLower())
+                                            || s.Description.Contains( serviceFilter.SearchString, StringComparison.CurrentCultureIgnoreCase ) || s.Description.ToLower().Equals(serviceFilter.SearchString.ToLower()));
             }
 
             return await query.ToListAsync();
         }
 
-        public async Task<ServiceCategory> AddServiceCategory(AddServiceCategoryDto dto)
+        public async Task<ServiceCategory> AddServiceCategory(AddServiceCategoryDto categoryToAdd)
         {
             try
             {
-                var existingCategory = await _dbContext.ServiceCategories.SingleOrDefaultAsync(s => s.Name == dto.Name);
+                var existingCategory = await _dbContext.ServiceCategories.SingleOrDefaultAsync(s => s.Name == categoryToAdd.Name);
 
                 if (existingCategory != null)
                 {
@@ -179,7 +178,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
                 var serviceCategory = new ServiceCategory
                 {
-                    Name = dto.Name,
+                    Name = categoryToAdd.Name,
                 };
 
                 var result = _dbContext.ServiceCategories.Add(serviceCategory);
@@ -246,7 +245,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             }
         }
 
-        public async Task<Service> UpdateServiceShowCase(UpdateServiceShowcaseDto dto)
+        public async Task<Service> UpdateServiceShowCase(UpdateServiceShowcaseDto ShowcaseUpdate)
         {
             try
             {
@@ -256,7 +255,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
                 {
                     var addResult = _dbContext.ServicesShowcases.Add(new ServiceShowCase()
                     {
-                        ServiceId = dto.ServiceId
+                        ServiceId = ShowcaseUpdate.ServiceId
                     });
                     await _dbContext.SaveChangesAsync();
 
@@ -267,7 +266,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
                     return addedShowcaseService;
                 }
 
-                serviceShowCase.ServiceId = dto.ServiceId;
+                serviceShowCase.ServiceId = ShowcaseUpdate.ServiceId;
 
                 var result = _dbContext.ServicesShowcases.Update(serviceShowCase);
 
@@ -293,13 +292,13 @@ namespace JricaStudioWebApi.Repositories.Sqlite
         {
             try
             {
-                if (userId == null)
+                if (userId == default)
                 {
                     return default;
                 }
                 var appointment = _dbContext.Appointments.Where(a => a.User.Id == userId && a.Status == AppointmentStatus.Complete).AsEnumerable();
                 var service = new Service();
-                if (appointment.Count() > 0)
+                if ( appointment.Any() )
                 {
                     service = _dbContext.AppointmentServices
                     .Include(a => a.Service)

@@ -1,11 +1,14 @@
-﻿using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.enums;
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.Dtos.Admin;
+﻿
 
-namespace JricaStudioWebApi.Repositories.Contracts
+
+// Ignore Spelling: Jrica
+
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Models.enums;
+using JricaStudioWebAPI.Models.Dtos.Admin;
+
+namespace JricaStudioWebAPI.Repositories.Contracts
 {
     /// <summary>
     /// Data storage Interface, responsible for servicing the application with data related to appointments. 
@@ -20,14 +23,14 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// </summary>
         /// <param name="addDto">Container with both product and appointment details needed to create database relationship and record of the appointment.</param>
         /// <returns>The newly created record from the database.</returns>
-        Task<AppointmentProduct> AddProductToAppointment(AppointmentProductToAddDto addDto);
+        Task<AppointmentProduct> AddProduct(AppointmentProductToAddDto addDto);
 
         /// <summary>
         /// Add a record the AppointmentService table in the database, this represents a many to many relationship between services and appointments.
         /// </summary>
         /// <param name="addDto">A container with information responsible for creating the database relationship.</param>
         /// <returns>The newly create record from the database.</returns>
-        Task<AppointmentService> AddServiceToAppointment(AppointmentServiceToAddDto addDto);
+        Task<AppointmentService> AddService(AppointmentServiceToAddDto addDto);
 
         /// <summary>
         /// Adds a record to the AppointmentProduct table that represents many to many relationship between a products and an appointments.
@@ -120,7 +123,7 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// </summary>
         /// <param name="filter">collection of parameters seeking a match in the database.</param>
         /// <returns>All appointment with data that is a partial match in the database.</returns>
-        Task<IEnumerable<Appointment>> GetAppointments(AdminAppointmentSearchFilterDto filter);
+        Task<IEnumerable<Appointment>?> GetAppointments(AdminAppointmentSearchFilterDto filter);
 
         /// <summary>
         /// Get the appointment that are confirmed for a particular date. 
@@ -162,7 +165,7 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <param name="id">Appointment Id</param>
         /// <param name="timesDto">Information about when the appointment should be.</param>
         /// <returns>The updated appointment.</returns>
-        Task<Appointment> UpdateAppointmentTimes(Guid id, UpdateAppointmentTimesDto timesDto);
+        Task<Appointment?> UpdateAppointmentTimes(Guid id, UpdateAppointmentTimesDto timesDto);
 
         /// <summary>
         /// Update the appointment status. 
@@ -170,7 +173,7 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// <param name="id">The appointment ID</param>
         /// <param name="status">The status, can not change the status beyond awaiting appointment</param>
         /// <returns>The updated appointment.</returns>
-        Task<Appointment> UpdateAppointmentStatus(Guid id, AppointmentStatus status);
+        Task<Appointment?> UpdateAppointmentStatus(Guid id, AppointmentStatus status);
 
         /// <summary>
         /// Changes the appointment status to confrimed. 
