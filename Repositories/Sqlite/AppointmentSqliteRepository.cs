@@ -559,7 +559,7 @@ namespace JricaStudioWebAPI.Repositories.SqLite
             catch (Exception e)
             {
 
-                throw;
+                throw new Exception(e.Message, e);
             }
 
         }
@@ -597,7 +597,7 @@ namespace JricaStudioWebAPI.Repositories.SqLite
             catch (Exception e)
             {
 
-                throw;
+                throw new Exception(e.Message, e);
             }
         }
 
@@ -615,7 +615,7 @@ namespace JricaStudioWebAPI.Repositories.SqLite
             catch (Exception e)
             {
 
-                throw;
+                throw new Exception(e.Message, e);
             }
         }
 

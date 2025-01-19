@@ -552,7 +552,7 @@ namespace JricaStudioWebAPI.Controllers
         {
             try
             {
-                var result = await _repository.AddService(addDto) ?? throw throw new Exception( "Something went wrong when creating when Creating Resource" );
+                var result = await _repository.AddService(addDto) ?? throw new Exception( "Something went wrong when creating when Creating Resource" );
 
                 var imageData = await _imageAccessService.LoadImage(result.ServiceId, FileResources.serviceImageFilePath);
 

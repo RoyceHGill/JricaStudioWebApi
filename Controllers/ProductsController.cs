@@ -256,12 +256,7 @@ namespace JricaStudioWebAPI.Controllers
         {
             try
             {
-                var uploadResult = await _imageAccessService.SaveImage(file, FileResources.productImageFilePath);
-
-                if (uploadResult == null)
-                {
-                    throw new Exception("There was an issue uploading the image");
-                }
+                var uploadResult = await _imageAccessService.SaveImage(file, FileResources.productImageFilePath) ?? throw new Exception( "There was an issue uploading the image" );
 
                 return Ok(uploadResult);
             }
@@ -359,14 +354,12 @@ namespace JricaStudioWebAPI.Controllers
         [HttpPut("productShowcase")]
         public async Task<ActionResult<ProductDto>> PutServiceShowCase(UpdateProductShowcaseDto dto)
         {
-            Product product = await _repository.UpdateProductShowCase(dto);
+            var product = await _repository.UpdateProductShowCase(dto);
 
             if (product == null)
             {
                 return BadRequest(dto);
             }
-
-            var category = await _repository.GetProductCategory(product.ProductCategoryId);
 
             var imageData = await _imageAccessService.LoadImage(product.Id, FileResources.productImageFilePath);
 

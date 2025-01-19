@@ -271,7 +271,7 @@ namespace JricaStudioWebAPI.Controllers
             }
         }
 
-        private IEnumerable<AdminBusinessHoursDto> ConvertTimesToUtc(IEnumerable<AdminBusinessHoursDto> businessHoursDtos)
+        static private IEnumerable<AdminBusinessHoursDto> ConvertTimesToUtc(IEnumerable<AdminBusinessHoursDto> businessHoursDtos)
         {
             foreach (var item in businessHoursDtos)
             {

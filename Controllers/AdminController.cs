@@ -15,14 +15,12 @@ namespace JricaStudioWebAPI.Controllers
         private readonly IAdministratorRepository _adminRepository;
         private readonly IHttpContextAccessor _httpContext;
         private readonly IEmailSenderService _emailSenderService;
-        private readonly IConfiguration _configuration;
 
-        public AdminController(IAdministratorRepository adminRepository, IHttpContextAccessor httpContext, IEmailSenderService emailSenderService, IConfiguration configuration)
+        public AdminController(IAdministratorRepository adminRepository, IHttpContextAccessor httpContext, IEmailSenderService emailSenderService)
         {
             _adminRepository = adminRepository;
             _httpContext = httpContext;
             _emailSenderService = emailSenderService;
-            _configuration = configuration;
         }
 
 
@@ -88,12 +86,7 @@ namespace JricaStudioWebAPI.Controllers
         {
             try
             {
-                var admin = await _adminRepository.GetAdministratorUser(id);
-
-                if (admin == null)
-                {
-                    throw new NullReferenceException();
-                }
+                var admin = await _adminRepository.GetAdministratorUser(id) ?? throw new NullReferenceException();
 
                 return admin.ConvertToDto();
 
@@ -196,7 +189,7 @@ namespace JricaStudioWebAPI.Controllers
             }
         }
 
-        private List<string>? ValidatePassword(string cleanPassword)
+        static private List<string>? ValidatePassword(string cleanPassword)
         {
             var validationErrors = new List<string>();
             var password = cleanPassword.
@@ -232,7 +225,7 @@ namespace JricaStudioWebAPI.Controllers
                 validationErrors.Add("Password must be at least 7 characters long.");
             }
 
-            if (validationErrors.Count() > 0)
+            if ( validationErrors.Count > 0)
             {
                 return validationErrors;
             }

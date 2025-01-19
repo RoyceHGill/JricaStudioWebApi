@@ -46,7 +46,7 @@ namespace JricaStudioWebAPI.Repositories.SqLite
             {
                 var policies = await _dbContext.Policies.ToListAsync();
 
-                if (policies == null || !policies.Any())
+                if (policies == null || policies.Count == 0 )
                 {
                     return default;
                 }

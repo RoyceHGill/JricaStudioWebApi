@@ -364,10 +364,10 @@ namespace JricaStudioWebAPI.Repositories.SqLite
 
 
                 var filteredUsers = decryptedUsers.Where(u =>
-                u.FirstName.ToLower().Contains(filter.SearchText) || u.FirstName.ToLower().Equals(filter.SearchText)
-                || u.LastName.ToLower().Contains(filter.SearchText) || u.LastName.ToLower().Equals(filter.SearchText)
-                || u.Phone.ToLower().Contains(filter.SearchText) || u.Phone.ToLower().Equals(filter.SearchText)
-                || u.Email.ToLower().Contains(filter.SearchText) || u.Email.ToLower().Equals(filter.SearchText)
+                u.FirstName.Contains( filter.SearchText, StringComparison.CurrentCultureIgnoreCase ) || u.FirstName.ToLower().Equals(filter.SearchText)
+                || u.LastName.Contains( filter.SearchText, StringComparison.CurrentCultureIgnoreCase ) || u.LastName.ToLower().Equals(filter.SearchText)
+                || u.Phone.Contains( filter.SearchText, StringComparison.CurrentCultureIgnoreCase ) || u.Phone.ToLower().Equals(filter.SearchText)
+                || u.Email.Contains( filter.SearchText, StringComparison.CurrentCultureIgnoreCase ) || u.Email.ToLower().Equals(filter.SearchText)
                 ).AsEnumerable();
 
                 return filteredUsers;

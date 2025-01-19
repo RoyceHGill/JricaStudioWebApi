@@ -12,8 +12,8 @@ namespace JricaStudioWebAPI.Data
     public class JaysLashesDbContext : DbContext
     {
 
-        private readonly string _tempPW;
-        private readonly string _email;
+        private readonly string? _tempPW;
+        private readonly string? _email;
         public JaysLashesDbContext(DbContextOptions<JaysLashesDbContext> options, IConfiguration configuration) : base(options)
         {
             _tempPW = configuration.GetValue<string>("TemporaryPassword");

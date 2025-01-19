@@ -7,7 +7,6 @@ using JricaStudioWebAPI.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using JricaStudioWebAPI.Models.Dtos;
-using JricaStudioWebAPI.Models.Dtos.Admin;
 
 namespace JricaStudioWebAPI.Repositories.SqLite
 {
@@ -40,11 +39,11 @@ namespace JricaStudioWebAPI.Repositories.SqLite
                 return await _dbContext.Services.Include(s=>s.ImageUpload).ToListAsync();
             }
 
-            List<Service> services = new List<Service>();
+            var services = new List<Service>();
 
-            List<int> chosenIdexes = new List<int>();
+            var chosenIdexes = new List<int>();
 
-            Random random = new Random();
+            var random = new Random();
 
             while (services.Count < requestedServices)
             {
@@ -159,8 +158,8 @@ namespace JricaStudioWebAPI.Repositories.SqLite
 
             if (!serviceFilter.SearchString.IsNullOrEmpty())
             {
-                query = query.Where(s => s.Name.ToLower().Contains(serviceFilter.SearchString.ToLower()) || s.Name.ToLower().Equals(serviceFilter.SearchString.ToLower())
-                                            || s.Description.ToLower().Contains(serviceFilter.SearchString.ToLower()) || s.Description.ToLower().Equals(serviceFilter.SearchString.ToLower()));
+                query = query.Where(s => s.Name.Contains(serviceFilter.SearchString, StringComparison.CurrentCultureIgnoreCase) || s.Name.ToLower().Equals(serviceFilter.SearchString.ToLower())
+                                            || s.Description.Contains( serviceFilter.SearchString, StringComparison.CurrentCultureIgnoreCase ) || s.Description.ToLower().Equals(serviceFilter.SearchString.ToLower()));
             }
 
             return await query.ToListAsync();
@@ -299,7 +298,7 @@ namespace JricaStudioWebAPI.Repositories.SqLite
                 }
                 var appointment = _dbContext.Appointments.Where(a => a.User.Id == userId && a.Status == AppointmentStatus.Complete).AsEnumerable();
                 var service = new Service();
-                if (appointment.Count() > 0)
+                if ( appointment.Any() )
                 {
                     service = _dbContext.AppointmentServices
                     .Include(a => a.Service)

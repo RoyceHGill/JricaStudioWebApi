@@ -172,11 +172,11 @@ namespace JricaStudioWebAPI.Repositories.SqLite
         {
             var count = _dbContext.Products.Count();
 
-            List<Product> products = new List<Product>();
+            var products = new List<Product>();
 
-            List<int> chosenIndexes = new List<int>();
+            var chosenIndexes = new List<int>();
 
-            Random random = new Random();
+            var random = new Random();
 
             while (products.Count < targetLength)
             {
@@ -226,8 +226,8 @@ namespace JricaStudioWebAPI.Repositories.SqLite
 
                 if (!filter.SearchString.IsNullOrEmpty())
                 {
-                    query = query.Where(p => p.Name.ToLower().Contains(filter.SearchString.ToLower())
-                        || p.Description.ToLower().Contains(filter.SearchString.ToLower()));
+                    query = query.Where(p => p.Name.Contains(filter.SearchString, StringComparison.CurrentCultureIgnoreCase)
+                        || p.Description.Contains(filter.SearchString, StringComparison.CurrentCultureIgnoreCase));
                 }
 
                 if (filter.ProductCategoryId != Guid.Empty)

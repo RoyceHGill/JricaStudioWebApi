@@ -39,8 +39,7 @@ namespace JricaStudioWebAPI.Controllers
             }
             catch (Exception e)
             {
-
-                throw;
+                return StatusCode( StatusCodes.Status500InternalServerError, e.Message );
             }
         }
 
@@ -93,16 +92,11 @@ namespace JricaStudioWebAPI.Controllers
 
 
 
-                var user = await _userRepository.CreateNew(userDto);
-
-                if (user == null)
-                {
-                    throw new Exception("An Error has occurred when trying to Create the Resource.");
-                }
+                var user = await _userRepository.CreateNew(userDto) ?? throw new Exception( "An Error has occurred when trying to Create the Resource." );
 
                 var userDtoResult = user.ConvertToDto();
 
-                return CreatedAtAction(nameof(Get), new { Id = userDtoResult.Id }, userDtoResult);
+                return CreatedAtAction(nameof(Get), new { userDtoResult.Id }, userDtoResult);
             }
             catch (Exception e)
             {
@@ -171,17 +165,11 @@ namespace JricaStudioWebAPI.Controllers
                     return StatusCode(StatusCodes.Status406NotAcceptable, "User Data Failed Validation");
                 }
 
-                var result = await _userRepository.CreateNew(userDto);
-
-                if (result == null)
-                {
-                    throw new Exception("An Error has occurred when trying to Create the Resource.");
-                }
-
+                var result = await _userRepository.CreateNew(userDto) ?? throw new Exception( "An Error has occurred when trying to Create the Resource." );
 
                 var userDtoResult = result.ConvertToAdminDto();
 
-                return CreatedAtAction(nameof(Get), new { Id = userDtoResult.Id }, userDtoResult);
+                return CreatedAtAction(nameof(Get), new { userDtoResult.Id }, userDtoResult);
             }
             catch (InvalidOperationException ope)
             {
