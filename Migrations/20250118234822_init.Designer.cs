@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JricaStudioWebApi.Migrations
 {
     [DbContext(typeof(JaysLashesDbContext))]
-    [Migration("20250117234007_init")]
+    [Migration("20250118234822_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -61,7 +61,6 @@ namespace JricaStudioWebApi.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("Updated")
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Username")
@@ -75,12 +74,12 @@ namespace JricaStudioWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("198bfb68-2494-491b-824e-2dc0b627ec3c"),
-                            AdminKey = new Guid("5eeb2607-2054-44d9-b529-1dfc40e21e14"),
-                            Created = new DateTime(2025, 1, 17, 23, 40, 7, 375, DateTimeKind.Utc).AddTicks(9428),
+                            Id = new Guid("3312a443-451f-4e0d-8ad4-94d68c8707fd"),
+                            AdminKey = new Guid("96da32c0-022e-4661-93d8-65495d8f0dba"),
+                            Created = new DateTime(2025, 1, 18, 23, 48, 21, 974, DateTimeKind.Utc).AddTicks(3437),
                             FirstName = "Jayrica",
                             LastName = "Cunanan",
-                            Password = "$2a$11$B2LedTPzQeknxa80qgBCYehXdpuvMNu3kKp16b0dyoG7MxUupLlAW",
+                            Password = "$2a$11$M9WBp2Nz6pNk5buFhA9Zeu96A6ym.BlEGYcW2FoIq9UlQwxjSRaQ.",
                             Phone = "0422453888",
                             ResetKey = new Guid("00000000-0000-0000-0000-000000000000"),
                             ResetKeySent = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -118,10 +117,6 @@ namespace JricaStudioWebApi.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("Updated")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -173,10 +168,6 @@ namespace JricaStudioWebApi.Migrations
                     b.Property<Guid>("ServiceId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("Updated")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AppointmentId");
@@ -198,10 +189,6 @@ namespace JricaStudioWebApi.Migrations
 
                     b.Property<DateOnly>("Date")
                         .HasColumnType("date");
-
-                    b.Property<DateTime?>("Updated")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -236,10 +223,6 @@ namespace JricaStudioWebApi.Migrations
                     b.Property<TimeOnly?>("OpenTime")
                         .HasColumnType("time");
 
-                    b.Property<DateTime?>("Updated")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.ToTable("BusinessHours");
@@ -267,10 +250,6 @@ namespace JricaStudioWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Updated")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.ToTable("ImageUploads");
@@ -294,8 +273,7 @@ namespace JricaStudioWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Updated")
-                        .ValueGeneratedOnAddOrUpdate()
+                    b.Property<DateTime>("Updated")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -334,10 +312,6 @@ namespace JricaStudioWebApi.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Updated")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ImageUploadId");
@@ -374,10 +348,6 @@ namespace JricaStudioWebApi.Migrations
 
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("Updated")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -417,10 +387,6 @@ namespace JricaStudioWebApi.Migrations
                     b.Property<Guid>("ServiceCategoryId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("Updated")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ImageUploadId");
@@ -455,10 +421,6 @@ namespace JricaStudioWebApi.Migrations
 
                     b.Property<Guid>("ServiceId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("Updated")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -506,10 +468,6 @@ namespace JricaStudioWebApi.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Updated")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2");
-
                     b.Property<bool>("WearsContanctLenses")
                         .HasColumnType("bit");
 
@@ -523,7 +481,7 @@ namespace JricaStudioWebApi.Migrations
                     b.HasOne("JricaStudioWebApi.Entities.User", "User")
                         .WithMany("Appointments")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.SetNull)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("User");

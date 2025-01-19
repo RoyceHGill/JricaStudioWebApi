@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore;
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
     /// <inheritdoc/>
-    public class PolicyRepository : IPolicyRepository
+    public class PolicySqlRepository : IPolicyRepository
     {
         private readonly JaysLashesDbContext _dbContext;
 
-        public PolicyRepository(JaysLashesDbContext jaysLashesDbContext)
+        public PolicySqlRepository(JaysLashesDbContext jaysLashesDbContext)
         {
             _dbContext = jaysLashesDbContext;
         }

@@ -11,12 +11,12 @@ using JricaStudioWebApi.Services.Contracts;
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
     /// <inheritdoc cref="IUserRepository"/>
-    public class UserRepository : IUserRepository
+    public class UserSqlRepository : IUserRepository
     {
         private readonly JaysLashesDbContext _jaysLashesDbContext;
         private readonly IStringEncryptionService _encryptionService;
 
-        public UserRepository(JaysLashesDbContext jaysLashesDbContext, IStringEncryptionService encryptionService)
+        public UserSqlRepository(JaysLashesDbContext jaysLashesDbContext, IStringEncryptionService encryptionService)
         {
             _jaysLashesDbContext = jaysLashesDbContext;
             _encryptionService = encryptionService;

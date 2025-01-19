@@ -18,11 +18,11 @@ using JricaStudioSharedLibrary.Dtos;
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
     /// <inheritdoc cref="IProductRepository"/>
-    public class ProductSqliteRepository : IProductRepository
+    public class ProductSqlRepository : IProductRepository
     {
         private readonly JaysLashesDbContext _dbContext;
 
-        public ProductSqliteRepository(JaysLashesDbContext jaysLashesDbContext)
+        public ProductSqlRepository(JaysLashesDbContext jaysLashesDbContext)
         {
             _dbContext = jaysLashesDbContext;
         }

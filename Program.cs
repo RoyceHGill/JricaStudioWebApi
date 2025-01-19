@@ -12,22 +12,22 @@ namespace JricaStudioWebApi
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main( string[] args )
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var builder = WebApplication.CreateBuilder( args );
 
 #if DEBUG
-            var connectionString = builder.Configuration.GetConnectionString("JaysLashesLocalDBTest") ?? throw new InvalidOperationException("Connection string 'JaysLashesLocalDBTest' not found.");
+            var connectionString = builder.Configuration.GetConnectionString( "JaysLashesLocalDBTest" ) ?? throw new InvalidOperationException( "Connection string 'JaysLashesLocalDBTest' not found." );
 
 #else
             var connectionString = Environment.GetEnvironmentVariable("JaysLashesAzureDB") ?? throw new InvalidOperationException("Connection string 'JaysLashesAzureDB' not found.");
 #endif
 
 
-            builder.Services.AddDbContext<JaysLashesDbContext>(options =>
+            builder.Services.AddDbContext<JaysLashesDbContext>( options =>
             {
-                options.UseSqlServer(connectionString.ToString());
-            });
+                options.UseSqlServer( connectionString.ToString() );
+            } );
 
             builder.Services.AddHttpContextAccessor();
 
@@ -37,15 +37,15 @@ namespace JricaStudioWebApi
             builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();
 
             builder.Services.AddScoped<IStringEncryptionService, StringEncryptionService>();
-            builder.Services.AddScoped<IProductRepository, ProductSqliteRepository>();
-            builder.Services.AddScoped<IServiceRepository, ServiceSqliteRepository>();
-            builder.Services.AddScoped<IAppointmentRepository, AppointmentSqliteRepository>();
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
-            builder.Services.AddScoped<ISchedulingRepository, SchedulingSqliteRepository>();
-            builder.Services.AddScoped<IAdminRepository, AdminSqliteRepository>();
-            builder.Services.AddScoped<IImageUploadRepository, ImageUploadSqliteRepository>();
+            builder.Services.AddScoped<IProductRepository, ProductSqlRepository>();
+            builder.Services.AddScoped<IServiceRepository, ServiceSqlRepository>();
+            builder.Services.AddScoped<IAppointmentRepository, AppointmentSqlRepository>();
+            builder.Services.AddScoped<IUserRepository, UserSqlRepository>();
+            builder.Services.AddScoped<ISchedulingRepository, SchedulingSqlRepository>();
+            builder.Services.AddScoped<IAdminRepository, AdminSqlRepository>();
+            builder.Services.AddScoped<IImageUploadRepository, ImageUploadSqlRepository>();
             builder.Services.AddScoped<ISchedulingService, SchedulingService>();
-            builder.Services.AddScoped<IPolicyRepository, PolicyRepository>();
+            builder.Services.AddScoped<IPolicyRepository, PolicySqlRepository>();
 
             builder.Services.AddDistributedMemoryCache();
 
@@ -57,15 +57,15 @@ namespace JricaStudioWebApi
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            if ( app.Environment.IsDevelopment() )
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
 
-                app.UseCors(policy => policy.WithOrigins("https://localhost:7239/", "https://localhost:7239").AllowAnyMethod().WithHeaders(HeaderNames.ContentType, "adminkey"));
+                app.UseCors( policy => policy.WithOrigins( "https://localhost:7239/", "https://localhost:7239" ).AllowAnyMethod().WithHeaders( HeaderNames.ContentType, "adminkey" ) );
             }
 
-            app.UseCors(policy => policy.WithOrigins("https://www.jricastudio.com/", "https://www.jricastudio.com", "https://polite-flower-07d8d6d0f.4.azurestaticapps.net/", "https://polite-flower-07d8d6d0f.4.azurestaticapps.net", "https://jricastudio.com/", "https://jricastudio.com").AllowAnyMethod().WithHeaders(HeaderNames.ContentType, "adminkey"));
+            app.UseCors( policy => policy.WithOrigins( "https://www.jricastudio.com/", "https://www.jricastudio.com", "https://polite-flower-07d8d6d0f.4.azurestaticapps.net/", "https://polite-flower-07d8d6d0f.4.azurestaticapps.net", "https://jricastudio.com/", "https://jricastudio.com" ).AllowAnyMethod().WithHeaders( HeaderNames.ContentType, "adminkey" ) );
 
             app.UseHttpsRedirection();
 

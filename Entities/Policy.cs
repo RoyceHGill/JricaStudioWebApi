@@ -16,5 +16,9 @@ namespace JricaStudioWebApi.Entities
         /// The Body of the article. 
         /// </summary>
         public string PolicyArticle { get; set; }
+        /// <summary>
+        /// Date the Policy was updated.
+        /// </summary>
+        public DateTime Updated { get; set; }
     }
 }

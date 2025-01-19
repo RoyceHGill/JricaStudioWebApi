@@ -8,10 +8,10 @@ using JricaStudioSharedLibrary.Dtos;
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
     /// <inheritdoc cref="IImageUploadRepository"/>
-    public class ImageUploadSqliteRepository : IImageUploadRepository
+    public class ImageUploadSqlRepository : IImageUploadRepository
     {
         private readonly JaysLashesDbContext _dbContext;
-        public ImageUploadSqliteRepository(JaysLashesDbContext dbContext)
+        public ImageUploadSqlRepository(JaysLashesDbContext dbContext)
         {
             _dbContext = dbContext;
         }

@@ -1,4 +1,5 @@
 ﻿using JricaStudioWebApi.Entities.Helpers;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JricaStudioWebApi.Entities
 {
@@ -15,6 +16,7 @@ namespace JricaStudioWebApi.Entities
         public Guid AdminKey { get; set; }
         public Guid ResetKey { get; set; }
         public DateTime ResetKeySent { get; set; }
+        public DateTime? Updated { get; set; }
 
     }
 }

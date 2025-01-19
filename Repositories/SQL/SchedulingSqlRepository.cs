@@ -12,11 +12,11 @@ using NuGet.Protocol;
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
     /// <inheritdoc cref="ISchedulingRepository"/>
-    public class SchedulingSqliteRepository : ISchedulingRepository
+    public class SchedulingSqlRepository : ISchedulingRepository
     {
         private readonly JaysLashesDbContext _jaysLashesDbContext;
 
-        public SchedulingSqliteRepository(JaysLashesDbContext jaysLashesDbContext)
+        public SchedulingSqlRepository(JaysLashesDbContext jaysLashesDbContext)
         {
             _jaysLashesDbContext = jaysLashesDbContext;
         }

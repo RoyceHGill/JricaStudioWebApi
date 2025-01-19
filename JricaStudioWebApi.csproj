@@ -36,10 +36,4 @@
     <ProjectReference Include="..\JricaStudioSharedLibrary\jricaStudioSharedLibrary\JricaStudioSharedLibrary.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Data\JaysLashes.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

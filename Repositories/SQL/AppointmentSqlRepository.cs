@@ -14,12 +14,12 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
     /// <inheritdoc cref="IAppointmentRepository" />
-    public class AppointmentSqliteRepository : IAppointmentRepository
+    public class AppointmentSqlRepository : IAppointmentRepository
     {
         private readonly JaysLashesDbContext _jaysLashesDbContext;
         private readonly IStringEncryptionService _encryptionService;
 
-        public AppointmentSqliteRepository(JaysLashesDbContext jaysLashesDbContext, IStringEncryptionService encryptionService)
+        public AppointmentSqlRepository(JaysLashesDbContext jaysLashesDbContext, IStringEncryptionService encryptionService)
         {
             _jaysLashesDbContext = jaysLashesDbContext;
             _encryptionService = encryptionService;

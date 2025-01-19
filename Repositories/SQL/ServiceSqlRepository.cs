@@ -12,11 +12,11 @@ using JricaStudioSharedLibrary.Dtos.Admin;
 namespace JricaStudioWebApi.Repositories.Sqlite
 {
     /// <inheritdoc cref="IServiceRepository"/>
-    public class ServiceSqliteRepository : IServiceRepository
+    public class ServiceSqlRepository : IServiceRepository
     {
         private readonly JaysLashesDbContext _dbContext;
 
-        public ServiceSqliteRepository(JaysLashesDbContext jaysLashesDbContext)
+        public ServiceSqlRepository(JaysLashesDbContext jaysLashesDbContext)
         {
             _dbContext = jaysLashesDbContext;
         }

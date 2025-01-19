@@ -24,8 +24,8 @@ namespace JricaStudioWebApi.Migrations
                     AdminKey = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ResetKey = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ResetKeySent = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,8 +38,7 @@ namespace JricaStudioWebApi.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Date = table.Column<DateOnly>(type: "date", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -57,8 +56,7 @@ namespace JricaStudioWebApi.Migrations
                     LocalTimeOffset = table.Column<TimeSpan>(type: "time", nullable: false),
                     IsDisabled = table.Column<bool>(type: "bit", nullable: false),
                     AfterHoursGraceRange = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,8 +71,7 @@ namespace JricaStudioWebApi.Migrations
                     FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StoredFileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ContentType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,8 +85,8 @@ namespace JricaStudioWebApi.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PolicyTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PolicyArticle = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Updated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -135,8 +132,7 @@ namespace JricaStudioWebApi.Migrations
                     HasAllergies = table.Column<bool>(type: "bit", nullable: false),
                     HasSensitiveSkin = table.Column<bool>(type: "bit", nullable: false),
                     IsWaiverAcknowledged = table.Column<bool>(type: "bit", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -154,8 +150,7 @@ namespace JricaStudioWebApi.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     ServiceCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ImageUploadId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -178,8 +173,7 @@ namespace JricaStudioWebApi.Migrations
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     ProductCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ImageUploadId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -209,8 +203,7 @@ namespace JricaStudioWebApi.Migrations
                     IsDepositPaid = table.Column<bool>(type: "bit", nullable: false),
                     SampleSetCompleted = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -219,8 +212,7 @@ namespace JricaStudioWebApi.Migrations
                         name: "FK_Appointments_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.SetNull);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -229,8 +221,7 @@ namespace JricaStudioWebApi.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ServiceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -249,8 +240,7 @@ namespace JricaStudioWebApi.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -296,8 +286,7 @@ namespace JricaStudioWebApi.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AppointmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ServiceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -318,8 +307,8 @@ namespace JricaStudioWebApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "Admins",
-                columns: new[] { "Id", "AdminKey", "Created", "FirstName", "LastName", "Password", "Phone", "ResetKey", "ResetKeySent", "Username" },
-                values: new object[] { new Guid("198bfb68-2494-491b-824e-2dc0b627ec3c"), new Guid("5eeb2607-2054-44d9-b529-1dfc40e21e14"), new DateTime(2025, 1, 17, 23, 40, 7, 375, DateTimeKind.Utc).AddTicks(9428), "Jayrica", "Cunanan", "$2a$11$B2LedTPzQeknxa80qgBCYehXdpuvMNu3kKp16b0dyoG7MxUupLlAW", "0422453888", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "jricastudio@gmail.com" });
+                columns: new[] { "Id", "AdminKey", "Created", "FirstName", "LastName", "Password", "Phone", "ResetKey", "ResetKeySent", "Updated", "Username" },
+                values: new object[] { new Guid("3312a443-451f-4e0d-8ad4-94d68c8707fd"), new Guid("96da32c0-022e-4661-93d8-65495d8f0dba"), new DateTime(2025, 1, 18, 23, 48, 21, 974, DateTimeKind.Utc).AddTicks(3437), "Jayrica", "Cunanan", "$2a$11$M9WBp2Nz6pNk5buFhA9Zeu96A6ym.BlEGYcW2FoIq9UlQwxjSRaQ.", "0422453888", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "jricastudio@gmail.com" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AppointmentProducts_AppointmentId",
