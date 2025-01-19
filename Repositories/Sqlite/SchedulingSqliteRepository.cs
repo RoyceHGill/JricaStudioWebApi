@@ -1,22 +1,22 @@
 ﻿
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Data;
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Repositories.Contracts;
+using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Data;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Repositories.Contracts;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.JSInterop.Infrastructure;
-using JricaStudioWebApi.Models.Dtos.Admin.BusinessHours;
+using JricaStudioWebAPI.Models.Dtos.Admin.BusinessHours;
 using NuGet.Protocol;
 
-namespace JricaStudioWebApi.Repositories.Sqlite
+namespace JricaStudioWebAPI.Repositories.SqLite
 {
     /// <inheritdoc cref="ISchedulingRepository"/>
-    public class SchedulingSqliteRepository : ISchedulingRepository
+    public class SchedulingSqLiteRepository : ISchedulingRepository
     {
         private readonly JaysLashesDbContext _jaysLashesDbContext;
 
-        public SchedulingSqliteRepository(JaysLashesDbContext jaysLashesDbContext)
+        public SchedulingSqLiteRepository(JaysLashesDbContext jaysLashesDbContext)
         {
             _jaysLashesDbContext = jaysLashesDbContext;
         }
@@ -43,7 +43,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
 
 
-        public async Task<IEnumerable<BusinessHours>> UpdateBusinessHours(IEnumerable<AdminBusinessHoursDto> dtos)
+        public async Task<IEnumerable<BusinessHours>> UpdateBusinessHours(IEnumerable<AdminBusinessHoursDto> businessHoursUpdate)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
                 {
                     var newBusinessHoursCollection = new List<BusinessHours>();
 
-                    foreach (var dto in dtos)
+                    foreach (var dto in businessHoursUpdate)
                     {
                         var newBusinessHours = new BusinessHours()
                         {
@@ -76,7 +76,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
                 }
 
                 var updatedBusinessHours = new List<BusinessHours>();
-                foreach (var itemDto in dtos)
+                foreach (var itemDto in businessHoursUpdate)
                 {
                     var entity = businessHours.SingleOrDefault(b => b.Id == itemDto.Id);
                     if (entity != null)
@@ -122,18 +122,18 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             }
         }
 
-        public async Task<IEnumerable<BlockOutDate>> AddBlockOutDate(BlockOutDateToAddDto dto)
+        public async Task<IEnumerable<BlockOutDate>> AddBlockOutDate(BlockOutDateToAddDto blockOutDate)
         {
             try
             {
                 var todaysDate = DateOnly.FromDateTime(DateTime.Today);
 
 
-                if (dto.Date < todaysDate)
+                if (blockOutDate.Date < todaysDate)
                 {
                     throw new ArgumentException("Block out date has to be a future date.");
                 }
-                var blockoutDate = await _jaysLashesDbContext.BlockOutDates.SingleOrDefaultAsync(b => b.Date == dto.Date);
+                var blockoutDate = await _jaysLashesDbContext.BlockOutDates.SingleOrDefaultAsync(b => b.Date == blockOutDate.Date);
 
                 if (blockoutDate != null)
                 {
@@ -142,7 +142,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
                 var result = _jaysLashesDbContext.BlockOutDates.Add(new BlockOutDate
                 {
-                    Date = dto.Date,
+                    Date = blockOutDate.Date,
                 });
 
                 await _jaysLashesDbContext.SaveChangesAsync();

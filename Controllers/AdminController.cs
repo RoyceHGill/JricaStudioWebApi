@@ -1,28 +1,26 @@
 ﻿
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Attributes;
-using JricaStudioWebApi.Extentions;
-using JricaStudioWebApi.Repositories.Contracts;
-using JricaStudioWebApi.Services.Contracts;
+using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Attributes;
+using JricaStudioWebAPI.Extentions;
+using JricaStudioWebAPI.Repositories.Contracts;
+using JricaStudioWebAPI.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JricaStudioWebApi.Controllers
+namespace JricaStudioWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private readonly IAdminRepository _adminRepository;
+        private readonly IAdministratorRepository _adminRepository;
         private readonly IHttpContextAccessor _httpContext;
         private readonly IEmailSenderService _emailSenderService;
-        private readonly IConfiguration _configuration;
 
-        public AdminController(IAdminRepository adminRepository, IHttpContextAccessor httpContext, IEmailSenderService emailSenderService, IConfiguration configuration)
+        public AdminController(IAdministratorRepository adminRepository, IHttpContextAccessor httpContext, IEmailSenderService emailSenderService)
         {
             _adminRepository = adminRepository;
             _httpContext = httpContext;
             _emailSenderService = emailSenderService;
-            _configuration = configuration;
         }
 
 
@@ -32,7 +30,7 @@ namespace JricaStudioWebApi.Controllers
             try
             {
 
-                var admin = await _adminRepository.GetAdminUser(dto.Username);
+                var admin = await _adminRepository.GetAdministratorUser(dto.Username);
 
                 if (admin == null)
                 {
@@ -82,18 +80,13 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpGet("re-verification/{id:guid}")]
         public async Task<ActionResult<AdminUserLoginDto>> UpdateAdmin(Guid id)
         {
             try
             {
-                var admin = await _adminRepository.GetAdminUser(id);
-
-                if (admin == null)
-                {
-                    throw new NullReferenceException();
-                }
+                var admin = await _adminRepository.GetAdministratorUser(id) ?? throw new NullReferenceException();
 
                 return admin.ConvertToDto();
 
@@ -114,7 +107,7 @@ namespace JricaStudioWebApi.Controllers
         {
             try
             {
-                var admin = await _adminRepository.GetAdminUser(dto.Email);
+                var admin = await _adminRepository.GetAdministratorUser(dto.Email);
 
                 if (admin == null)
                 {
@@ -196,7 +189,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        private List<string>? ValidatePassword(string cleanPassword)
+        static private List<string>? ValidatePassword(string cleanPassword)
         {
             var validationErrors = new List<string>();
             var password = cleanPassword.
@@ -232,7 +225,7 @@ namespace JricaStudioWebApi.Controllers
                 validationErrors.Add("Password must be at least 7 characters long.");
             }
 
-            if (validationErrors.Count() > 0)
+            if ( validationErrors.Count > 0)
             {
                 return validationErrors;
             }

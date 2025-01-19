@@ -1,7 +1,7 @@
 ﻿
 using System.Reflection;
 
-namespace JricaStudioWebApi.Models.Extentions
+namespace JricaStudioWebAPI.Models.Extentions
 {
     static public class DtoDateTimeSanitization
     {

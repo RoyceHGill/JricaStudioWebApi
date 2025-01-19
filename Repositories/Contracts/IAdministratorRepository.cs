@@ -1,10 +1,12 @@
 ﻿
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Entities;
+// Ignore Spelling: Jrica
 
-namespace JricaStudioWebApi.Repositories.Contracts
+using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Entities;
+
+namespace JricaStudioWebAPI.Repositories.Contracts
 {
-    public interface IAdminRepository
+    public interface IAdministratorRepository
     {
 
         #region Create
@@ -17,14 +19,14 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// </summary>
         /// <param name="username">User's Email</param>
         /// <returns>Admin Details </returns>
-        Task<Admin> GetAdminUser(string username);
+        Task<Admin> GetAdministratorUser(string username);
 
         /// <summary>
         /// Get Administrator details for provided ID.
         /// </summary>
         /// <param name="adminId"></param>
         /// <returns>Administrator's details</returns>
-        Task<Admin> GetAdminUser(Guid adminId);
+        Task<Admin> GetAdministratorUser(Guid adminId);
         #endregion
 
         #region Update
@@ -54,7 +56,7 @@ namespace JricaStudioWebApi.Repositories.Contracts
         /// </summary>
         /// <param name="adminKey">Guid Administrator key for authorized access </param>
         /// <returns>Returns true if the key provided exists in the database.</returns>
-        Task<bool> ValidateAdminKey(Guid adminKey);
+        Task<bool> ValidateAdministratorKey(Guid adminKey);
 
         /// <summary>
         /// Begins the Password reset process, generating a new key for reseting a password. 

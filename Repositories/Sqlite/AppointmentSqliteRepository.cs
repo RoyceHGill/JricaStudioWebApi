@@ -1,19 +1,15 @@
-﻿using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Data;
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Repositories.Contracts;
+﻿using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Data;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
-using JricaStudioWebApi.Models.enums;
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Services.Contracts;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Extentions;
-using JricaStudioWebApi.Models.Dtos.Admin;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using JricaStudioWebAPI.Models.enums;
+using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Services.Contracts;
+using JricaStudioWebAPI.Extentions;
 
-namespace JricaStudioWebApi.Repositories.Sqlite
+namespace JricaStudioWebAPI.Repositories.SqLite
 {
-    /// <inheritdoc cref="IAppointmentRepository" />
     public class AppointmentSqliteRepository : IAppointmentRepository
     {
         private readonly JaysLashesDbContext _jaysLashesDbContext;
@@ -25,15 +21,12 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             _encryptionService = encryptionService;
         }
 
-        public async Task<AppointmentProduct> AddProductToAppointment(AppointmentProductToAddDto addDto)
+        public async Task<AppointmentProduct> AddProduct(AppointmentProductToAddDto addDto)
         {
             try
             {
-                var appointment = await _jaysLashesDbContext.Appointments.Include(a => a.AppointmentProducts).SingleOrDefaultAsync(a => a.Id == addDto.AppointmentId);
-                if (appointment == null)
-                {
-                    throw new Exception("No Appointment found");
-                }
+                var appointment = await _jaysLashesDbContext.Appointments.Include(a => a.AppointmentProducts).SingleOrDefaultAsync(a => a.Id == addDto.AppointmentId) ?? throw new Exception( "No Appointment found" );
+
                 if (appointment.Status >= AppointmentStatus.AwaitingApproval)
                 {
                     throw new Exception("Can not add Product to Submitted Appointment");
@@ -79,15 +72,12 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             }
 
         }
-        public async Task<AppointmentService> AddServiceToAppointment(AppointmentServiceToAddDto addDto)
+        public async Task<AppointmentService> AddService(AppointmentServiceToAddDto addDto)
         {
             try
             {
-                var appointment = await _jaysLashesDbContext.Appointments.SingleOrDefaultAsync(a => a.Id == addDto.AppointmentId);
-                if (appointment == null)
-                {
-                    throw new Exception("No Appointment found");
-                }
+                var appointment = await _jaysLashesDbContext.Appointments.SingleOrDefaultAsync(a => a.Id == addDto.AppointmentId) ?? throw new Exception( "No Appointment found" );
+
                 if (appointment.Status >= AppointmentStatus.AwaitingApproval)
                 {
                     throw new Exception("Can not add Service to Submitted Appointment");
@@ -122,11 +112,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
         {
             try
             {
-                var appointment = await _jaysLashesDbContext.Appointments.Include(a => a.AppointmentProducts).SingleOrDefaultAsync(a => a.Id == addDto.AppointmentId);
-                if (appointment == null)
-                {
-                    throw new Exception("No Appointment found");
-                }
+                var appointment = await _jaysLashesDbContext.Appointments.Include(a => a.AppointmentProducts).SingleOrDefaultAsync(a => a.Id == addDto.AppointmentId) ?? throw new Exception( "No Appointment found" );
 
                 if (!appointment.AppointmentProducts.Any(p => p.ProductId == addDto.ProductId))
                 {
@@ -170,11 +156,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
         {
             try
             {
-                var appointment = await _jaysLashesDbContext.Appointments.SingleOrDefaultAsync(a => a.Id == addDto.AppointmentId);
-                if (appointment == null)
-                {
-                    throw new Exception("No Appointment found");
-                }
+                var appointment = await _jaysLashesDbContext.Appointments.SingleOrDefaultAsync(a => a.Id == addDto.AppointmentId) ?? throw new Exception( "No Appointment found" );
 
                 var service = await _jaysLashesDbContext.Services.SingleOrDefaultAsync(s => s.Id == addDto.ServiceId);
 
@@ -205,9 +187,9 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             return await _jaysLashesDbContext.AppointmentProducts.Where(ap => ap.Id == id).Include(ap => ap.Product).Include(ap => ap.Appointment).SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<AppointmentProduct>> GetProducts(Guid appointmentId)
+        public async Task<IEnumerable<AppointmentProduct>> GetProducts(Guid id)
         {
-            return await _jaysLashesDbContext.AppointmentProducts.Include(ap => ap.Product).ThenInclude(p => p.ImageUpload).Include(ap => ap.Appointment).Where(ap => ap.AppointmentId == appointmentId).AsNoTracking().ToListAsync();
+            return await _jaysLashesDbContext.AppointmentProducts.Include(ap => ap.Product).ThenInclude(p => p.ImageUpload).Include(ap => ap.Appointment).Where(ap => ap.AppointmentId == id).AsNoTracking().ToListAsync();
         }
 
         public async Task<AppointmentService> GetService(Guid id)
@@ -302,9 +284,10 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             }
         }
 
-        public async Task<Appointment> UpdateAppointmentTimes(Guid id, UpdateAppointmentTimesDto timesDto)
+        public async Task<Appointment?> UpdateAppointmentTimes(Guid id, UpdateAppointmentTimesDto timesDto)
         {
-            var appointment = await _jaysLashesDbContext.Appointments.Include(a => a.AppointmentProducts)
+            var appointment = await _jaysLashesDbContext.Appointments
+                .Include(a => a.AppointmentProducts)
                 .ThenInclude(ap => ap.Product).ThenInclude(p => p.ImageUpload)
                 .Include(a => a.AppointmentServices)
                 .ThenInclude(appS => appS.Service).ThenInclude(p => p.ImageUpload)
@@ -312,7 +295,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
             if (appointment == null)
             {
-                return appointment;
+                return default;
             }
 
             appointment.StartTime = timesDto.StartTime;
@@ -323,7 +306,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             return appointment;
         }
 
-        public async Task<Appointment> UpdateAppointmentStatus(Guid id, AppointmentStatus status)
+        public async Task<Appointment?> UpdateAppointmentStatus(Guid id, AppointmentStatus status)
         {
             var appointment = await _jaysLashesDbContext.Appointments.SingleOrDefaultAsync(a => a.Id == id);
 
@@ -433,7 +416,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             return appointments;
         }
 
-        public async Task<IEnumerable<Appointment>> GetAppointments(AdminAppointmentSearchFilterDto filter)
+        public async Task<IEnumerable<Appointment>?> GetAppointments(AdminAppointmentSearchFilterDto filter)
         {
             var allAppointments = new List<Appointment>();
             if (filter.Status == null && filter.SearchString == null)
@@ -484,9 +467,9 @@ namespace JricaStudioWebApi.Repositories.Sqlite
 
             var appointments = decryptedAllAppointmentsWithStatus
                 .Where(a =>
-                    a.User.FirstName.ToLower().Contains(filter.SearchString.ToLower()) || a.User.FirstName.Equals(filter.SearchString.ToLower())
-                    || a.User.LastName.ToLower().Contains(filter.SearchString.ToLower()) || a.User.LastName.Equals(filter.SearchString.ToLower())
-                    || a.User.Email.ToLower().Contains(filter.SearchString.ToLower()) || a.User.Email.Equals(filter.SearchString.ToLower())
+                    a.User.FirstName.Contains( filter.SearchString, StringComparison.CurrentCultureIgnoreCase ) || a.User.FirstName.Equals(filter.SearchString.ToLower())
+                    || a.User.LastName.Contains(filter.SearchString, StringComparison.CurrentCultureIgnoreCase) || a.User.LastName.Equals(filter.SearchString.ToLower())
+                    || a.User.Email.Contains(filter.SearchString, StringComparison.CurrentCultureIgnoreCase) || a.User.Email.Equals(filter.SearchString, StringComparison.CurrentCultureIgnoreCase)
                     || a.User.Phone.Equals(filter.SearchString))
                 .Where(a => a.Status == filter.Status)
                 .AsEnumerable();
@@ -536,7 +519,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
         }
 
 
-        private async Task<IEnumerable<Appointment>> DecryptUsers(IEnumerable<Appointment> appointments)
+        private async Task<List<Appointment>> DecryptUsers(IEnumerable<Appointment> appointments)
         {
             var decryptedAppointments = new List<Appointment>();
 
@@ -576,7 +559,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             catch (Exception e)
             {
 
-                throw;
+                throw new Exception(e.Message, e);
             }
 
         }
@@ -614,7 +597,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             catch (Exception e)
             {
 
-                throw;
+                throw new Exception(e.Message, e);
             }
         }
 
@@ -632,7 +615,7 @@ namespace JricaStudioWebApi.Repositories.Sqlite
             catch (Exception e)
             {
 
-                throw;
+                throw new Exception(e.Message, e);
             }
         }
 

@@ -1,11 +1,11 @@
-﻿using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Entities.Filters;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Models.Dtos;
+﻿// Ignore Spelling: Jrica
 
-namespace JricaStudioWebApi.Repositories.Contracts
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Entities.Filters;
+using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Models.Dtos.Admin;
+
+namespace JricaStudioWebAPI.Repositories.Contracts
 {
     public interface IProductRepository
     {

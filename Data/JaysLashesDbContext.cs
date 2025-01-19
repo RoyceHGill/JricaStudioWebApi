@@ -1,19 +1,19 @@
 ﻿using BCrypt.Net;
-using JricaStudioWebApi.Entities;
+using JricaStudioWebAPI.Entities;
 using Microsoft.AspNetCore.Routing.Template;
 using Microsoft.EntityFrameworkCore;
-using JricaStudioWebApi.Models.Constants;
+using JricaStudioWebAPI.Models.Constants;
 using System.Globalization;
 using System.IO;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace JricaStudioWebApi.Data
+namespace JricaStudioWebAPI.Data
 {
     public class JaysLashesDbContext : DbContext
     {
 
-        private readonly string _tempPW;
-        private readonly string _email;
+        private readonly string? _tempPW;
+        private readonly string? _email;
         public JaysLashesDbContext(DbContextOptions<JaysLashesDbContext> options, IConfiguration configuration) : base(options)
         {
             _tempPW = configuration.GetValue<string>("TemporaryPassword");

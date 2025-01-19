@@ -1,15 +1,15 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Extentions;
-using JricaStudioWebApi.Repositories.Contracts;
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Attributes;
-using JricaStudioWebApi.Services.Contracts;
-using JricaStudioWebApi.Models.Constants;
-using JricaStudioWebApi.Entities;
+using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Extentions;
+using JricaStudioWebAPI.Repositories.Contracts;
+using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Attributes;
+using JricaStudioWebAPI.Services.Contracts;
+using JricaStudioWebAPI.Models.Constants;
+using JricaStudioWebAPI.Entities;
 
-namespace JricaStudioWebApi.Controllers
+namespace JricaStudioWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -174,7 +174,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPost("Search")]
         public async Task<ActionResult<IEnumerable<AdminProductDto>>> SearchProducts(ProductFilterDto filter)
         {
@@ -197,7 +197,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPost("Category")]
         public async Task<ActionResult<AdminProductCategoryDto>> PostCategory(AddProductCategoryDto newCategory)
         {
@@ -226,7 +226,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpDelete("Category/{id:guid}")]
         public async Task<ActionResult<AdminProductCategoryDto>> DeleteCategory(Guid id)
         {
@@ -250,18 +250,13 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPost("ImageUpload")]
         public async Task<ActionResult<UploadResultDto>> UploadImage(IFormFile file)
         {
             try
             {
-                var uploadResult = await _imageAccessService.SaveImage(file, FileResources.productImageFilePath);
-
-                if (uploadResult == null)
-                {
-                    throw new Exception("There was an issue uploading the image");
-                }
+                var uploadResult = await _imageAccessService.SaveImage(file, FileResources.productImageFilePath) ?? throw new Exception( "There was an issue uploading the image" );
 
                 return Ok(uploadResult);
             }
@@ -272,7 +267,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPost]
         public async Task<ActionResult<AdminProductDto>> PostProduct([FromBody] AdminProductToAddDto dto)
         {
@@ -295,7 +290,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPut("{id:guid}")]
         public async Task<ActionResult<AdminProductDto>> PutProduct(Guid id, EditProductDto dto)
         {
@@ -319,7 +314,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPatch]
         public async Task<ActionResult<ImageUpdateResultDto>> PatchProductImage([FromForm] Guid id, IFormFile imageFile)
         {
@@ -355,18 +350,16 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPut("productShowcase")]
         public async Task<ActionResult<ProductDto>> PutServiceShowCase(UpdateProductShowcaseDto dto)
         {
-            Product product = await _repository.UpdateProductShowCase(dto);
+            var product = await _repository.UpdateProductShowCase(dto);
 
             if (product == null)
             {
                 return BadRequest(dto);
             }
-
-            var category = await _repository.GetProductCategory(product.ProductCategoryId);
 
             var imageData = await _imageAccessService.LoadImage(product.Id, FileResources.productImageFilePath);
 

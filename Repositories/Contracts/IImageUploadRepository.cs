@@ -1,7 +1,9 @@
-﻿using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Models.Dtos;
+﻿// Ignore Spelling: Jrica
 
-namespace JricaStudioWebApi.Repositories.Contracts
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Models.Dtos;
+
+namespace JricaStudioWebAPI.Repositories.Contracts
 {
     public interface IImageUploadRepository
     {

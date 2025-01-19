@@ -1,14 +1,14 @@
 ﻿
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Models.Dtos.Admin;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NuGet.Protocol.Plugins;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using JricaStudioWebApi.Models.Dtos.Admin.BusinessHours;
-using JricaStudioWebApi.Models.Dtos.BusinessHours;
+using JricaStudioWebAPI.Models.Dtos.Admin.BusinessHours;
+using JricaStudioWebAPI.Models.Dtos.BusinessHours;
 
-namespace JricaStudioWebApi.Extentions
+namespace JricaStudioWebAPI.Extentions
 {
     public static class DtoConversions
     {

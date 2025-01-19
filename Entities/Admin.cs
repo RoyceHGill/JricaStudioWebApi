@@ -1,10 +1,7 @@
-﻿using JricaStudioWebApi.Entities.Helpers;
+﻿using JricaStudioWebAPI.Entities.Helpers;
 
-namespace JricaStudioWebApi.Entities
+namespace JricaStudioWebAPI.Entities
 {
-    /// <summary>
-    /// An Administrator of the Application and database. 
-    /// </summary>
     public class Admin : BaseModel
     {
         public string Username { get; set; }

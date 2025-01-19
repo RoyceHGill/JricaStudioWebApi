@@ -1,9 +1,9 @@
-﻿using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Models.Dtos;
+﻿using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Models.Dtos;
 
-namespace JricaStudioWebApi.Repositories.Contracts
+namespace JricaStudioWebAPI.Repositories.Contracts
 {
     public interface IUserRepository
     {

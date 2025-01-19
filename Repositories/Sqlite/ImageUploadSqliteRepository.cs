@@ -1,11 +1,11 @@
-﻿using JricaStudioWebApi.Data;
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Repositories.Contracts;
+﻿using JricaStudioWebAPI.Data;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using JricaStudioWebApi.Models.Dtos;
+using JricaStudioWebAPI.Models.Dtos;
 
-namespace JricaStudioWebApi.Repositories.Sqlite
+namespace JricaStudioWebAPI.Repositories.SqLite
 {
     /// <inheritdoc cref="IImageUploadRepository"/>
     public class ImageUploadSqliteRepository : IImageUploadRepository

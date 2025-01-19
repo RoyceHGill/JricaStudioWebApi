@@ -1,7 +1,9 @@
-﻿using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Entities;
+﻿// Ignore Spelling: Jrica
 
-namespace JricaStudioWebApi.Repositories.Contracts
+using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Entities;
+
+namespace JricaStudioWebAPI.Repositories.Contracts
 {
     public interface IPolicyRepository
     {

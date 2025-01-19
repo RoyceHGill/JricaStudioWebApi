@@ -1,8 +1,5 @@
-﻿namespace JricaStudioWebApi.Entities.Filters
+﻿namespace JricaStudioWebAPI.Entities.Filters
 {
-    /// <summary>
-    /// Query builder for services to search against database.
-    /// </summary>
     public class ServiceFilter
     {
         public Guid? Id { get; set; }
