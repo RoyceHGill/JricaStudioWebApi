@@ -12,24 +12,24 @@ namespace JricaStudioWebApi
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main( string[] args )
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var builder = WebApplication.CreateBuilder( args );
 
-            var baseConnectionString = builder.Configuration.GetConnectionString("JaysLashesContext") ?? throw new InvalidOperationException("Connection string 'JaysLashesContext' not found.");
+            var baseConnectionString = builder.Configuration.GetConnectionString( "JaysLashesContext" ) ?? throw new InvalidOperationException( "Connection string 'JaysLashesContext' not found." );
 
-            var connectionString = new SqliteConnectionStringBuilder(baseConnectionString)
+            var connectionString = new SqliteConnectionStringBuilder( baseConnectionString )
             {
                 Mode = SqliteOpenMode.ReadWriteCreate,
 
 #if DEBUG
-                Password = builder.Configuration.GetValue<string>("SQLiteDBPassword")
+                Password = builder.Configuration.GetValue<string>( "SQLiteDBPassword" )
 #else
     Password = Environment.GetEnvironmentVariable("SQLiteDBPassword")
 #endif
             };
-            builder.Services.AddDbContext<JaysLashesDbContext>(options =>
-                            options.UseSqlite(connectionString.ToString()));
+            builder.Services.AddDbContext<JaysLashesDbContext>( options =>
+                            options.UseSqlite( connectionString.ToString() ) );
 
             builder.Services.AddHttpContextAccessor();
 
@@ -59,15 +59,13 @@ namespace JricaStudioWebApi
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            if ( app.Environment.IsDevelopment() )
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
 
-                app.UseCors(policy => policy.WithOrigins("https://localhost:7239/", "https://localhost:7239").AllowAnyMethod().WithHeaders(HeaderNames.ContentType, "adminkey"));
+                app.UseCors( policy => policy.WithOrigins( "https://localhost:7239/", "https://localhost:7239" ).AllowAnyMethod().WithHeaders( HeaderNames.ContentType, "adminkey" ) );
             }
-
-            app.UseCors(policy => policy.WithOrigins("https://www.jricastudio.com/", "https://www.jricastudio.com", "https://polite-flower-07d8d6d0f.4.azurestaticapps.net/", "https://polite-flower-07d8d6d0f.4.azurestaticapps.net", "https://jricastudio.com/", "https://jricastudio.com").AllowAnyMethod().WithHeaders(HeaderNames.ContentType, "adminkey"));
 
             app.UseHttpsRedirection();
 

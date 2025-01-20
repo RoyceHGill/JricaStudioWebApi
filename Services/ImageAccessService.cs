@@ -9,6 +9,7 @@ using JricaStudioWebApi.Models.Dtos.Admin;
 using System.Collections.Immutable;
 using System.Net;
 using System.Runtime.CompilerServices;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace JricaStudioWebApi.Services
 {
@@ -19,20 +20,20 @@ namespace JricaStudioWebApi.Services
         private readonly IImageUploadRepository _imageUploadRepository;
 
 
-        public ImageAccessService(IWebHostEnvironment webHostEnvironment, IImageUploadRepository uploadRepository)
+        public ImageAccessService( IWebHostEnvironment webHostEnvironment, IImageUploadRepository uploadRepository )
         {
             _webHostEnvironment = webHostEnvironment;
             _imageUploadRepository = uploadRepository;
 
         }
 
-        public async Task<ImageDeletionResultDto> DeleteImage(Guid id, string resourcePath)
+        public async Task<ImageDeletionResultDto> DeleteImage( Guid id, string resourcePath )
         {
             int recordsAffected = 0;
 
             try
             {
-                var imageUpload = await _imageUploadRepository.GetServiceImageUploadResult(id);
+                var imageUpload = await _imageUploadRepository.GetServiceImageUploadResult( id );
                 var uploadResult = new UploadResultDto
                 {
                     ContentType = imageUpload.ContentType,
@@ -40,12 +41,12 @@ namespace JricaStudioWebApi.Services
                     Filename = imageUpload.FileName,
                     Id = id
                 };
-                var path = Path.Combine("./wwwroot" + resourcePath, uploadResult.StoredFileName);
+                var path = Path.Combine( "./wwwroot" + resourcePath, uploadResult.StoredFileName );
 
-                File.Delete(path);
+                File.Delete( path );
                 recordsAffected++;
 
-                var deletionResult = await _imageUploadRepository.DeleteImageUploadResult(uploadResult.Id);
+                var deletionResult = await _imageUploadRepository.DeleteImageUploadResult( uploadResult.Id );
                 recordsAffected++;
 
                 return new ImageDeletionResultDto
@@ -56,7 +57,7 @@ namespace JricaStudioWebApi.Services
                 };
 
             }
-            catch (Exception e)
+            catch ( Exception e )
             {
                 return new ImageDeletionResultDto
                 {
@@ -68,43 +69,43 @@ namespace JricaStudioWebApi.Services
             }
         }
 
-        public async Task<string> LoadImage(Guid id, string resourcePath)
+        public async Task<string> LoadImage( Guid id, string resourcePath )
         {
             try
             {
 
                 ImageUpload uploadResult = new();
-                if (resourcePath == FileResources.serviceImageFilePath)
+                if ( resourcePath == FileResources.serviceImageFilePath )
                 {
-                    uploadResult = await _imageUploadRepository.GetServiceImageUploadResult(id);
+                    uploadResult = await _imageUploadRepository.GetServiceImageUploadResult( id );
 
                 }
-                if (resourcePath == FileResources.productImageFilePath)
+                if ( resourcePath == FileResources.productImageFilePath )
                 {
-                    uploadResult = await _imageUploadRepository.GetProductImageUploadResult(id);
+                    uploadResult = await _imageUploadRepository.GetProductImageUploadResult( id );
 
                 }
 
-                var path = Path.Combine("./wwwroot" + resourcePath, uploadResult.StoredFileName);
+                var path = Path.Combine( "./wwwroot" + resourcePath, uploadResult.StoredFileName );
 
                 string imageDataAsString;
 
-                using (var memoryStream = new MemoryStream())
+                using ( var memoryStream = new MemoryStream() )
                 {
-                    using (var fileStream = File.OpenRead(path))
+                    using ( var fileStream = File.OpenRead( path ) )
                     {
 
-                        fileStream.CopyTo(memoryStream);
+                        fileStream.CopyTo( memoryStream );
 
                         var data = memoryStream.ToArray();
-                        imageDataAsString = $"data:{uploadResult.ContentType};base64,{Convert.ToBase64String(data)}";
+                        imageDataAsString = $"data:{uploadResult.ContentType};base64,{Convert.ToBase64String( data )}";
                         fileStream.Close();
                     }
                     memoryStream.Close();
                 }
                 return imageDataAsString;
             }
-            catch (Exception e)
+            catch ( Exception e )
             {
 
                 throw;
@@ -112,32 +113,32 @@ namespace JricaStudioWebApi.Services
 
         }
 
-        public async Task<Dictionary<Guid, string>> LoadServicesImages(IEnumerable<Service> services)
+        public async Task<Dictionary<Guid, string>> LoadServicesImages( IEnumerable<Service> services )
         {
             var imageData = new Dictionary<Guid, string>();
 
-            foreach (var service in services)
+            foreach ( var service in services )
             {
                 try
                 {
 
-                    if (imageData.Keys.Contains(service.Id))
+                    if ( imageData.Keys.Contains( service.Id ) )
                     {
                         continue;
                     }
-                    var path = Path.Combine("./wwwroot" + FileResources.serviceImageFilePath, service.ImageUpload.StoredFileName);
+                    var path = Path.Combine( "./wwwroot" + FileResources.serviceImageFilePath, service.ImageUpload.StoredFileName );
 
                     string imageDataAsString;
 
-                    using (var memoryStream = new MemoryStream())
+                    using ( var memoryStream = new MemoryStream() )
                     {
-                        using (var fileStream = File.OpenRead(path))
+                        using ( var fileStream = File.OpenRead( path ) )
                         {
 
-                            await fileStream.CopyToAsync(memoryStream);
+                            await fileStream.CopyToAsync( memoryStream );
                             var data = memoryStream.ToArray();
-                            imageDataAsString = $"data:{service.ImageUpload.ContentType};base64,{Convert.ToBase64String(data)}";
-                            imageData.Add(service.Id, imageDataAsString);
+                            imageDataAsString = $"data:{service.ImageUpload.ContentType};base64,{Convert.ToBase64String( data )}";
+                            imageData.Add( service.Id, imageDataAsString );
                             fileStream.Flush();
                             fileStream.Close();
                         }
@@ -147,7 +148,7 @@ namespace JricaStudioWebApi.Services
                     }
 
                 }
-                catch (Exception e)
+                catch ( Exception e )
                 {
 
                     throw;
@@ -156,27 +157,27 @@ namespace JricaStudioWebApi.Services
             return imageData;
         }
 
-        public async Task<Dictionary<Guid, string>> LoadProductsImages(IEnumerable<Product> products)
+        public async Task<Dictionary<Guid, string>> LoadProductsImages( IEnumerable<Product> products )
         {
             var imageData = new Dictionary<Guid, string>();
 
-            foreach (var product in products)
+            foreach ( var product in products )
             {
                 try
                 {
-                    var path = Path.Combine("./wwwroot" + FileResources.productImageFilePath, product.ImageUpload.StoredFileName);
+                    var path = Path.Combine( "./wwwroot" + FileResources.productImageFilePath, product.ImageUpload.StoredFileName );
 
                     string imageDataAsString;
 
-                    using (var memoryStream = new MemoryStream())
+                    using ( var memoryStream = new MemoryStream() )
                     {
-                        using (var fileStream = File.OpenRead(path))
+                        using ( var fileStream = File.OpenRead( path ) )
                         {
 
-                            await fileStream.CopyToAsync(memoryStream);
+                            await fileStream.CopyToAsync( memoryStream );
                             var data = memoryStream.ToArray();
-                            imageDataAsString = $"data:{product.ImageUpload.ContentType};base64,{Convert.ToBase64String(data)}";
-                            imageData.Add(product.Id, imageDataAsString);
+                            imageDataAsString = $"data:{product.ImageUpload.ContentType};base64,{Convert.ToBase64String( data )}";
+                            imageData.Add( product.Id, imageDataAsString );
                             fileStream.Flush();
                             fileStream.Close();
                         }
@@ -186,7 +187,7 @@ namespace JricaStudioWebApi.Services
                     }
 
                 }
-                catch (Exception e)
+                catch ( Exception e )
                 {
 
                     throw;
@@ -201,31 +202,31 @@ namespace JricaStudioWebApi.Services
             {
                 var imageUploads = await _imageUploadRepository.GetAll();
 
-                if (imageUploads == null || imageUploads.Count() == 0)
+                if ( imageUploads == null || imageUploads.Count() == 0 )
                 {
                     return 0;
                 }
 
                 int count = 0;
-                foreach (var item in imageUploads)
+                foreach ( var item in imageUploads )
                 {
-                    if ((item.Services.Count() <= 0 || item.Services == null)
+                    if ( ( item.Services.Count() <= 0 || item.Services == null )
                         &&
-                        (item.Products.Count() <= 0 || item.Products == null))
+                        ( item.Products.Count() <= 0 || item.Products == null ) )
                     {
-                        var path = FindImageFileLocation(item.StoredFileName);
+                        var path = FindImageFileLocation( item.StoredFileName );
 
-                        if (path == string.Empty)
+                        if ( path == string.Empty )
                         {
-                            throw new Exception($"Unable to find image: {item.StoredFileName}");
+                            throw new Exception( $"Unable to find image: {item.StoredFileName}" );
                         }
 
-                        var resourceUri = Path.Combine(path, item.StoredFileName);
+                        var resourceUri = Path.Combine( path, item.StoredFileName );
 
-                        File.Delete(resourceUri);
+                        File.Delete( resourceUri );
                         count++;
 
-                        await _imageUploadRepository.DeleteImageUploadResult(item.Id);
+                        await _imageUploadRepository.DeleteImageUploadResult( item.Id );
                         count++;
                     }
                 }
@@ -233,54 +234,54 @@ namespace JricaStudioWebApi.Services
                 return count;
 
             }
-            catch (Exception e)
+            catch ( Exception e )
             {
 
                 throw;
             }
         }
 
-        public static string ToPath(string folderName) => folderName switch
+        public static string ToPath( string folderName ) => folderName switch
         {
             "ServiceImages" => FileResources.serviceImageFilePath,
             "ProductImages" => FileResources.productImageFilePath,
-            _ => throw new ArgumentOutOfRangeException(folderName, "Not and acceptable Resource Folder")
+            _ => throw new ArgumentOutOfRangeException( folderName, "Not and acceptable Resource Folder" )
         };
 
-        public string FindImageFileLocation(string fileName)
+        public string FindImageFileLocation( string fileName )
         {
             string baseFolder = "./wwwroot";
 
 
 
-            DirectoryInfo servicesDirectory = new DirectoryInfo(baseFolder + FileResources.serviceImageFilePath);
+            DirectoryInfo servicesDirectory = new DirectoryInfo( baseFolder + FileResources.serviceImageFilePath );
 
-            if (servicesDirectory.EnumerateFiles().Any(f => f.Name == fileName))
+            if ( servicesDirectory.EnumerateFiles().Any( f => f.Name == fileName ) )
             {
-                return Path.Combine(baseFolder + ToPath("ServiceImages"));
+                return Path.Combine( baseFolder + ToPath( "ServiceImages" ) );
             }
 
-            DirectoryInfo productsDirectory = new DirectoryInfo(baseFolder + FileResources.productImageFilePath);
+            DirectoryInfo productsDirectory = new DirectoryInfo( baseFolder + FileResources.productImageFilePath );
 
-            if (productsDirectory.EnumerateFiles().Any(f => f.Name == fileName))
+            if ( productsDirectory.EnumerateFiles().Any( f => f.Name == fileName ) )
             {
-                return Path.Combine(baseFolder + ToPath("ProductImages"));
+                return Path.Combine( baseFolder + ToPath( "ProductImages" ) );
             }
 
             return string.Empty;
         }
 
-        public async Task<UploadResultDto> SaveImage(IFormFile image, string resoursePath)
+        public async Task<UploadResultDto> SaveImage( IFormFile image, string resoursePath )
         {
             try
             {
-                var result = await _imageUploadRepository.GetImageUploadResult(image.FileName);
+                var result = await _imageUploadRepository.GetImageUploadResult( image.FileName );
 
-                if (result != null)
+                if ( result != null )
                 {
-                    DirectoryInfo directory = new DirectoryInfo("./wwwroot" + resoursePath);
+                    DirectoryInfo directory = new DirectoryInfo( "./wwwroot" + resoursePath );
 
-                    if (directory.EnumerateFiles().Any(f => f.Name.Equals(result.StoredFileName)))
+                    if ( directory.EnumerateFiles().Any( f => f.Name.Equals( result.StoredFileName ) ) )
                     {
                         return new UploadResultDto()
                         {
@@ -296,32 +297,28 @@ namespace JricaStudioWebApi.Services
                 string uniqeFileName;
                 var filenameAtUpload = image.FileName;
                 uploadResult.Filename = filenameAtUpload;
-                var FileNameForDisplay = WebUtility.HtmlEncode(filenameAtUpload);
+                var FileNameForDisplay = WebUtility.HtmlEncode( filenameAtUpload );
 
                 uniqeFileName = Path.GetRandomFileName();
-#if DEBUG
-                var filePath = Path.Combine("./wwwroot" + resoursePath, uniqeFileName);
-#else
-                var filePath = Path.Combine(_webHostEnvironment.WebRootPath, resoursePath, uniqeFileName);
-#endif
+                var filePath = Path.Combine( "./wwwroot" + resoursePath, uniqeFileName );
 
 
 
-                await using FileStream fileStream = new(filePath, FileMode.Create);
-                await image.CopyToAsync(fileStream);
+                await using FileStream fileStream = new( filePath, FileMode.Create );
+                await image.CopyToAsync( fileStream );
 
                 uploadResult.StoredFileName = uniqeFileName;
                 uploadResult.ContentType = image.ContentType;
 
-                var entity = await _imageUploadRepository.AddImageUploadResult(uploadResult);
+                var entity = await _imageUploadRepository.AddImageUploadResult( uploadResult );
 
                 uploadResult.Id = entity.Id;
 
                 return uploadResult;
             }
-            catch (Exception)
+            catch ( Exception e )
             {
-                return default;
+                throw new Exception( e.Message, e );
             }
 
         }

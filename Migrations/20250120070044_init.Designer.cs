@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JricaStudioWebApi.Migrations
 {
     [DbContext(typeof(JaysLashesDbContext))]
-    [Migration("20241223225430_init")]
+    [Migration("20250120070044_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -69,12 +69,12 @@ namespace JricaStudioWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("949a545c-d71a-4dd7-913e-4a1ff6e6c1cd"),
-                            AdminKey = new Guid("d28b1977-69f3-4166-85e4-cd44591151d5"),
-                            Created = new DateTime(2024, 12, 23, 22, 54, 29, 579, DateTimeKind.Utc).AddTicks(4641),
+                            Id = new Guid("acd39c44-ef8f-408e-990d-fd9e78ced37b"),
+                            AdminKey = new Guid("7dce5a50-21aa-4346-b059-a95dd8d497d7"),
+                            Created = new DateTime(2025, 1, 20, 7, 0, 44, 23, DateTimeKind.Utc).AddTicks(7551),
                             FirstName = "Jayrica",
                             LastName = "Cunanan",
-                            Password = "$2a$11$.a4daiO4UgO9HtHCPuVM2eWwPHAeRRHZUSeEoxk7zZP9ChqVJ/b6.",
+                            Password = "$2a$11$eOjVyL0u7lNDX0Z9bESFHeMrHvc6Fbq.iIHmJhCVAlPInFW27XFa2",
                             Phone = "0422453888",
                             ResetKey = new Guid("00000000-0000-0000-0000-000000000000"),
                             ResetKeySent = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
