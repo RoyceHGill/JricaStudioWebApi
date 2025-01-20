@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Repositories.Contracts;
-using JricaStudioWebApi.Extentions;
-using JricaStudioWebApi.Services.Contracts;
-using JricaStudioWebApi.Attributes;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.enums;
-using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Models.Extentions;
-using JricaStudioWebApi.Models.Constants;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Repositories.Contracts;
+using JricaStudioWebAPI.Extentions;
+using JricaStudioWebAPI.Services.Contracts;
+using JricaStudioWebAPI.Attributes;
+using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Models.enums;
+using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Models.Extentions;
+using JricaStudioWebAPI.Models.Constants;
 using Microsoft.JSInterop.Infrastructure;
 
-namespace JricaStudioWebApi.Controllers
+namespace JricaStudioWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -22,7 +22,7 @@ namespace JricaStudioWebApi.Controllers
         private readonly IImageAccessService _imageAccessService;
         private readonly IConfiguration _configuration;
 
-        public AppointmentController(IAppointmentRepository appointmentRepository, IEmailSenderService emailSenderService, IStringEncryptionService encryptionService, IImageAccessService imageAccessService, IConfiguration configuration)
+        public AppointmentController(IAppointmentRepository appointmentRepository, IEmailSenderService emailSenderService, IImageAccessService imageAccessService, IConfiguration configuration)
         {
             _repository = appointmentRepository;
             _emailSenderService = emailSenderService;
@@ -39,12 +39,7 @@ namespace JricaStudioWebApi.Controllers
         {
             try
             {
-                var appointment = await _repository.GetAppointmentIndemnity(id);
-
-                if (appointment == null)
-                {
-                    throw new Exception("Resource not found.");
-                }
+                var appointment =  await _repository.GetAppointmentIndemnity(id)  ?? throw new Exception("Resource not found.");
 
                 var appointmentDto = appointment.ConvertToIndemnityDto();
 
@@ -56,8 +51,6 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        
-
         [HttpGet("Service/{id:guid}")]
         public async Task<ActionResult<IEnumerable<AppointmentServiceDto>>> GetServices(Guid id)
         {
@@ -65,7 +58,7 @@ namespace JricaStudioWebApi.Controllers
             {
                 var services = await _repository.GetServices(id);
 
-                if (services.Count() == 0)
+                if (services.Any())
                 {
                     return NoContent();
                 }
@@ -81,13 +74,7 @@ namespace JricaStudioWebApi.Controllers
 
                 var servicesDtos = services.ConvertToImageDtos(imageData);
 
-                if (servicesDtos == null)
-                {
-                    throw new Exception("Conversion to DTO has Failed Please Check the Object calling the ConventToDto Method has all the necessary properties.");
-                }
-
-                return Ok(servicesDtos);
-
+                return Ok(servicesDtos) ?? throw new Exception( "Conversion to DTO has Failed Please Check the Object calling the ConventToDto Method has all the necessary properties." );
 
             }
             catch (Exception ex)
@@ -152,18 +139,13 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpGet("Admin/{id:guid}")]
         public async Task<ActionResult<AdminAppointmentDto>> GetEditAppointment(Guid id)
         {
             try
             {
-                var appointment = await _repository.GetAdminAppointment(id);
-
-                if (appointment == null)
-                {
-                    throw new Exception("Resource not found.");
-                }
+                var appointment =  await _repository.GetAdminAppointment(id)  ?? throw new Exception("Resource not found.");
 
                 var services = ExtractServices(appointment);
                 var products = ExtractProducts(appointment);
@@ -180,7 +162,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpGet("Upcoming")]
         public async Task<ActionResult<IEnumerable<AdminAppointmentWidgetDto>>> GetUpcomingAppointments()
         {
@@ -203,7 +185,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpGet("Requests")]
         public async Task<ActionResult<IEnumerable<AdminAppointmentWidgetDto>>> GetAppointmentRequests()
         {
@@ -232,14 +214,7 @@ namespace JricaStudioWebApi.Controllers
         {
             try
             {
-                var appointment = await _repository.GetAppointmentFinalization(id);
-
-                if (appointment == null)
-                {
-                    throw new Exception("Resource not found.");
-                }
-
-
+                var appointment = await _repository.GetAppointmentFinalization(id) ?? throw new Exception( "Resource not found." );
 
                 var services = ExtractServices(appointment);
                 var products = ExtractProducts(appointment);
@@ -266,7 +241,7 @@ namespace JricaStudioWebApi.Controllers
 
         #region Patch
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPatch("Update/{appointmentId:guid}")]
         public async Task<ActionResult<AppointmentDto>> UpdateAppointment(Guid appointmentId, UpdateAppointmentDto dto)
         {
@@ -411,7 +386,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPatch("UpdateStatusAdmin/{id:guid}")]
         public async Task<ActionResult<AppointmentDto>> UpdateAppointmentAdminStatus(Guid id, UpdateAppointmentStatusDto dto)
         {
@@ -548,7 +523,7 @@ namespace JricaStudioWebApi.Controllers
 
         #region Post
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPost("Search")]
         public async Task<ActionResult<IEnumerable<AdminAppointmentDto>>> PostAppointmentQuery(AdminAppointmentSearchFilterDto filter)
         {
@@ -577,12 +552,7 @@ namespace JricaStudioWebApi.Controllers
         {
             try
             {
-                var result = await _repository.AddServiceToAppointment(addDto);
-
-                if (result == null)
-                {
-                    throw new Exception("Something went wrong when creating when Creating Resource");
-                }
+                var result = await _repository.AddService(addDto) ?? throw new Exception( "Something went wrong when creating when Creating Resource" );
 
                 var imageData = await _imageAccessService.LoadImage(result.ServiceId, FileResources.serviceImageFilePath);
 
@@ -601,15 +571,9 @@ namespace JricaStudioWebApi.Controllers
         {
             try
             {
-                var result = await _repository.AddProductToAppointment(addDto);
-
-                if (result == null)
-                {
-                    throw new Exception("Something went wrong when creating resource");
-                }
+                var result = await _repository.AddProduct(addDto) ?? throw new Exception( "Something went wrong when creating resource" );
 
                 var imagedata = await _imageAccessService.LoadImage(result.ProductId, FileResources.productImageFilePath);
-
 
                 var resultDto = result.ConvertToDto();
 
@@ -623,18 +587,13 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPost("Admin/Service")]
         public async Task<ActionResult<AppointmentServiceDto>> AdminCreateServiceItem([FromBody] AppointmentServiceToAddDto addDto)
         {
             try
             {
-                var result = await _repository.AdminAddService(addDto);
-
-                if (result == null)
-                {
-                    throw new Exception("Something went wrong when creating when Creating Resource");
-                }
+                var result = await _repository.AdminAddService(addDto) ?? throw new Exception( "Something went wrong when creating when Creating Resource" );
 
                 var resultDto = result.ConvertToDto();
 
@@ -646,18 +605,14 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPost("Admin/Product")]
         public async Task<ActionResult<AppointmentProductDto>> AdminCreateProductItem([FromBody] AppointmentProductToAddDto addDto)
         {
             try
             {
-                var result = await _repository.AdminAddProduct(addDto);
+                var result = await _repository.AdminAddProduct(addDto) ?? throw new Exception( "Something went wrong when creating resource" );
 
-                if (result == null)
-                {
-                    throw new Exception("Something went wrong when creating resource");
-                }
                 var resultDto = result.ConvertToDto();
 
                 return CreatedAtAction(nameof(GetProducts), new { id = resultDto.AppointmentId }, resultDto);
@@ -673,12 +628,7 @@ namespace JricaStudioWebApi.Controllers
         {
             try
             {
-                Appointment appointment = await _repository.AddAppointment(toAddDto);
-
-                if (appointment == null)
-                {
-                    throw new Exception("There was an error while creating the Resource. Appointment");
-                }
+                Appointment appointment = await _repository.AddAppointment(toAddDto) ?? throw new Exception( "There was an error while creating the Resource. Appointment" );
 
                 var appointmentDto = appointment.ConvertToDto();
 
@@ -687,39 +637,31 @@ namespace JricaStudioWebApi.Controllers
             }
             catch (Exception e)
             {
-                throw;
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
         [HttpPost("Admin")]
-        public async Task<ActionResult<AppointmentDto>> CreateAppointmentAdmin(AppointmentAdminToAddDto dto)
+        public async Task<ActionResult<AppointmentDto>> CreateAppointmentAdministrator(AppointmentAdminToAddDto appointmentToAdd)
         {
             try
             {
+                Appointment appointment = await _repository.AddAppointment(appointmentToAdd) ?? throw new Exception( "There was an error while creating the Resource. Appointment" );
 
-                Appointment appointment = await _repository.AddAppointment(dto);
-
-                if (appointment == null)
+                foreach (var item in appointmentToAdd.ServicesToAdd)
                 {
-                    throw new Exception("There was an error while creating the Resource. Appointment");
-                }
-
-
-
-                foreach (var item in dto.ServicesToAdd)
-                {
-                    await _repository.AddServiceToAppointment(new AppointmentServiceToAddDto()
+                    await _repository.AddService(new AppointmentServiceToAddDto()
                     {
                         AppointmentId = appointment.Id,
                         ServiceId = item.ServiceId
                     });
                 }
 
-                if (dto.ProductsToAdd.Count() > 0)
+                if ( appointmentToAdd.ProductsToAdd.Count != 0 )
                 {
-                    foreach (var item in dto.ProductsToAdd)
+                    foreach (var item in appointmentToAdd.ProductsToAdd)
                     {
-                        await _repository.AddProductToAppointment(new AppointmentProductToAddDto()
+                        await _repository.AddProduct(new AppointmentProductToAddDto()
                         {
                             AppointmentId = appointment.Id,
                             ProductId = item.ProductId
@@ -728,9 +670,7 @@ namespace JricaStudioWebApi.Controllers
                     }
                 }
 
-                appointment = await _repository.UpdateAppointmentStatus(appointment.Id, AppointmentStatus.Confirmed);
-
-
+                appointment = await _repository.UpdateAppointmentStatus(appointment.Id, AppointmentStatus.Confirmed) ?? throw new Exception("Appointment was not updated");
 
                 var appointmentDto = appointment.ConvertToDto();
 
@@ -739,7 +679,7 @@ namespace JricaStudioWebApi.Controllers
             }
             catch (Exception e)
             {
-                throw;
+                return StatusCode( StatusCodes.Status500InternalServerError, e.Message );
             }
         }
 
@@ -794,7 +734,7 @@ namespace JricaStudioWebApi.Controllers
         #endregion
 
 
-        private IEnumerable<Service> ExtractServices(Appointment appointment)
+        static private List<Service> ExtractServices(Appointment appointment)
         {
             var services = new List<Service>();
             foreach (var appointmentService in appointment.AppointmentServices)
@@ -804,7 +744,7 @@ namespace JricaStudioWebApi.Controllers
             return services;
         }
 
-        private IEnumerable<Product> ExtractProducts(Appointment appointment)
+        static private List<Product> ExtractProducts(Appointment appointment)
         {
             var products = new List<Product>();
             foreach (var appointmentProduct in appointment.AppointmentProducts)
@@ -813,20 +753,5 @@ namespace JricaStudioWebApi.Controllers
             }
             return products;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

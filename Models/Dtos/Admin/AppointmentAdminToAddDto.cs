@@ -1,13 +1,13 @@
-﻿using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Models.enums;
+﻿using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Models.enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JricaStudioWebApi.Models.Dtos.Admin
+namespace JricaStudioWebAPI.Models.Dtos.Admin
 {
     public class AppointmentAdminToAddDto
     {

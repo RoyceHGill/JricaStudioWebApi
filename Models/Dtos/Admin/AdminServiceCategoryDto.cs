@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JricaStudioWebApi.Models.Dtos.Admin
+namespace JricaStudioWebAPI.Models.Dtos.Admin
 {
     public class AdminServiceCategoryDto
     {

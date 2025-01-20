@@ -1,8 +1,8 @@
-﻿using JricaStudioWebApi.Models.Dtos.Admin;
-using JricaStudioWebApi.Entities;
-using JricaStudioWebApi.Models.Dtos.Admin.BusinessHours;
+﻿using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioWebAPI.Entities;
+using JricaStudioWebAPI.Models.Dtos.Admin.BusinessHours;
 
-namespace JricaStudioWebApi.Repositories.Contracts
+namespace JricaStudioWebAPI.Repositories.Contracts
 {
     public interface ISchedulingRepository
     {

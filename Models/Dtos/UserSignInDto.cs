@@ -5,7 +5,7 @@ using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JricaStudioWebApi.Models.Dtos
+namespace JricaStudioWebAPI.Models.Dtos
 {
     public class UserSignInDto
     {

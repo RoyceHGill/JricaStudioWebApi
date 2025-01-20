@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JricaStudioWebApi.Models.Dtos.BusinessHours
+namespace JricaStudioWebAPI.Models.Dtos.BusinessHours
 {
     public interface IBusinessHoursDto
     {

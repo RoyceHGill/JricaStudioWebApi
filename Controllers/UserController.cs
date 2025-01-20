@@ -1,12 +1,12 @@
-﻿using JricaStudioWebApi.Extentions;
-using JricaStudioWebApi.Repositories.Contracts;
-using JricaStudioWebApi.Services.Contracts;
+﻿using JricaStudioWebAPI.Extentions;
+using JricaStudioWebAPI.Repositories.Contracts;
+using JricaStudioWebAPI.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using JricaStudioWebApi.Models.Dtos;
-using JricaStudioWebApi.Attributes;
-using JricaStudioWebApi.Models.Dtos.Admin;
+using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioWebAPI.Attributes;
+using JricaStudioWebAPI.Models.Dtos.Admin;
 
-namespace JricaStudioWebApi.Controllers
+namespace JricaStudioWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -39,8 +39,7 @@ namespace JricaStudioWebApi.Controllers
             }
             catch (Exception e)
             {
-
-                throw;
+                return StatusCode( StatusCodes.Status500InternalServerError, e.Message );
             }
         }
 
@@ -67,7 +66,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPost("Search")]
         public async Task<ActionResult<IEnumerable<AdminUserDetailsDto>>> SearchUsers(UserFilterDto filter)
         {
@@ -93,16 +92,11 @@ namespace JricaStudioWebApi.Controllers
 
 
 
-                var user = await _userRepository.CreateNew(userDto);
-
-                if (user == null)
-                {
-                    throw new Exception("An Error has occurred when trying to Create the Resource.");
-                }
+                var user = await _userRepository.CreateNew(userDto) ?? throw new Exception( "An Error has occurred when trying to Create the Resource." );
 
                 var userDtoResult = user.ConvertToDto();
 
-                return CreatedAtAction(nameof(Get), new { Id = userDtoResult.Id }, userDtoResult);
+                return CreatedAtAction(nameof(Get), new { userDtoResult.Id }, userDtoResult);
             }
             catch (Exception e)
             {
@@ -160,7 +154,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPost("Admin")]
         public async Task<ActionResult<AdminUserDto>> Post(UserAdminAddDto userDto)
         {
@@ -171,17 +165,11 @@ namespace JricaStudioWebApi.Controllers
                     return StatusCode(StatusCodes.Status406NotAcceptable, "User Data Failed Validation");
                 }
 
-                var result = await _userRepository.CreateNew(userDto);
-
-                if (result == null)
-                {
-                    throw new Exception("An Error has occurred when trying to Create the Resource.");
-                }
-
+                var result = await _userRepository.CreateNew(userDto) ?? throw new Exception( "An Error has occurred when trying to Create the Resource." );
 
                 var userDtoResult = result.ConvertToAdminDto();
 
-                return CreatedAtAction(nameof(Get), new { Id = userDtoResult.Id }, userDtoResult);
+                return CreatedAtAction(nameof(Get), new { userDtoResult.Id }, userDtoResult);
             }
             catch (InvalidOperationException ope)
             {
@@ -329,7 +317,7 @@ namespace JricaStudioWebApi.Controllers
             return BadRequest();
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpDelete("admin/{id:guid}")]
         public async Task<ActionResult<UserDto>> DeleteUserById(Guid id)
         {
@@ -352,7 +340,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpGet("admin/{id:guid}")]
         public async Task<ActionResult<AdminUserDto>> GetAdminUser(Guid id)
         {
@@ -375,7 +363,7 @@ namespace JricaStudioWebApi.Controllers
             }
         }
 
-        [AdminKey]
+        [AdministratorKey]
         [HttpPut("update/{id:guid}")]
         public async Task<ActionResult<AdminUserDto>> UpdateUser(Guid id, Models.Dtos.UpdateUserDto dto)
         {
