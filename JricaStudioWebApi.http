@@ -1,6 +1,6 @@
-@JricaStudioWebApi_HostAddress = http://localhost:5004
+@JricaStudioWebAPI_HostAddress = http://localhost:5004
 
-GET {{JricaStudioWebApi_HostAddress}}/weatherforecast/
+GET {{JricaStudioWebAPI_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###

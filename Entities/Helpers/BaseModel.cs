@@ -7,10 +7,10 @@ namespace JricaStudioWebAPI.Entities.Helpers
     public class BaseModel
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated( DatabaseGeneratedOption.Identity )]
         public Guid Id { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated( DatabaseGeneratedOption.Identity )]
         public DateTime Created { get; set; } = DateTime.UtcNow;
         public DateTime? Updated { get; set; }
     }

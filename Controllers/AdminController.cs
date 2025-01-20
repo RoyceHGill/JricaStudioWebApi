@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JricaStudioWebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route( "api/[controller]" )]
     [ApiController]
     public class AdminController : ControllerBase
     {
@@ -16,7 +16,7 @@ namespace JricaStudioWebAPI.Controllers
         private readonly IHttpContextAccessor _httpContext;
         private readonly IEmailSenderService _emailSenderService;
 
-        public AdminController(IAdministratorRepository adminRepository, IHttpContextAccessor httpContext, IEmailSenderService emailSenderService)
+        public AdminController( IAdministratorRepository adminRepository, IHttpContextAccessor httpContext, IEmailSenderService emailSenderService )
         {
             _adminRepository = adminRepository;
             _httpContext = httpContext;
@@ -24,48 +24,48 @@ namespace JricaStudioWebAPI.Controllers
         }
 
 
-        [HttpPost("Login")]
-        public async Task<ActionResult<AdminUserLoginDto>> Login(AdminLoginRequestDto dto)
+        [HttpPost( "Login" )]
+        public async Task<ActionResult<AdminUserLoginDto>> Login( AdminLoginRequestDto dto )
         {
             try
             {
 
-                var admin = await _adminRepository.GetAdministratorUser(dto.Username);
+                var admin = await _adminRepository.GetAdministratorUser( dto.Username );
 
-                if (admin == null)
+                if ( admin == null )
                 {
                     return Unauthorized();
                 }
 
-                if (BCrypt.Net.BCrypt.Verify(dto.Password, admin.Password))
+                if ( BCrypt.Net.BCrypt.Verify( dto.Password, admin.Password ) )
                 {
                     return admin.ConvertToDto();
                 }
 
                 return Unauthorized();
             }
-            catch (Exception e)
+            catch ( Exception e )
             {
 
                 throw;
             }
         }
 
-        [HttpPatch("update/{id:guid}")]
-        public async Task<ActionResult<AdminUserLoginDto>> UpdateAdmin(Guid id, UserCredentialsUpdateDto dto)
+        [HttpPatch( "update/{id:guid}" )]
+        public async Task<ActionResult<AdminUserLoginDto>> UpdateAdmin( Guid id, UserCredentialsUpdateDto dto )
         {
             try
             {
-                var validation = ValidatePassword(dto.NewPassword);
+                var validation = ValidatePassword( dto.NewPassword );
 
-                if (validation != null)
+                if ( validation != null )
                 {
-                    return BadRequest(string.Join(", ", validation));
+                    return BadRequest( string.Join( ", ", validation ) );
                 }
 
-                var admin = await _adminRepository.UpdatePassword(id, dto);
+                var admin = await _adminRepository.UpdatePassword( id, dto );
 
-                if (admin == null)
+                if ( admin == null )
                 {
                     return Unauthorized();
                 }
@@ -74,51 +74,51 @@ namespace JricaStudioWebAPI.Controllers
 
                 return loginDto;
             }
-            catch (Exception e)
+            catch ( Exception e )
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+                return StatusCode( StatusCodes.Status500InternalServerError, e.Message );
             }
         }
 
         [AdministratorKey]
-        [HttpGet("re-verification/{id:guid}")]
-        public async Task<ActionResult<AdminUserLoginDto>> UpdateAdmin(Guid id)
+        [HttpGet( "re-verification/{id:guid}" )]
+        public async Task<ActionResult<AdminUserLoginDto>> UpdateAdmin( Guid id )
         {
             try
             {
-                var admin = await _adminRepository.GetAdministratorUser(id) ?? throw new NullReferenceException();
+                var admin = await _adminRepository.GetAdministratorUser( id ) ?? throw new NullReferenceException();
 
                 return admin.ConvertToDto();
 
             }
-            catch (NullReferenceException ne)
+            catch ( NullReferenceException ne )
             {
-                return StatusCode(StatusCodes.Status404NotFound, ne.Message);
+                return StatusCode( StatusCodes.Status404NotFound, ne.Message );
             }
-            catch (Exception e)
+            catch ( Exception e )
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+                return StatusCode( StatusCodes.Status500InternalServerError, e.Message );
             }
         }
 
 
-        [HttpPost("passwordresetrequest")]
-        public async Task<ActionResult> ResetRequest(PasswordResetRequestDto dto)
+        [HttpPost( "passwordresetrequest" )]
+        public async Task<ActionResult> ResetRequest( PasswordResetRequestDto dto )
         {
             try
             {
-                var admin = await _adminRepository.GetAdministratorUser(dto.Email);
+                var admin = await _adminRepository.GetAdministratorUser( dto.Email );
 
-                if (admin == null)
+                if ( admin == null )
                 {
                     return Unauthorized();
                 }
 
-                var adminNewKey = await _adminRepository.InitiatePasswordReset(dto.Email);
+                var adminNewKey = await _adminRepository.InitiatePasswordReset( dto.Email );
 
 
 #if DEBUG
-                await _emailSenderService.SendResetEmail(adminNewKey.Username, "Jrica.Studio Password Reset",
+                await _emailSenderService.SendResetEmail( adminNewKey.Username, "Jrica.Studio Password Reset",
                 "<html>" +
                     "<body>" +
                         "<div>" +
@@ -133,7 +133,7 @@ namespace JricaStudioWebAPI.Controllers
                             $"Reset your password here" +
                         "</a>" +
                     "</body>" +
-                "</html>");
+                "</html>" );
 #else
                 await _emailSenderService.SendResetEmail(admin.Username, "Jrica.Studio Password Reset",
                 "<html>" +
@@ -155,27 +155,27 @@ namespace JricaStudioWebAPI.Controllers
 
                 return Ok();
             }
-            catch (Exception e)
+            catch ( Exception e )
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+                return StatusCode( StatusCodes.Status500InternalServerError, e.Message );
             }
         }
 
-        [HttpPut("passwordresetrequest")]
-        public async Task<ActionResult> ResetPassword([FromHeader] Guid requestKey, [FromBody] ResetPasswordDto dto)
+        [HttpPut( "passwordresetrequest" )]
+        public async Task<ActionResult> ResetPassword( [FromHeader] Guid requestKey, [FromBody] ResetPasswordDto dto )
         {
             try
             {
-                var validation = ValidatePassword(dto.NewPassword);
+                var validation = ValidatePassword( dto.NewPassword );
 
-                if (validation != null)
+                if ( validation != null )
                 {
-                    return BadRequest(string.Join(", ", validation));
+                    return BadRequest( string.Join( ", ", validation ) );
                 }
 
-                var admin = _adminRepository.UpdatePassword(requestKey, dto);
+                var admin = _adminRepository.UpdatePassword( requestKey, dto );
 
-                if (admin == null)
+                if ( admin == null )
                 {
                     return Unauthorized();
                 }
@@ -183,49 +183,49 @@ namespace JricaStudioWebAPI.Controllers
                 return Ok();
 
             }
-            catch (Exception e)
+            catch ( Exception e )
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+                return StatusCode( StatusCodes.Status500InternalServerError, e.Message );
             }
         }
 
-        static private List<string>? ValidatePassword(string cleanPassword)
+        static private List<string>? ValidatePassword( string cleanPassword )
         {
             var validationErrors = new List<string>();
             var password = cleanPassword.
                 Trim();
 
-            if (string.IsNullOrEmpty(cleanPassword))
+            if ( string.IsNullOrEmpty( cleanPassword ) )
             {
-                validationErrors.Add("Password can not be null.");
+                validationErrors.Add( "Password can not be null." );
             }
 
-            if (cleanPassword.Equals(cleanPassword.ToLower()))
+            if ( cleanPassword.Equals( cleanPassword.ToLower() ) )
             {
-                validationErrors.Add("Password must contain at least one capital letter.");
+                validationErrors.Add( "Password must contain at least one capital letter." );
             }
 
-            if (cleanPassword.Equals(cleanPassword.ToUpper()))
+            if ( cleanPassword.Equals( cleanPassword.ToUpper() ) )
             {
-                validationErrors.Add("Password must contain at least one lowercase letter.");
+                validationErrors.Add( "Password must contain at least one lowercase letter." );
             }
 
-            if (!cleanPassword.Any(c => char.IsPunctuation(c) || char.IsSymbol(c)))
+            if ( !cleanPassword.Any( c => char.IsPunctuation( c ) || char.IsSymbol( c ) ) )
             {
-                validationErrors.Add("Password must contain at least one symbol.");
+                validationErrors.Add( "Password must contain at least one symbol." );
             }
 
-            if (!cleanPassword.Any(c => char.IsDigit(c)))
+            if ( !cleanPassword.Any( c => char.IsDigit( c ) ) )
             {
-                validationErrors.Add("Password must contain at least one number.");
+                validationErrors.Add( "Password must contain at least one number." );
             }
 
-            if (cleanPassword.Length < 7)
+            if ( cleanPassword.Length < 7 )
             {
-                validationErrors.Add("Password must be at least 7 characters long.");
+                validationErrors.Add( "Password must be at least 7 characters long." );
             }
 
-            if ( validationErrors.Count > 0)
+            if ( validationErrors.Count > 0 )
             {
                 return validationErrors;
             }

@@ -17,7 +17,7 @@ namespace JricaStudioWebAPI.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.Admin", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.Admin", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -79,7 +79,7 @@ namespace JricaStudioWebAPI.Migrations
                         });
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.Appointment", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.Appointment", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -123,7 +123,7 @@ namespace JricaStudioWebAPI.Migrations
                     b.ToTable("Appointments");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.AppointmentProduct", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.AppointmentProduct", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -147,7 +147,7 @@ namespace JricaStudioWebAPI.Migrations
                     b.ToTable("AppointmentProducts");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.AppointmentService", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.AppointmentService", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -175,7 +175,7 @@ namespace JricaStudioWebAPI.Migrations
                     b.ToTable("AppointmentServices");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.BlockOutDate", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.BlockOutDate", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -196,7 +196,7 @@ namespace JricaStudioWebAPI.Migrations
                     b.ToTable("BlockOutDates");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.BusinessHours", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.BusinessHours", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -232,7 +232,7 @@ namespace JricaStudioWebAPI.Migrations
                     b.ToTable("BusinessHours");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.ImageUpload", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.ImageUpload", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -262,7 +262,7 @@ namespace JricaStudioWebAPI.Migrations
                     b.ToTable("ImageUploads");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.Policy", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.Policy", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -288,7 +288,7 @@ namespace JricaStudioWebAPI.Migrations
                     b.ToTable("Policies");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.Product", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -330,7 +330,7 @@ namespace JricaStudioWebAPI.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.ProductCategory", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.ProductCategory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -345,7 +345,7 @@ namespace JricaStudioWebAPI.Migrations
                     b.ToTable("ProductCategories");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.ProductShowcase", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.ProductShowcase", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -368,7 +368,7 @@ namespace JricaStudioWebAPI.Migrations
                     b.ToTable("ProductShowcases");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.Service", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.Service", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -408,7 +408,7 @@ namespace JricaStudioWebAPI.Migrations
                     b.ToTable("Services");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.ServiceCategory", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.ServiceCategory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -423,7 +423,7 @@ namespace JricaStudioWebAPI.Migrations
                     b.ToTable("ServiceCategories");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.ServiceShowCase", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.ServiceShowCase", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -446,7 +446,7 @@ namespace JricaStudioWebAPI.Migrations
                     b.ToTable("ServicesShowcases");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.User", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -496,9 +496,9 @@ namespace JricaStudioWebAPI.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.Appointment", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.Appointment", b =>
                 {
-                    b.HasOne("JricaStudioWebApi.Entities.User", "User")
+                    b.HasOne("JricaStudioWebAPI.Entities.User", "User")
                         .WithMany("Appointments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.SetNull)
@@ -507,15 +507,15 @@ namespace JricaStudioWebAPI.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.AppointmentProduct", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.AppointmentProduct", b =>
                 {
-                    b.HasOne("JricaStudioWebApi.Entities.Appointment", "Appointment")
+                    b.HasOne("JricaStudioWebAPI.Entities.Appointment", "Appointment")
                         .WithMany("AppointmentProducts")
                         .HasForeignKey("AppointmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("JricaStudioWebApi.Entities.Product", "Product")
+                    b.HasOne("JricaStudioWebAPI.Entities.Product", "Product")
                         .WithMany("AppointmentProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -526,15 +526,15 @@ namespace JricaStudioWebAPI.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.AppointmentService", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.AppointmentService", b =>
                 {
-                    b.HasOne("JricaStudioWebApi.Entities.Appointment", "Appointment")
+                    b.HasOne("JricaStudioWebAPI.Entities.Appointment", "Appointment")
                         .WithMany("AppointmentServices")
                         .HasForeignKey("AppointmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("JricaStudioWebApi.Entities.Service", "Service")
+                    b.HasOne("JricaStudioWebAPI.Entities.Service", "Service")
                         .WithMany("AppointmentServices")
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -545,15 +545,15 @@ namespace JricaStudioWebAPI.Migrations
                     b.Navigation("Service");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.Product", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.Product", b =>
                 {
-                    b.HasOne("JricaStudioWebApi.Entities.ImageUpload", "ImageUpload")
+                    b.HasOne("JricaStudioWebAPI.Entities.ImageUpload", "ImageUpload")
                         .WithMany("Products")
                         .HasForeignKey("ImageUploadId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("JricaStudioWebApi.Entities.ProductCategory", "ProductCategory")
+                    b.HasOne("JricaStudioWebAPI.Entities.ProductCategory", "ProductCategory")
                         .WithMany("Products")
                         .HasForeignKey("ProductCategoryId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -564,9 +564,9 @@ namespace JricaStudioWebAPI.Migrations
                     b.Navigation("ProductCategory");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.ProductShowcase", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.ProductShowcase", b =>
                 {
-                    b.HasOne("JricaStudioWebApi.Entities.Product", "Product")
+                    b.HasOne("JricaStudioWebAPI.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -575,9 +575,9 @@ namespace JricaStudioWebAPI.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.Service", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.Service", b =>
                 {
-                    b.HasOne("JricaStudioWebApi.Entities.ImageUpload", "ImageUpload")
+                    b.HasOne("JricaStudioWebAPI.Entities.ImageUpload", "ImageUpload")
                         .WithMany("Services")
                         .HasForeignKey("ImageUploadId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -586,9 +586,9 @@ namespace JricaStudioWebAPI.Migrations
                     b.Navigation("ImageUpload");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.ServiceShowCase", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.ServiceShowCase", b =>
                 {
-                    b.HasOne("JricaStudioWebApi.Entities.Service", "Service")
+                    b.HasOne("JricaStudioWebAPI.Entities.Service", "Service")
                         .WithMany()
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -597,36 +597,36 @@ namespace JricaStudioWebAPI.Migrations
                     b.Navigation("Service");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.Appointment", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.Appointment", b =>
                 {
                     b.Navigation("AppointmentProducts");
 
                     b.Navigation("AppointmentServices");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.ImageUpload", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.ImageUpload", b =>
                 {
                     b.Navigation("Products");
 
                     b.Navigation("Services");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.Product", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.Product", b =>
                 {
                     b.Navigation("AppointmentProducts");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.ProductCategory", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.ProductCategory", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.Service", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.Service", b =>
                 {
                     b.Navigation("AppointmentServices");
                 });
 
-            modelBuilder.Entity("JricaStudioWebApi.Entities.User", b =>
+            modelBuilder.Entity("JricaStudioWebAPI.Entities.User", b =>
                 {
                     b.Navigation("Appointments");
                 });
