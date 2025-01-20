@@ -29,6 +29,7 @@ namespace JricaStudioWebApi
                 options.UseSqlServer( connectionString.ToString() );
             } );
 
+
             builder.Services.AddHttpContextAccessor();
 
             builder.Services.AddScoped<IEncryptionService, EncryptionService>();
@@ -55,6 +56,10 @@ namespace JricaStudioWebApi
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            using var scope = app.Services.CreateScope();
+            var dbContext = scope.ServiceProvider.GetRequiredService<JaysLashesDbContext>();
+            dbContext.Database.EnsureCreated();
 
             // Configure the HTTP request pipeline.
             if ( app.Environment.IsDevelopment() )
