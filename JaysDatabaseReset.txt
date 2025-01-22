@@ -1,0 +1,6 @@
+del wwwroot/Images/ServiceImages/*
+del wwwroot/Images/ProductImages/*
+drop-database
+remove-migration
+add-migration "init"
+update-database
