@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JricaStudioSharedLibrary\jricaStudioSharedLibrary\JricaStudioSharedLibrary.csproj" />
     <ProjectReference Include="..\JricaStudioSharedProject\jricaStudioSharedLibrary\JricaStudioSharedLibrary.csproj" />
   </ItemGroup>
 

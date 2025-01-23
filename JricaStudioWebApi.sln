@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JricaStudioWebApi", "JricaS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JricaStudioWebAPITests", "..\JricaStudioWebAPITests\JricaStudioWebAPITests\JricaStudioWebAPITests.csproj", "{1D2D5A63-866B-4688-9066-9CD1D4DA69B7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JricaStudioSharedLibrary", "..\JricaStudioSharedProject\jricaStudioSharedLibrary\JricaStudioSharedLibrary.csproj", "{224776CA-3623-4984-AA9D-3C009EBB1671}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JricaStudioSharedLibrary", "..\JricaStudioSharedLibrary\jricaStudioSharedLibrary\JricaStudioSharedLibrary.csproj", "{2372116C-B05F-4E9D-854B-A249B87164CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +23,10 @@ Global
 		{1D2D5A63-866B-4688-9066-9CD1D4DA69B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D2D5A63-866B-4688-9066-9CD1D4DA69B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D2D5A63-866B-4688-9066-9CD1D4DA69B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2372116C-B05F-4E9D-854B-A249B87164CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2372116C-B05F-4E9D-854B-A249B87164CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2372116C-B05F-4E9D-854B-A249B87164CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2372116C-B05F-4E9D-854B-A249B87164CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
