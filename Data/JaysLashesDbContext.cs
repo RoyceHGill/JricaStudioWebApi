@@ -1,11 +1,7 @@
-﻿using BCrypt.Net;
+﻿
 using JricaStudioWebAPI.Entities;
-using Microsoft.AspNetCore.Routing.Template;
 using Microsoft.EntityFrameworkCore;
 using JricaStudioSharedLibrary.Constants;
-using System.Globalization;
-using System.IO;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JricaStudioWebAPI.Data
 {
@@ -118,7 +114,7 @@ namespace JricaStudioWebAPI.Data
                 DirectoryInfo TestServiceImageDirectory = new DirectoryInfo( TestServiceImagesPath );
 
 
-                // read files from Test image folder save them as if they were uploaded
+                //read files from Test image folder save them as if they were uploaded
 
                 if ( TestServiceImageDirectory.EnumerateFiles().Any() )
                 {
@@ -163,7 +159,7 @@ namespace JricaStudioWebAPI.Data
             }
 
             var serviceImageFiles = serviceImageDirectory.EnumerateFiles().ToList();
-            // Store uploads in a list and use them iteratively through the context file.
+            //Store uploads in a list and use them iteratively through the context file.
             for ( int i = 0; i < serviceImageFiles.Count; i++ )
             {
                 testServiceImagesUploadIds.Add( Guid.NewGuid() );
@@ -189,7 +185,7 @@ namespace JricaStudioWebAPI.Data
                 DirectoryInfo testProductImageDirectory = new DirectoryInfo( testProductImagesPath );
 
 
-                // read files from Test image folder save them as if they were uploaded
+                //read files from Test image folder save them as if they were uploaded
 
                 if ( testProductImageDirectory.EnumerateFiles().Any() )
                 {
@@ -234,7 +230,7 @@ namespace JricaStudioWebAPI.Data
             }
 
             var productImageFiles = productImageDirectory.EnumerateFiles().ToList();
-            // Store uploads in a list and use them iteratively through the context file.
+            //Store uploads in a list and use them iteratively through the context file.
             for ( int i = 0; i < productImageFiles.Count; i++ )
             {
                 testProductImagesUploadIds.Add( Guid.NewGuid() );
@@ -545,19 +541,11 @@ namespace JricaStudioWebAPI.Data
                 } );
             }
 
-
-
-
-
             modelBuilder.Entity<ProductShowcase>().HasData( new ProductShowcase
             {
                 Id = Guid.NewGuid(),
                 ProductId = classicSetExtentionsId
             } );
-
-
-
-
 
         }
 

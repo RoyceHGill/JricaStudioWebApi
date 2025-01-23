@@ -66,12 +66,12 @@ namespace JricaStudioWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f75c8dc8-2b85-4308-8145-ef69485c6399"),
-                            AdminKey = new Guid("505d1f96-cb45-44ba-95a1-d4566e78337e"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 645, DateTimeKind.Utc).AddTicks(6629),
+                            Id = new Guid("b77164bf-38b8-4cf7-8e98-8943be598580"),
+                            AdminKey = new Guid("c57a1b7b-0ce2-4766-ae35-76aeffa26be1"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 28, 962, DateTimeKind.Utc).AddTicks(3887),
                             FirstName = "Jayrica",
                             LastName = "Cunanan",
-                            Password = "$2a$11$okWy7urSc7G66WFf5p454OcjVcpErRSL6M86ytRRiV3vpAX/3tEX2",
+                            Password = "$2a$11$WEyR1m4QJt3VQbH.qsFiRuea2WUSvbEBxzYxFQqvtYEcUjfIXXf6e",
                             Phone = "0422453888",
                             ResetKey = new Guid("00000000-0000-0000-0000-000000000000"),
                             ResetKeySent = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -198,21 +198,21 @@ namespace JricaStudioWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0434f408-0782-45c2-82e9-741e2df3c33d"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5419),
-                            Date = new DateOnly(2025, 1, 24)
+                            Id = new Guid("3c5bb93b-41ad-4c90-bb59-2ae7e6529a52"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(6036),
+                            Date = new DateOnly(2025, 1, 25)
                         },
                         new
                         {
-                            Id = new Guid("51223b65-79a6-47f8-839a-3ebba3bdf464"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5446),
-                            Date = new DateOnly(2025, 1, 26)
+                            Id = new Guid("f03d26d0-4133-4004-a273-506eb359c27c"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(6073),
+                            Date = new DateOnly(2025, 1, 27)
                         },
                         new
                         {
-                            Id = new Guid("21c2d868-3bbe-487d-bacf-12dfe5311410"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5457),
-                            Date = new DateOnly(2025, 1, 28)
+                            Id = new Guid("2e75a992-a1e9-4798-b064-b927a2bdb1c0"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(6094),
+                            Date = new DateOnly(2025, 1, 29)
                         });
                 });
 
@@ -254,10 +254,10 @@ namespace JricaStudioWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a734c6cf-ed13-4a4b-9e5a-c93579106899"),
+                            Id = new Guid("695a7a87-35c0-4283-b638-ee5937fcbe94"),
                             AfterHoursGraceRange = 2,
                             CloseTime = new TimeOnly(7, 0, 0),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(4816),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4867),
                             Day = 0,
                             IsDisabled = false,
                             LocalTimeOffset = new TimeSpan(0, 10, 0, 0, 0),
@@ -265,10 +265,10 @@ namespace JricaStudioWebApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("29e76d9a-1232-4845-852e-0e0d3aaa1c9e"),
+                            Id = new Guid("21077f72-8d77-4654-98f1-193c6fde7856"),
                             AfterHoursGraceRange = 2,
                             CloseTime = new TimeOnly(7, 0, 0),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(4882),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4911),
                             Day = 1,
                             IsDisabled = false,
                             LocalTimeOffset = new TimeSpan(0, 10, 0, 0, 0),
@@ -276,10 +276,10 @@ namespace JricaStudioWebApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("6c92a834-502e-4452-8548-8dbd40e6c7e8"),
+                            Id = new Guid("c07fd9bb-2ebd-44f0-9121-b1bff078988c"),
                             AfterHoursGraceRange = 2,
                             CloseTime = new TimeOnly(7, 0, 0),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(4894),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4933),
                             Day = 2,
                             IsDisabled = false,
                             LocalTimeOffset = new TimeSpan(0, 10, 0, 0, 0),
@@ -287,10 +287,10 @@ namespace JricaStudioWebApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2779aa5e-6940-4c73-a9ce-5e16fd8e965f"),
+                            Id = new Guid("a1e64355-989f-4dd8-b0f8-616e3469f9e6"),
                             AfterHoursGraceRange = 2,
                             CloseTime = new TimeOnly(7, 0, 0),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(4904),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4961),
                             Day = 3,
                             IsDisabled = false,
                             LocalTimeOffset = new TimeSpan(0, 10, 0, 0, 0),
@@ -298,10 +298,10 @@ namespace JricaStudioWebApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ac242e66-9158-4d47-96be-55bc91c8747e"),
+                            Id = new Guid("66d18fd1-7e3c-4029-b55d-109ac673ec5b"),
                             AfterHoursGraceRange = 2,
                             CloseTime = new TimeOnly(7, 0, 0),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(4915),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4980),
                             Day = 4,
                             IsDisabled = false,
                             LocalTimeOffset = new TimeSpan(0, 10, 0, 0, 0),
@@ -309,10 +309,10 @@ namespace JricaStudioWebApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("98136c2a-de09-42a2-8c02-120da7c04575"),
+                            Id = new Guid("6e0a2f5a-ed6c-417b-a347-3a298556f239"),
                             AfterHoursGraceRange = 2,
                             CloseTime = new TimeOnly(7, 0, 0),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(4927),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5002),
                             Day = 5,
                             IsDisabled = false,
                             LocalTimeOffset = new TimeSpan(0, 10, 0, 0, 0),
@@ -320,10 +320,10 @@ namespace JricaStudioWebApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e3de7592-dc63-466b-896a-d3afd054ca6d"),
+                            Id = new Guid("ada29e9f-20ad-4830-ae77-f68802a82cbc"),
                             AfterHoursGraceRange = 2,
                             CloseTime = new TimeOnly(7, 0, 0),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(4937),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5022),
                             Day = 6,
                             IsDisabled = false,
                             LocalTimeOffset = new TimeSpan(0, 10, 0, 0, 0),
@@ -363,115 +363,115 @@ namespace JricaStudioWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c0e3d5ef-306f-424b-9cfb-69aec1979e44"),
+                            Id = new Guid("8bbec06a-0250-42ad-938e-b8d5e5cc656b"),
                             ContentType = "image",
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(3859),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3114),
                             FileName = "TestImage0",
-                            StoredFileName = "2hhbpn5f.0l4"
+                            StoredFileName = "1zragvms.d3b"
                         },
                         new
                         {
-                            Id = new Guid("c0fcc37b-832b-4634-9ae4-25576649a35f"),
+                            Id = new Guid("be48c1bc-0f08-4dca-8669-8cee8751d2a2"),
                             ContentType = "image",
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(3903),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3193),
                             FileName = "TestImage1",
-                            StoredFileName = "4ecfsmzj.5vq"
+                            StoredFileName = "3usgxy1b.zz1"
                         },
                         new
                         {
-                            Id = new Guid("708b7255-d034-4143-8186-b8f19f8b1e65"),
+                            Id = new Guid("f97aa9fc-8038-4586-b3e2-26b9d973a550"),
                             ContentType = "image",
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(3914),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3227),
                             FileName = "TestImage2",
-                            StoredFileName = "5viixxdx.za1"
+                            StoredFileName = "cwecbf2i.dnp"
                         },
                         new
                         {
-                            Id = new Guid("a6ef7706-75f5-485b-a0f9-3c074f8e0648"),
+                            Id = new Guid("aa38370d-0382-4986-bb28-82e6765a818e"),
                             ContentType = "image",
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(3925),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3279),
                             FileName = "TestImage3",
-                            StoredFileName = "5viliiwb.s44"
+                            StoredFileName = "k4x3wa3i.uec"
                         },
                         new
                         {
-                            Id = new Guid("9360a3b1-9f00-464e-b43f-ce90ef761ab8"),
+                            Id = new Guid("94cb958a-5db4-4762-a18b-bb8964b59f8d"),
                             ContentType = "image",
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(3946),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3315),
                             FileName = "TestImage4",
-                            StoredFileName = "cabzutlu.2ql"
+                            StoredFileName = "kkhhxftr.hsy"
                         },
                         new
                         {
-                            Id = new Guid("00520433-1dc8-44f8-8002-6c827ae54b77"),
+                            Id = new Guid("e3f3b967-4510-4b1d-92f4-545443e5067b"),
                             ContentType = "image",
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(3960),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3340),
                             FileName = "TestImage5",
-                            StoredFileName = "iboasfkp.w3b"
+                            StoredFileName = "oosgacmu.sfp"
                         },
                         new
                         {
-                            Id = new Guid("be012cd3-27f8-4e5b-83fd-2298b6ec94de"),
+                            Id = new Guid("cc63ccce-70b1-4e66-93f7-53d4ae1cb7c6"),
                             ContentType = "image",
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(3972),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3359),
                             FileName = "TestImage6",
-                            StoredFileName = "ipdcda1n.dee"
+                            StoredFileName = "ppfmlzmz.y4j"
                         },
                         new
                         {
-                            Id = new Guid("22ac4d89-e1d0-487a-90dc-e5932d8f1d3e"),
+                            Id = new Guid("08627b7f-f69c-4bde-972a-1aa8102bc0f8"),
                             ContentType = "image",
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(3985),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3403),
                             FileName = "TestImage7",
-                            StoredFileName = "kxrby3er.clx"
+                            StoredFileName = "qa4ae2om.qht"
                         },
                         new
                         {
-                            Id = new Guid("8e754df1-53ba-4727-b857-bfd2ec1cf55c"),
+                            Id = new Guid("e5bd97b7-c695-442c-8210-7974e24ee33e"),
                             ContentType = "image",
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(4025),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3425),
                             FileName = "TestImage8",
-                            StoredFileName = "s4qx54cs.1ds"
+                            StoredFileName = "sh2ec3rm.54o"
                         },
                         new
                         {
-                            Id = new Guid("5ccfc659-4212-47d7-9bd5-ccd5c51be600"),
+                            Id = new Guid("1a104eca-dbdc-441f-a395-e1d6d5676b25"),
                             ContentType = "image",
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(4038),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3491),
                             FileName = "TestImage9",
-                            StoredFileName = "uu15yrqp.mb1"
+                            StoredFileName = "uwz52kvb.eo2"
                         },
                         new
                         {
-                            Id = new Guid("45a97314-3065-4306-bdaa-7f0cec91c9f8"),
+                            Id = new Guid("9c030d35-4847-484a-bfad-c9bf462f1e8d"),
                             ContentType = "image",
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(4448),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4424),
                             FileName = "TestImage0",
-                            StoredFileName = "1ljopecf.nq4"
+                            StoredFileName = "3dakx1an.31p"
                         },
                         new
                         {
-                            Id = new Guid("43e3ebf5-84a8-4fed-a90e-f78b45d4b2eb"),
+                            Id = new Guid("41f8e9c7-8ae0-4d7a-a353-bb9fd9ceb507"),
                             ContentType = "image",
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(4465),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4457),
                             FileName = "TestImage1",
-                            StoredFileName = "4j0qknjz.roc"
+                            StoredFileName = "c1nnahll.5rg"
                         },
                         new
                         {
-                            Id = new Guid("20434728-e9d4-47d4-88bb-711e6b0753db"),
+                            Id = new Guid("dac0316d-6467-4f4b-a506-b781130c3d84"),
                             ContentType = "image",
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(4477),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4477),
                             FileName = "TestImage2",
-                            StoredFileName = "ml2hrcfr.fff"
+                            StoredFileName = "oyoirmri.whq"
                         },
                         new
                         {
-                            Id = new Guid("14a64a27-f659-42d1-b82e-2140080bf1a5"),
+                            Id = new Guid("b647d925-e806-4700-b138-04537ff07b20"),
                             ContentType = "image",
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(4488),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4495),
                             FileName = "TestImage3",
-                            StoredFileName = "t1uxyuv1.rct"
+                            StoredFileName = "ygztqh4e.knb"
                         });
                 });
 
@@ -545,90 +545,90 @@ namespace JricaStudioWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0e2f34f9-21b1-4f98-a533-78f4c0ff887e"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5031),
+                            Id = new Guid("9d66c1e4-4373-4436-903b-dcae704b92b5"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5198),
                             Description = "Description",
-                            ImageUploadId = new Guid("20434728-e9d4-47d4-88bb-711e6b0753db"),
+                            ImageUploadId = new Guid("9c030d35-4847-484a-bfad-c9bf462f1e8d"),
                             Name = "Aveeno Body Lotion",
                             Price = 10.95m,
-                            ProductCategoryId = new Guid("412855ec-df76-4203-aa1f-48a4f05d3d7b"),
+                            ProductCategoryId = new Guid("4a10fb95-d74b-401e-9eff-d0e1066ea505"),
                             Quantity = 0
                         },
                         new
                         {
-                            Id = new Guid("deaacc53-9223-47eb-a0bd-c8296ea2fde8"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5086),
+                            Id = new Guid("dbc49b58-c766-42a6-b36b-55c685e5c2cd"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5271),
                             Description = "Description",
-                            ImageUploadId = new Guid("45a97314-3065-4306-bdaa-7f0cec91c9f8"),
+                            ImageUploadId = new Guid("dac0316d-6467-4f4b-a506-b781130c3d84"),
                             Name = "Vaseline Body Lotion",
                             Price = 10.95m,
-                            ProductCategoryId = new Guid("412855ec-df76-4203-aa1f-48a4f05d3d7b"),
+                            ProductCategoryId = new Guid("4a10fb95-d74b-401e-9eff-d0e1066ea505"),
                             Quantity = 0
                         },
                         new
                         {
-                            Id = new Guid("8813dc88-67ad-489f-9921-41061cefd261"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5099),
+                            Id = new Guid("ff54ad1a-bc22-4275-b857-4f46ef71bb92"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5296),
                             Description = "Description",
-                            ImageUploadId = new Guid("45a97314-3065-4306-bdaa-7f0cec91c9f8"),
+                            ImageUploadId = new Guid("41f8e9c7-8ae0-4d7a-a353-bb9fd9ceb507"),
                             Name = "Nivea Body Lotion",
                             Price = 10.95m,
-                            ProductCategoryId = new Guid("412855ec-df76-4203-aa1f-48a4f05d3d7b"),
+                            ProductCategoryId = new Guid("4a10fb95-d74b-401e-9eff-d0e1066ea505"),
                             Quantity = 0
                         },
                         new
                         {
-                            Id = new Guid("5f9cbe78-d359-415f-b51d-597782e02135"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5112),
+                            Id = new Guid("48d14ad8-fb69-401d-89a5-d09a952a3f7a"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5319),
                             Description = "Description",
-                            ImageUploadId = new Guid("45a97314-3065-4306-bdaa-7f0cec91c9f8"),
+                            ImageUploadId = new Guid("9c030d35-4847-484a-bfad-c9bf462f1e8d"),
                             Name = "Curel Body Lotion",
                             Price = 10.95m,
-                            ProductCategoryId = new Guid("412855ec-df76-4203-aa1f-48a4f05d3d7b"),
+                            ProductCategoryId = new Guid("4a10fb95-d74b-401e-9eff-d0e1066ea505"),
                             Quantity = 0
                         },
                         new
                         {
-                            Id = new Guid("572eb17f-7fbe-431d-a8bc-5ddda4d1e44c"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5124),
+                            Id = new Guid("3fb0e248-3163-44c3-8238-3aa0156067fb"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5507),
                             Description = "Description",
-                            ImageUploadId = new Guid("20434728-e9d4-47d4-88bb-711e6b0753db"),
+                            ImageUploadId = new Guid("9c030d35-4847-484a-bfad-c9bf462f1e8d"),
                             Name = "Classic Style Eyelash Extensions",
                             Price = 30.60m,
-                            ProductCategoryId = new Guid("1aa9bb0b-da81-45e8-9a69-9d6960f4ac4a"),
+                            ProductCategoryId = new Guid("c353ba75-d7a8-4198-8643-ed79980709b0"),
                             Quantity = 1
                         },
                         new
                         {
-                            Id = new Guid("4ae83ebe-8b03-4864-8ed7-3883c6058dcf"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5135),
+                            Id = new Guid("425a29c8-1498-4d7e-bfe1-eb61940d2df2"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5535),
                             Description = "Description",
-                            ImageUploadId = new Guid("43e3ebf5-84a8-4fed-a90e-f78b45d4b2eb"),
+                            ImageUploadId = new Guid("41f8e9c7-8ae0-4d7a-a353-bb9fd9ceb507"),
                             Name = "Volume Style Eyelash Extensions",
                             Price = 35.60m,
-                            ProductCategoryId = new Guid("1aa9bb0b-da81-45e8-9a69-9d6960f4ac4a"),
+                            ProductCategoryId = new Guid("c353ba75-d7a8-4198-8643-ed79980709b0"),
                             Quantity = 1
                         },
                         new
                         {
-                            Id = new Guid("bc0e2c58-4b4c-46cb-9553-1ad82788a93c"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5148),
+                            Id = new Guid("d60a2846-e96d-4e9c-8e3d-7f7e371bd662"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5558),
                             Description = "Description",
-                            ImageUploadId = new Guid("45a97314-3065-4306-bdaa-7f0cec91c9f8"),
+                            ImageUploadId = new Guid("9c030d35-4847-484a-bfad-c9bf462f1e8d"),
                             Name = "Wet Look Style Eyelash Extensions",
                             Price = 30.60m,
-                            ProductCategoryId = new Guid("1aa9bb0b-da81-45e8-9a69-9d6960f4ac4a"),
+                            ProductCategoryId = new Guid("c353ba75-d7a8-4198-8643-ed79980709b0"),
                             Quantity = 1
                         },
                         new
                         {
-                            Id = new Guid("542c4c9e-e467-4991-b987-ba3cc7dd544a"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5160),
+                            Id = new Guid("81f8916e-65fe-444d-b85e-60137b366212"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5583),
                             Description = "Description",
-                            ImageUploadId = new Guid("20434728-e9d4-47d4-88bb-711e6b0753db"),
+                            ImageUploadId = new Guid("dac0316d-6467-4f4b-a506-b781130c3d84"),
                             Name = "3D Style Eyelash Extensions",
                             Price = 35.60m,
-                            ProductCategoryId = new Guid("1aa9bb0b-da81-45e8-9a69-9d6960f4ac4a"),
+                            ProductCategoryId = new Guid("c353ba75-d7a8-4198-8643-ed79980709b0"),
                             Quantity = 1
                         });
                 });
@@ -650,12 +650,12 @@ namespace JricaStudioWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1aa9bb0b-da81-45e8-9a69-9d6960f4ac4a"),
+                            Id = new Guid("c353ba75-d7a8-4198-8643-ed79980709b0"),
                             Name = "Eye Lash Extensions"
                         },
                         new
                         {
-                            Id = new Guid("412855ec-df76-4203-aa1f-48a4f05d3d7b"),
+                            Id = new Guid("4a10fb95-d74b-401e-9eff-d0e1066ea505"),
                             Name = "Lotion"
                         });
                 });
@@ -685,9 +685,9 @@ namespace JricaStudioWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e6da40bf-c60b-422a-b54c-0118b1023a1a"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5473),
-                            ProductId = new Guid("572eb17f-7fbe-431d-a8bc-5ddda4d1e44c")
+                            Id = new Guid("3f92ce62-77ed-42dd-8a3a-77993b9c54da"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(6127),
+                            ProductId = new Guid("3fb0e248-3163-44c3-8238-3aa0156067fb")
                         });
                 });
 
@@ -733,146 +733,146 @@ namespace JricaStudioWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3501ec61-3b7a-4906-a1f0-39c850789907"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5181),
+                            Id = new Guid("b4bd4ba5-610e-49e8-af9b-da4c35dd84a8"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5621),
                             Description = "Description",
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            ImageUploadId = new Guid("be012cd3-27f8-4e5b-83fd-2298b6ec94de"),
+                            ImageUploadId = new Guid("e3f3b967-4510-4b1d-92f4-545443e5067b"),
                             Name = "2D Lashes Infill",
                             Price = 120m,
-                            ServiceCategoryId = new Guid("9073c793-c0d4-4e99-a6c5-1919c3ce36f1")
+                            ServiceCategoryId = new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb")
                         },
                         new
                         {
-                            Id = new Guid("89495072-9779-46a0-8521-b2c358caf421"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5211),
+                            Id = new Guid("be554741-3224-4501-9db8-263d19382cb8"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5660),
                             Description = "Description",
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            ImageUploadId = new Guid("00520433-1dc8-44f8-8002-6c827ae54b77"),
+                            ImageUploadId = new Guid("aa38370d-0382-4986-bb28-82e6765a818e"),
                             Name = "3D Lashes Infill",
                             Price = 120m,
-                            ServiceCategoryId = new Guid("9073c793-c0d4-4e99-a6c5-1919c3ce36f1")
+                            ServiceCategoryId = new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb")
                         },
                         new
                         {
-                            Id = new Guid("db8c5d10-c4f8-47ea-adee-2ed497d4df46"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5252),
+                            Id = new Guid("356527b3-47f6-4707-b969-4266c5c24b56"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5686),
                             Description = "Description",
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            ImageUploadId = new Guid("708b7255-d034-4143-8186-b8f19f8b1e65"),
+                            ImageUploadId = new Guid("cc63ccce-70b1-4e66-93f7-53d4ae1cb7c6"),
                             Name = "4D Lashes Infill",
                             Price = 120m,
-                            ServiceCategoryId = new Guid("9073c793-c0d4-4e99-a6c5-1919c3ce36f1")
+                            ServiceCategoryId = new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb")
                         },
                         new
                         {
-                            Id = new Guid("caaf9a94-2726-4c75-ad5e-5f0d2903f56e"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5268),
+                            Id = new Guid("e12f153b-ba51-4a86-82dd-3928ae94cf5e"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5713),
                             Description = "Description",
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            ImageUploadId = new Guid("8e754df1-53ba-4727-b857-bfd2ec1cf55c"),
+                            ImageUploadId = new Guid("aa38370d-0382-4986-bb28-82e6765a818e"),
                             Name = "5D Lashes Infill",
                             Price = 120m,
-                            ServiceCategoryId = new Guid("9073c793-c0d4-4e99-a6c5-1919c3ce36f1")
+                            ServiceCategoryId = new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb")
                         },
                         new
                         {
-                            Id = new Guid("3612ff06-05ce-4567-afe9-ed5433a5cc1b"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5282),
+                            Id = new Guid("c96a5f38-6be8-4131-a921-2d15b26977bf"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5738),
                             Description = "Description",
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            ImageUploadId = new Guid("9360a3b1-9f00-464e-b43f-ce90ef761ab8"),
+                            ImageUploadId = new Guid("e5bd97b7-c695-442c-8210-7974e24ee33e"),
                             Name = "6D Lashes Infill",
                             Price = 120m,
-                            ServiceCategoryId = new Guid("9073c793-c0d4-4e99-a6c5-1919c3ce36f1")
+                            ServiceCategoryId = new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb")
                         },
                         new
                         {
-                            Id = new Guid("6768752b-2eb1-4af5-a073-52821709af90"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5297),
+                            Id = new Guid("d3963e92-33d7-48d5-a75d-50ceb51aac0d"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5763),
                             Description = "Description",
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            ImageUploadId = new Guid("be012cd3-27f8-4e5b-83fd-2298b6ec94de"),
+                            ImageUploadId = new Guid("e3f3b967-4510-4b1d-92f4-545443e5067b"),
                             Name = "7D Lashes Infill",
                             Price = 120m,
-                            ServiceCategoryId = new Guid("9073c793-c0d4-4e99-a6c5-1919c3ce36f1")
+                            ServiceCategoryId = new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb")
                         },
                         new
                         {
-                            Id = new Guid("03552cb9-89ef-42f4-9c5d-88b5eaffe5c4"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5309),
+                            Id = new Guid("ed58add0-5f9d-4a04-9cc3-d239eb4e0e09"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5786),
                             Description = "Description",
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            ImageUploadId = new Guid("c0e3d5ef-306f-424b-9cfb-69aec1979e44"),
+                            ImageUploadId = new Guid("e3f3b967-4510-4b1d-92f4-545443e5067b"),
                             Name = "8D Lashes Infill",
                             Price = 120m,
-                            ServiceCategoryId = new Guid("9073c793-c0d4-4e99-a6c5-1919c3ce36f1")
+                            ServiceCategoryId = new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb")
                         },
                         new
                         {
-                            Id = new Guid("7a1e0aa5-cead-4a8e-8caa-84509ad2b2be"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5321),
+                            Id = new Guid("002756b5-3a03-43ac-8f09-10a51b5f1da1"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5809),
                             Description = "Description",
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            ImageUploadId = new Guid("be012cd3-27f8-4e5b-83fd-2298b6ec94de"),
+                            ImageUploadId = new Guid("8bbec06a-0250-42ad-938e-b8d5e5cc656b"),
                             Name = "9D Lashes Infill",
                             Price = 120m,
-                            ServiceCategoryId = new Guid("9073c793-c0d4-4e99-a6c5-1919c3ce36f1")
+                            ServiceCategoryId = new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb")
                         },
                         new
                         {
-                            Id = new Guid("e2ed61c3-2088-4e2f-8dce-65115660a1af"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5333),
+                            Id = new Guid("20dbe763-5ecc-48c3-903d-ffb466289cb6"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5864),
                             Description = "Description",
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            ImageUploadId = new Guid("9360a3b1-9f00-464e-b43f-ce90ef761ab8"),
+                            ImageUploadId = new Guid("08627b7f-f69c-4bde-972a-1aa8102bc0f8"),
                             Name = "10D Lashes Infill",
                             Price = 120m,
-                            ServiceCategoryId = new Guid("9073c793-c0d4-4e99-a6c5-1919c3ce36f1")
+                            ServiceCategoryId = new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb")
                         },
                         new
                         {
-                            Id = new Guid("ec61bcb4-2e9d-47d5-9fd7-db68726dc31a"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5346),
+                            Id = new Guid("6e0d1271-bea1-406b-a9e5-1b376ccfd5f6"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5901),
                             Description = "Description",
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            ImageUploadId = new Guid("9360a3b1-9f00-464e-b43f-ce90ef761ab8"),
+                            ImageUploadId = new Guid("e5bd97b7-c695-442c-8210-7974e24ee33e"),
                             Name = "Classic Eye Brow Trim and Shape",
                             Price = 90.00m,
-                            ServiceCategoryId = new Guid("df4c4988-9a1d-43ab-ba39-2d88ec923733")
+                            ServiceCategoryId = new Guid("2604b918-bdcb-4b5a-b601-d8a61c50d45b")
                         },
                         new
                         {
-                            Id = new Guid("4cc13340-1b96-4836-97de-c3f348b58690"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5357),
+                            Id = new Guid("046f3a6f-02f7-494e-bb6b-e209b9564d0a"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5925),
                             Description = "Description",
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            ImageUploadId = new Guid("a6ef7706-75f5-485b-a0f9-3c074f8e0648"),
+                            ImageUploadId = new Guid("be48c1bc-0f08-4dca-8669-8cee8751d2a2"),
                             Name = "Volume Eye Brow Trim and Shape",
                             Price = 90.00m,
-                            ServiceCategoryId = new Guid("df4c4988-9a1d-43ab-ba39-2d88ec923733")
+                            ServiceCategoryId = new Guid("2604b918-bdcb-4b5a-b601-d8a61c50d45b")
                         },
                         new
                         {
-                            Id = new Guid("ce974964-57d9-4b5e-bfce-c8a0d06e5af9"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5369),
+                            Id = new Guid("c5016612-bf23-4767-8755-f696fc977f4e"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5947),
                             Description = "Description",
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            ImageUploadId = new Guid("00520433-1dc8-44f8-8002-6c827ae54b77"),
+                            ImageUploadId = new Guid("e3f3b967-4510-4b1d-92f4-545443e5067b"),
                             Name = "Classic Eye Brow lamination",
                             Price = 90.00m,
-                            ServiceCategoryId = new Guid("df4c4988-9a1d-43ab-ba39-2d88ec923733")
+                            ServiceCategoryId = new Guid("2604b918-bdcb-4b5a-b601-d8a61c50d45b")
                         },
                         new
                         {
-                            Id = new Guid("f2506bb0-7cfe-4a69-9979-2b2917b2d591"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5382),
+                            Id = new Guid("09ccd803-065a-47f8-bbbf-605c7af76179"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5969),
                             Description = "Description",
                             Duration = new TimeSpan(0, 3, 0, 0, 0),
-                            ImageUploadId = new Guid("708b7255-d034-4143-8186-b8f19f8b1e65"),
+                            ImageUploadId = new Guid("08627b7f-f69c-4bde-972a-1aa8102bc0f8"),
                             Name = "Volume Eye Brow Lamination",
                             Price = 90.00m,
-                            ServiceCategoryId = new Guid("df4c4988-9a1d-43ab-ba39-2d88ec923733")
+                            ServiceCategoryId = new Guid("2604b918-bdcb-4b5a-b601-d8a61c50d45b")
                         });
                 });
 
@@ -893,12 +893,12 @@ namespace JricaStudioWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9073c793-c0d4-4e99-a6c5-1919c3ce36f1"),
+                            Id = new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb"),
                             Name = "Eye Lash Extensions"
                         },
                         new
                         {
-                            Id = new Guid("df4c4988-9a1d-43ab-ba39-2d88ec923733"),
+                            Id = new Guid("2604b918-bdcb-4b5a-b601-d8a61c50d45b"),
                             Name = "Eye Brow Shaping"
                         });
                 });
@@ -928,9 +928,9 @@ namespace JricaStudioWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4352713d-5679-4ebc-9a0c-66a52fce8ce0"),
-                            Created = new DateTime(2025, 1, 22, 7, 8, 46, 735, DateTimeKind.Utc).AddTicks(5401),
-                            ServiceId = new Guid("3501ec61-3b7a-4906-a1f0-39c850789907")
+                            Id = new Guid("f5ab07ab-f1a6-4680-a7d3-631f35ec87d2"),
+                            Created = new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(6002),
+                            ServiceId = new Guid("b4bd4ba5-610e-49e8-af9b-da4c35dd84a8")
                         });
                 });
 
