@@ -1,10 +1,10 @@
-﻿using JricaStudioWebAPI.Models.Dtos;
+﻿using JricaStudioSharedLibrary.Dtos;
 using JricaStudioWebAPI.Data;
 using JricaStudioWebAPI.Entities;
 using JricaStudioWebAPI.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
-using JricaStudioWebAPI.Models.enums;
-using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.enums;
+using JricaStudioSharedLibrary.Dtos.Admin;
 using JricaStudioWebAPI.Services.Contracts;
 using JricaStudioWebAPI.Extentions;
 

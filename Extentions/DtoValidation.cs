@@ -1,8 +1,8 @@
 ﻿
-using JricaStudioWebAPI.Models.Dtos;
-using JricaStudioWebAPI.Models.enums;
+using JricaStudioSharedLibrary.Dtos;
+using JricaStudioSharedLibrary.enums;
 using JricaStudioWebAPI.Entities;
-using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos.Admin;
 using System.Globalization;
 
 namespace JricaStudioWebAPI.Extentions

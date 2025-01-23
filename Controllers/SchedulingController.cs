@@ -1,12 +1,12 @@
-﻿using JricaStudioWebAPI.Models.Dtos;
-using JricaStudioWebAPI.Models.Dtos.Admin;
+﻿using JricaStudioSharedLibrary.Dtos;
+using JricaStudioSharedLibrary.Dtos.Admin;
 using JricaStudioWebAPI.Attributes;
 using JricaStudioWebAPI.Extentions;
 using JricaStudioWebAPI.Repositories.Contracts;
 using JricaStudioWebAPI.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using JricaStudioWebAPI.Models.Dtos.Admin.BusinessHours;
-using JricaStudioWebAPI.Models.Dtos.BusinessHours;
+using JricaStudioSharedLibrary.Dtos.Admin.BusinessHours;
+using JricaStudioSharedLibrary.Dtos.BusinessHours;
 
 namespace JricaStudioWebAPI.Controllers
 {

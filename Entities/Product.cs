@@ -1,5 +1,5 @@
 ﻿using JricaStudioWebAPI.Entities.Helpers;
-using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioSharedLibrary.Dtos;
 
 namespace JricaStudioWebAPI.Entities
 {

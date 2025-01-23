@@ -2,9 +2,9 @@
 using JricaStudioWebAPI.Repositories.Contracts;
 using JricaStudioWebAPI.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioSharedLibrary.Dtos;
 using JricaStudioWebAPI.Attributes;
-using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos.Admin;
 
 namespace JricaStudioWebAPI.Controllers
 {
@@ -236,7 +236,7 @@ namespace JricaStudioWebAPI.Controllers
         }
 
         [HttpPut("Indemnity")]
-        public async Task<ActionResult<UserIndemnityDto>> Put(Models.Dtos.UpdateUserDto userUpdateDto)
+        public async Task<ActionResult<UserIndemnityDto>> Put(UpdateUserDto userUpdateDto)
         {
             try
             {
@@ -365,7 +365,7 @@ namespace JricaStudioWebAPI.Controllers
 
         [AdministratorKey]
         [HttpPut("update/{id:guid}")]
-        public async Task<ActionResult<AdminUserDto>> UpdateUser(Guid id, Models.Dtos.UpdateUserDto dto)
+        public async Task<ActionResult<AdminUserDto>> UpdateUser(Guid id, UpdateUserDto dto)
         {
             try
             {

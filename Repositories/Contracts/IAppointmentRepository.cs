@@ -4,9 +4,9 @@
 // Ignore Spelling: Jrica
 
 using JricaStudioWebAPI.Entities;
-using JricaStudioWebAPI.Models.Dtos;
-using JricaStudioWebAPI.Models.enums;
-using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos;
+using JricaStudioSharedLibrary.enums;
+using JricaStudioSharedLibrary.Dtos.Admin;
 
 namespace JricaStudioWebAPI.Repositories.Contracts
 {

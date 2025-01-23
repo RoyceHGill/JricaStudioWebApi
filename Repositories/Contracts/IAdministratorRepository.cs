@@ -1,7 +1,7 @@
 ﻿
 // Ignore Spelling: Jrica
 
-using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos.Admin;
 using JricaStudioWebAPI.Entities;
 
 namespace JricaStudioWebAPI.Repositories.Contracts

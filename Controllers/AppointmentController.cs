@@ -4,11 +4,11 @@ using JricaStudioWebAPI.Repositories.Contracts;
 using JricaStudioWebAPI.Extentions;
 using JricaStudioWebAPI.Services.Contracts;
 using JricaStudioWebAPI.Attributes;
-using JricaStudioWebAPI.Models.Dtos;
-using JricaStudioWebAPI.Models.enums;
-using JricaStudioWebAPI.Models.Dtos.Admin;
-using JricaStudioWebAPI.Models.Extentions;
-using JricaStudioWebAPI.Models.Constants;
+using JricaStudioSharedLibrary.Dtos;
+using JricaStudioSharedLibrary.enums;
+using JricaStudioSharedLibrary.Dtos.Admin;
+using JricaStudioSharedLibrary.Extentions;
+using JricaStudioSharedLibrary.Constants;
 using Microsoft.JSInterop.Infrastructure;
 
 namespace JricaStudioWebAPI.Controllers

@@ -2,7 +2,7 @@
 using JricaStudioWebAPI.Entities;
 using Microsoft.AspNetCore.Routing.Template;
 using Microsoft.EntityFrameworkCore;
-using JricaStudioWebAPI.Models.Constants;
+using JricaStudioSharedLibrary.Constants;
 using System.Globalization;
 using System.IO;
 using static System.Runtime.InteropServices.JavaScript.JSType;
