@@ -28,8 +28,6 @@
     <Folder Include="Services\Contracts\" />
     <Folder Include="wwwroot\Images\ProductImages\" />
     <Folder Include="wwwroot\Images\ServiceImages\" />
-    <Folder Include="wwwroot\Images\TestImages\ProductImages\" />
-    <Folder Include="wwwroot\Images\TestImages\ServiceImages\" />
   </ItemGroup>
 
   <ItemGroup>
