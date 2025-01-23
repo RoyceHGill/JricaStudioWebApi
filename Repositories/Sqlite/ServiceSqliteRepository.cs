@@ -1,12 +1,12 @@
-﻿using JricaStudioWebAPI.Models.Dtos.Admin;
-using JricaStudioWebAPI.Models.enums;
+﻿using JricaStudioSharedLibrary.Dtos.Admin;
+using JricaStudioSharedLibrary.enums;
 using JricaStudioWebAPI.Data;
 using JricaStudioWebAPI.Entities;
 using JricaStudioWebAPI.Extentions;
 using JricaStudioWebAPI.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioSharedLibrary.Dtos;
 
 namespace JricaStudioWebAPI.Repositories.SqLite
 {

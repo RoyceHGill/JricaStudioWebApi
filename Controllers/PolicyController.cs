@@ -1,4 +1,4 @@
-﻿using JricaStudioWebAPI.Models.Dtos.Admin;
+﻿using JricaStudioSharedLibrary.Dtos.Admin;
 using JricaStudioWebAPI.Attributes;
 using JricaStudioWebAPI.Extentions;
 using JricaStudioWebAPI.Repositories.Contracts;

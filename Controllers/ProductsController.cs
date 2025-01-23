@@ -1,12 +1,12 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using JricaStudioWebAPI.Models.Dtos;
+using JricaStudioSharedLibrary.Dtos;
 using JricaStudioWebAPI.Extentions;
 using JricaStudioWebAPI.Repositories.Contracts;
-using JricaStudioWebAPI.Models.Dtos.Admin;
+using JricaStudioSharedLibrary.Dtos.Admin;
 using JricaStudioWebAPI.Attributes;
 using JricaStudioWebAPI.Services.Contracts;
-using JricaStudioWebAPI.Models.Constants;
+using JricaStudioSharedLibrary.Constants;
 using JricaStudioWebAPI.Entities;
 
 namespace JricaStudioWebAPI.Controllers

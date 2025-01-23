@@ -1,4 +1,4 @@
-﻿using JricaStudioWebAPI.Models.Dtos;
+﻿using JricaStudioSharedLibrary.Dtos;
 using JricaStudioWebAPI.Entities;
 using JricaStudioWebAPI.Services.Contracts;
 
@@ -7,10 +7,10 @@ namespace JricaStudioWebAPI.Services
     public class SchedulingService : ISchedulingService
     {
 
-        public IEnumerable<DateTime> GetUnavailableDates(IEnumerable<Appointment> appointments, IEnumerable<BusinessHours> businessHours, IEnumerable<BlockOutDate> blockOutDates, int dateRange, TimeSpan duration)
+        public IEnumerable<DateTime> GetUnavailableDates( IEnumerable<Appointment> appointments, IEnumerable<BusinessHours> businessHours, IEnumerable<BlockOutDate> blockOutDates, int dateRange, TimeSpan duration )
         {
 
-            if (!businessHours.Any())
+            if ( !businessHours.Any() )
             {
                 return Enumerable.Empty<DateTime>();
             }
@@ -19,59 +19,59 @@ namespace JricaStudioWebAPI.Services
 
             var unavailableDates = new List<DateTime>();
 
-            for (int i = 0; i < dateRange; i++)
+            for ( int i = 0; i < dateRange; i++ )
             {
-                if (CheckBussinessHoursDisabled(seeker, businessHours))
+                if ( CheckBussinessHoursDisabled( seeker, businessHours ) )
                 {
-                    unavailableDates.Add(seeker);
-                    seeker = seeker.AddDays(1);
+                    unavailableDates.Add( seeker );
+                    seeker = seeker.AddDays( 1 );
                     continue;
                 }
 
-                if (CheckBlockOutDateConflicts(seeker, duration, blockOutDates))
+                if ( CheckBlockOutDateConflicts( seeker, duration, blockOutDates ) )
                 {
-                    unavailableDates.Add(seeker);
-                    seeker = seeker.AddDays(1);
+                    unavailableDates.Add( seeker );
+                    seeker = seeker.AddDays( 1 );
                     continue;
                 }
 
-                for (int j = 0; j <= 24; j++)
+                for ( int j = 0; j <= 24; j++ )
                 {
 
 
 
-                    if (seeker < DateTime.UtcNow)
+                    if ( seeker < DateTime.UtcNow )
                     {
-                        seeker = seeker.AddHours(1);
+                        seeker = seeker.AddHours( 1 );
                         continue;
                     }
 
-                    if (CheckBusinessHoursConflicts(seeker, duration, businessHours))
+                    if ( CheckBusinessHoursConflicts( seeker, duration, businessHours ) )
                     {
-                        seeker = seeker.AddHours(1);
+                        seeker = seeker.AddHours( 1 );
                         continue;
                     }
 
-                    if (CheckAppointmentConflicts(seeker, duration, appointments))
+                    if ( CheckAppointmentConflicts( seeker, duration, appointments ) )
                     {
-                        seeker = seeker.AddHours(1);
+                        seeker = seeker.AddHours( 1 );
                         continue;
                     }
 
-                    if (j == 24)
+                    if ( j == 24 )
                     {
-                        unavailableDates.Add(seeker);
+                        unavailableDates.Add( seeker );
                         break;
                     }
 
-                    seeker = seeker.AddDays(1).Date;
+                    seeker = seeker.AddDays( 1 ).Date;
                     break;
 
                 }
 
             }
 
-            if (unavailableDates.Any())
+            if ( unavailableDates.Any() )
             {
                 return unavailableDates;
             }
@@ -83,65 +83,65 @@ namespace JricaStudioWebAPI.Services
 
 
 
-        public IEnumerable<AppointmentAvailableDto> GetAvailableAppointmentWindowsForADate(DateTime date, TimeSpan duration, IEnumerable<Appointment> existingAppointments, IEnumerable<BusinessHours> businessHours, IEnumerable<BlockOutDate> blockOutDates)
+        public IEnumerable<AppointmentAvailableDto> GetAvailableAppointmentWindowsForADate( DateTime date, TimeSpan duration, IEnumerable<Appointment> existingAppointments, IEnumerable<BusinessHours> businessHours, IEnumerable<BlockOutDate> blockOutDates )
         {
-            if (!businessHours.Any())
+            if ( !businessHours.Any() )
             {
                 return Enumerable.Empty<AppointmentAvailableDto>();
             }
 
-            DateTime seeker = date.ToUniversalTime();
+            DateTime seeker = date.Add( -businessHours.Single( b => b.Day == date.DayOfWeek ).LocalTimeOffset );
 
 
 
             var listOfAvailableTimes = new List<AppointmentAvailableDto>();
 
-            for (int j = 0; j < 24; j++)
+            for ( int j = 0; j < 24; j++ )
             {
 
-                if (CheckBussinessHoursDisabled(seeker, businessHours))
+                if ( CheckBussinessHoursDisabled( seeker, businessHours ) )
                 {
-                    seeker = seeker.AddHours(1);
+                    seeker = seeker.AddHours( 1 );
                     continue;
                 }
 
-                if (CheckBlockOutDateConflicts(seeker, duration, blockOutDates))
+                if ( CheckBlockOutDateConflicts( seeker, duration, blockOutDates ) )
                 {
-                    seeker = seeker.AddHours(1);
+                    seeker = seeker.AddHours( 1 );
                     continue;
                 }
 
-                if (seeker < DateTime.UtcNow)
+                if ( seeker < DateTime.UtcNow )
                 {
-                    seeker = seeker.AddHours(1);
+                    seeker = seeker.AddHours( 1 );
                     continue;
                 }
 
-                if (CheckBusinessHoursConflicts(seeker, duration, businessHours))
+                if ( CheckBusinessHoursConflicts( seeker, duration, businessHours ) )
                 {
-                    seeker = seeker.AddHours(1);
+                    seeker = seeker.AddHours( 1 );
                     continue;
                 }
 
-                if (existingAppointments.Any())
+                if ( existingAppointments.Any() )
                 {
-                    if (CheckAppointmentConflicts(seeker, duration, existingAppointments))
+                    if ( CheckAppointmentConflicts( seeker, duration, existingAppointments ) )
                     {
-                        seeker = seeker.AddHours(1);
+                        seeker = seeker.AddHours( 1 );
                         continue;
                     }
                 }
 
-                listOfAvailableTimes.Add(new AppointmentAvailableDto
+                listOfAvailableTimes.Add( new AppointmentAvailableDto
                 {
                     Duration = duration,
                     StartTime = seeker,
-                });
-                seeker = seeker.AddHours(1);
+                } );
+                seeker = seeker.AddHours( 1 );
 
             }
 
-            if (listOfAvailableTimes.Any())
+            if ( listOfAvailableTimes.Any() )
             {
                 return listOfAvailableTimes;
             }
@@ -150,52 +150,52 @@ namespace JricaStudioWebAPI.Services
         }
 
 
-        public DateTime? GetNextAvailableAppointmentWindow(IEnumerable<BlockOutDate> blockOutDates, IEnumerable<Appointment> appointments, IEnumerable<BusinessHours> businessHours, int dateRange, TimeSpan duration)
+        public DateTime? GetNextAvailableAppointmentWindow( IEnumerable<BlockOutDate> blockOutDates, IEnumerable<Appointment> appointments, IEnumerable<BusinessHours> businessHours, int dateRange, TimeSpan duration )
         {
-            if (!businessHours.Any())
+            if ( !businessHours.Any() )
             {
                 return default;
             }
             DateTime seeker = DateTime.UtcNow.Date;
             DateTime nextAppointment = DateTime.MinValue;
-            for (int i = 0; i < dateRange; i++)
+            for ( int i = 0; i < dateRange; i++ )
             {
 
-                if (blockOutDates.Any())
+                if ( blockOutDates.Any() )
                 {
-                    if (CheckBlockOutDateConflicts(seeker, duration, blockOutDates))
+                    if ( CheckBlockOutDateConflicts( seeker, duration, blockOutDates ) )
                     {
-                        seeker = seeker.AddDays(1).Date;
+                        seeker = seeker.AddDays( 1 ).Date;
                         continue;
                     }
                 }
 
-                if (CheckBussinessHoursDisabled(seeker, businessHours))
+                if ( CheckBussinessHoursDisabled( seeker, businessHours ) )
                 {
-                    seeker = seeker.AddDays(1).Date;
+                    seeker = seeker.AddDays( 1 ).Date;
                     continue;
                 }
 
-                for (int j = 0; j < 24; j++)
+                for ( int j = 0; j < 24; j++ )
                 {
 
-                    if (seeker < DateTime.UtcNow)
+                    if ( seeker < DateTime.UtcNow )
                     {
-                        seeker = seeker.AddHours(1);
+                        seeker = seeker.AddHours( 1 );
                         continue;
                     }
 
-                    if (CheckBusinessHoursConflicts(seeker, duration, businessHours))
+                    if ( CheckBusinessHoursConflicts( seeker, duration, businessHours ) )
                     {
-                        seeker = seeker.AddHours(1);
+                        seeker = seeker.AddHours( 1 );
                         continue;
                     }
 
-                    if (appointments.Any())
+                    if ( appointments.Any() )
                     {
-                        if (CheckAppointmentConflicts(seeker, duration, appointments))
+                        if ( CheckAppointmentConflicts( seeker, duration, appointments ) )
                         {
-                            seeker = seeker.AddHours(1);
+                            seeker = seeker.AddHours( 1 );
                             continue;
                         }
                     }
@@ -206,47 +206,47 @@ namespace JricaStudioWebAPI.Services
             return default;
         }
 
-        private bool CheckAppointmentConflicts(DateTime startTime, TimeSpan duration, IEnumerable<Appointment> appointments)
+        private bool CheckAppointmentConflicts( DateTime startTime, TimeSpan duration, IEnumerable<Appointment> appointments )
         {
-            if (appointments.Any(a => startTime < a.EndTime && a.StartTime < startTime.Add(duration)))
+            if ( appointments.Any( a => startTime < a.EndTime && a.StartTime < startTime.Add( duration ) ) )
             {
                 return true;
             }
             return false;
         }
 
-        private bool CheckBlockOutDateConflicts(DateTime startTime, TimeSpan duration, IEnumerable<BlockOutDate> blockoutDates)
+        private bool CheckBlockOutDateConflicts( DateTime startTime, TimeSpan duration, IEnumerable<BlockOutDate> blockoutDates )
         {
-            if (blockoutDates.Any(b => b.Date == DateOnly.FromDateTime(startTime.ToLocalTime())))
+            if ( blockoutDates.Any( b => b.Date == DateOnly.FromDateTime( startTime.ToLocalTime() ) ) )
             {
                 return true;
             }
             return false;
         }
 
-        private bool CheckBusinessHoursConflicts(DateTime startTime, TimeSpan duration, IEnumerable<BusinessHours> businessHours)
+        private bool CheckBusinessHoursConflicts( DateTime startTime, TimeSpan duration, IEnumerable<BusinessHours> businessHours )
         {
 
 
-            var todaysBusinessHours = businessHours.SingleOrDefault(b => b.Day == startTime.Add(duration).DayOfWeek);
+            var todaysBusinessHours = businessHours.SingleOrDefault( b => b.Day == startTime.Add( duration ).DayOfWeek );
 
-            if (todaysBusinessHours != null
+            if ( todaysBusinessHours != null
                 && todaysBusinessHours.OpenTime.HasValue
-                && todaysBusinessHours.CloseTime.HasValue)
+                && todaysBusinessHours.CloseTime.HasValue )
             {
-                var gracefullBusinessCloseHours = TimeSpan.FromHours(todaysBusinessHours.AfterHoursGraceRange);
-                var todaysDate = DateOnly.FromDateTime(startTime.Add(duration));
-                var todaysOpenTime = todaysDate.ToDateTime(todaysBusinessHours.OpenTime.Value);
-                var todaysCloseTime = todaysDate.ToDateTime(todaysBusinessHours.CloseTime.Value.Add(gracefullBusinessCloseHours));
+                var gracefullBusinessCloseHours = TimeSpan.FromHours( todaysBusinessHours.AfterHoursGraceRange );
+                var todaysDate = DateOnly.FromDateTime( startTime.Add( duration ) );
+                var todaysOpenTime = todaysDate.ToDateTime( todaysBusinessHours.OpenTime.Value );
+                var todaysCloseTime = todaysDate.ToDateTime( todaysBusinessHours.CloseTime.Value.Add( gracefullBusinessCloseHours ) );
 
 
-                if (todaysOpenTime > todaysCloseTime)
+                if ( todaysOpenTime > todaysCloseTime )
                 {
-                    todaysOpenTime = todaysOpenTime.AddDays(-1);
+                    todaysOpenTime = todaysOpenTime.AddDays( -1 );
                 }
 
-                if (startTime >= todaysOpenTime
-                    && startTime.Add(duration) <= todaysCloseTime)
+                if ( startTime >= todaysOpenTime
+                    && startTime.Add( duration ) <= todaysCloseTime )
                 {
                     return false;
                 }
@@ -254,10 +254,10 @@ namespace JricaStudioWebAPI.Services
             return true;
         }
 
-        private bool CheckBussinessHoursDisabled(DateTime startTime, IEnumerable<BusinessHours> businessHours)
+        private bool CheckBussinessHoursDisabled( DateTime startTime, IEnumerable<BusinessHours> businessHours )
         {
-            startTime = startTime.AddHours(10);
-            if (!businessHours.Any(b => b.Day == startTime.DayOfWeek && b.IsDisabled))
+            startTime = startTime.AddHours( 10 );
+            if ( !businessHours.Any( b => b.Day == startTime.DayOfWeek && b.IsDisabled ) )
             {
                 return false;
             }
