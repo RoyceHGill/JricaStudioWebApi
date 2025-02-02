@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>6b806c33-dd5c-4a6d-9d2c-bf486856a300</UserSecretsId>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\Debug\net8.0\JricaStudioWebApiDocumentation.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -321,16 +321,16 @@ namespace JricaStudioWebApi.Migrations
             migrationBuilder.InsertData(
                 table: "Admins",
                 columns: new[] { "Id", "AdminKey", "Created", "FirstName", "LastName", "Password", "Phone", "ResetKey", "ResetKeySent", "Updated", "Username" },
-                values: new object[] { new Guid("b77164bf-38b8-4cf7-8e98-8943be598580"), new Guid("c57a1b7b-0ce2-4766-ae35-76aeffa26be1"), new DateTime(2025, 1, 23, 22, 15, 28, 962, DateTimeKind.Utc).AddTicks(3887), "Jayrica", "Cunanan", "$2a$11$WEyR1m4QJt3VQbH.qsFiRuea2WUSvbEBxzYxFQqvtYEcUjfIXXf6e", "0422453888", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "jricastudio@gmail.com" });
+                values: new object[] { new Guid("289f72b9-dd5e-4c62-8cc3-bd9238be78aa"), new Guid("00b4f2d5-4ca2-41ba-81f3-7e23a76f93bf"), new DateTime(2025, 1, 24, 0, 32, 44, 57, DateTimeKind.Utc).AddTicks(7645), "Jayrica", "Cunanan", "$2a$11$5jZmL66zrBNR68t3.xKZOu92/FtKL344Vkjz3vqqL877aa6Tw8qg6", "0422453888", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "jricastudio@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "BlockOutDates",
                 columns: new[] { "Id", "Created", "Date", "Updated" },
                 values: new object[,]
                 {
-                    { new Guid("2e75a992-a1e9-4798-b064-b927a2bdb1c0"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(6094), new DateOnly(2025, 1, 29), null },
-                    { new Guid("3c5bb93b-41ad-4c90-bb59-2ae7e6529a52"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(6036), new DateOnly(2025, 1, 25), null },
-                    { new Guid("f03d26d0-4133-4004-a273-506eb359c27c"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(6073), new DateOnly(2025, 1, 27), null }
+                    { new Guid("ca2a1114-2061-4751-9208-3d4594b46da4"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5851), new DateOnly(2025, 1, 26), null },
+                    { new Guid("df962ca5-f7ab-4944-932c-5a86a2fafabb"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5880), new DateOnly(2025, 1, 28), null },
+                    { new Guid("f1594056-9203-42ad-898d-c76d41290b8c"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5890), new DateOnly(2025, 1, 30), null }
                 });
 
             migrationBuilder.InsertData(
@@ -338,13 +338,13 @@ namespace JricaStudioWebApi.Migrations
                 columns: new[] { "Id", "AfterHoursGraceRange", "CloseTime", "Created", "Day", "IsDisabled", "LocalTimeOffset", "OpenTime", "Updated" },
                 values: new object[,]
                 {
-                    { new Guid("21077f72-8d77-4654-98f1-193c6fde7856"), 2, new TimeOnly(7, 0, 0), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4911), 1, false, new TimeSpan(0, 10, 0, 0, 0), new TimeOnly(23, 0, 0), null },
-                    { new Guid("66d18fd1-7e3c-4029-b55d-109ac673ec5b"), 2, new TimeOnly(7, 0, 0), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4980), 4, false, new TimeSpan(0, 10, 0, 0, 0), new TimeOnly(23, 0, 0), null },
-                    { new Guid("695a7a87-35c0-4283-b638-ee5937fcbe94"), 2, new TimeOnly(7, 0, 0), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4867), 0, false, new TimeSpan(0, 10, 0, 0, 0), new TimeOnly(23, 0, 0), null },
-                    { new Guid("6e0a2f5a-ed6c-417b-a347-3a298556f239"), 2, new TimeOnly(7, 0, 0), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5002), 5, false, new TimeSpan(0, 10, 0, 0, 0), new TimeOnly(23, 0, 0), null },
-                    { new Guid("a1e64355-989f-4dd8-b0f8-616e3469f9e6"), 2, new TimeOnly(7, 0, 0), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4961), 3, false, new TimeSpan(0, 10, 0, 0, 0), new TimeOnly(23, 0, 0), null },
-                    { new Guid("ada29e9f-20ad-4830-ae77-f68802a82cbc"), 2, new TimeOnly(7, 0, 0), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5022), 6, false, new TimeSpan(0, 10, 0, 0, 0), new TimeOnly(23, 0, 0), null },
-                    { new Guid("c07fd9bb-2ebd-44f0-9121-b1bff078988c"), 2, new TimeOnly(7, 0, 0), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4933), 2, false, new TimeSpan(0, 10, 0, 0, 0), new TimeOnly(23, 0, 0), null }
+                    { new Guid("344da2fc-51a7-4c90-bdd4-143a1fe73f45"), 2, new TimeOnly(7, 0, 0), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5302), 6, false, new TimeSpan(0, 10, 0, 0, 0), new TimeOnly(23, 0, 0), null },
+                    { new Guid("aebfb927-c479-4c33-b335-57545c2fecb9"), 2, new TimeOnly(7, 0, 0), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5292), 5, false, new TimeSpan(0, 10, 0, 0, 0), new TimeOnly(23, 0, 0), null },
+                    { new Guid("c7ebeb74-1847-4496-b008-bbac45f99007"), 2, new TimeOnly(7, 0, 0), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5262), 2, false, new TimeSpan(0, 10, 0, 0, 0), new TimeOnly(23, 0, 0), null },
+                    { new Guid("cfbca67a-55f3-4df6-8841-a6ef37de8649"), 2, new TimeOnly(7, 0, 0), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5272), 3, false, new TimeSpan(0, 10, 0, 0, 0), new TimeOnly(23, 0, 0), null },
+                    { new Guid("d5ef645f-6417-46d8-89d7-fcb763761e0c"), 2, new TimeOnly(7, 0, 0), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5251), 1, false, new TimeSpan(0, 10, 0, 0, 0), new TimeOnly(23, 0, 0), null },
+                    { new Guid("dd251297-40cb-4cdc-9adc-c061985643fa"), 2, new TimeOnly(7, 0, 0), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5213), 0, false, new TimeSpan(0, 10, 0, 0, 0), new TimeOnly(23, 0, 0), null },
+                    { new Guid("e3721ccd-e3cb-47c2-9c7e-8f6b18917b1f"), 2, new TimeOnly(7, 0, 0), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5281), 4, false, new TimeSpan(0, 10, 0, 0, 0), new TimeOnly(23, 0, 0), null }
                 });
 
             migrationBuilder.InsertData(
@@ -352,20 +352,20 @@ namespace JricaStudioWebApi.Migrations
                 columns: new[] { "Id", "ContentType", "Created", "FileName", "StoredFileName", "Updated" },
                 values: new object[,]
                 {
-                    { new Guid("08627b7f-f69c-4bde-972a-1aa8102bc0f8"), "image", new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3403), "TestImage7", "qa4ae2om.qht", null },
-                    { new Guid("1a104eca-dbdc-441f-a395-e1d6d5676b25"), "image", new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3491), "TestImage9", "uwz52kvb.eo2", null },
-                    { new Guid("41f8e9c7-8ae0-4d7a-a353-bb9fd9ceb507"), "image", new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4457), "TestImage1", "c1nnahll.5rg", null },
-                    { new Guid("8bbec06a-0250-42ad-938e-b8d5e5cc656b"), "image", new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3114), "TestImage0", "1zragvms.d3b", null },
-                    { new Guid("94cb958a-5db4-4762-a18b-bb8964b59f8d"), "image", new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3315), "TestImage4", "kkhhxftr.hsy", null },
-                    { new Guid("9c030d35-4847-484a-bfad-c9bf462f1e8d"), "image", new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4424), "TestImage0", "3dakx1an.31p", null },
-                    { new Guid("aa38370d-0382-4986-bb28-82e6765a818e"), "image", new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3279), "TestImage3", "k4x3wa3i.uec", null },
-                    { new Guid("b647d925-e806-4700-b138-04537ff07b20"), "image", new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4495), "TestImage3", "ygztqh4e.knb", null },
-                    { new Guid("be48c1bc-0f08-4dca-8669-8cee8751d2a2"), "image", new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3193), "TestImage1", "3usgxy1b.zz1", null },
-                    { new Guid("cc63ccce-70b1-4e66-93f7-53d4ae1cb7c6"), "image", new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3359), "TestImage6", "ppfmlzmz.y4j", null },
-                    { new Guid("dac0316d-6467-4f4b-a506-b781130c3d84"), "image", new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(4477), "TestImage2", "oyoirmri.whq", null },
-                    { new Guid("e3f3b967-4510-4b1d-92f4-545443e5067b"), "image", new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3340), "TestImage5", "oosgacmu.sfp", null },
-                    { new Guid("e5bd97b7-c695-442c-8210-7974e24ee33e"), "image", new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3425), "TestImage8", "sh2ec3rm.54o", null },
-                    { new Guid("f97aa9fc-8038-4586-b3e2-26b9d973a550"), "image", new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(3227), "TestImage2", "cwecbf2i.dnp", null }
+                    { new Guid("00bdf40c-870a-42a5-a3be-0208d133edca"), "image", new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(4383), "TestImage7", "wcf3svy4.jnn", null },
+                    { new Guid("0fecd0b9-60de-408e-8ca3-cc317e0da539"), "image", new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(4902), "TestImage0", "jvkwqnf2.mre", null },
+                    { new Guid("15303be6-ff19-444f-808f-9138f3ab7683"), "image", new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(4395), "TestImage8", "ynyhyfjf.yym", null },
+                    { new Guid("46b83dab-354c-41f2-a3e8-87177e383bd1"), "image", new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(4929), "TestImage2", "oz1c3ma1.kd1", null },
+                    { new Guid("569a70a7-87a7-44fe-97e8-c6f59f659c7c"), "image", new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(4919), "TestImage1", "ohtn2czj.s4o", null },
+                    { new Guid("5911a2bb-5811-4362-90c1-abcb125c0fde"), "image", new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(4309), "TestImage2", "bdoiftgs.rax", null },
+                    { new Guid("62ad02b9-c784-4eba-bf9c-d672a19bfb72"), "image", new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(4321), "TestImage3", "bqkge5do.iss", null },
+                    { new Guid("6bbf7b0b-e224-4b79-888f-7543abf59410"), "image", new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(4350), "TestImage5", "k3u5m2si.spe", null },
+                    { new Guid("a3b66ef9-0f71-4b72-9003-a109953a65a7"), "image", new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(4407), "TestImage9", "yuyzgysh.wjy", null },
+                    { new Guid("a79f8f85-0c38-4315-8f3f-cefaee7787e8"), "image", new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(4939), "TestImage3", "ttt312ik.ffr", null },
+                    { new Guid("cc3764eb-7199-403f-bc6e-5384cc703eed"), "image", new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(4291), "TestImage1", "4fchlbk2.rya", null },
+                    { new Guid("f2d1e8e9-258e-4dd1-b1f2-9b4b94b655ea"), "image", new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(4334), "TestImage4", "e1uaxcux.m1n", null },
+                    { new Guid("f537b478-4f69-4ecf-8452-08eceab8638f"), "image", new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(4370), "TestImage6", "tmbf3kzl.zwn", null },
+                    { new Guid("fe0900ac-8d15-46ce-8891-1f1160cdc507"), "image", new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(4237), "TestImage0", "2njo3fl0.43m", null }
                 });
 
             migrationBuilder.InsertData(
@@ -373,8 +373,8 @@ namespace JricaStudioWebApi.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("4a10fb95-d74b-401e-9eff-d0e1066ea505"), "Lotion" },
-                    { new Guid("c353ba75-d7a8-4198-8643-ed79980709b0"), "Eye Lash Extensions" }
+                    { new Guid("30ad4efc-ed66-4f54-8d56-b12006b3a331"), "Lotion" },
+                    { new Guid("3628ee5c-474d-43ca-b8dc-8973dfb7ecdf"), "Eye Lash Extensions" }
                 });
 
             migrationBuilder.InsertData(
@@ -382,8 +382,8 @@ namespace JricaStudioWebApi.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("2604b918-bdcb-4b5a-b601-d8a61c50d45b"), "Eye Brow Shaping" },
-                    { new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb"), "Eye Lash Extensions" }
+                    { new Guid("0eea9506-3887-4b46-b6f7-dfbd463be983"), "Eye Lash Extensions" },
+                    { new Guid("70da8673-bb77-4a49-80bb-d893f85ddcd3"), "Eye Brow Shaping" }
                 });
 
             migrationBuilder.InsertData(
@@ -391,14 +391,14 @@ namespace JricaStudioWebApi.Migrations
                 columns: new[] { "Id", "Created", "Description", "ImageUploadId", "Name", "Price", "ProductCategoryId", "Quantity", "Updated" },
                 values: new object[,]
                 {
-                    { new Guid("3fb0e248-3163-44c3-8238-3aa0156067fb"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5507), "Description", new Guid("9c030d35-4847-484a-bfad-c9bf462f1e8d"), "Classic Style Eyelash Extensions", 30.60m, new Guid("c353ba75-d7a8-4198-8643-ed79980709b0"), 1, null },
-                    { new Guid("425a29c8-1498-4d7e-bfe1-eb61940d2df2"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5535), "Description", new Guid("41f8e9c7-8ae0-4d7a-a353-bb9fd9ceb507"), "Volume Style Eyelash Extensions", 35.60m, new Guid("c353ba75-d7a8-4198-8643-ed79980709b0"), 1, null },
-                    { new Guid("48d14ad8-fb69-401d-89a5-d09a952a3f7a"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5319), "Description", new Guid("9c030d35-4847-484a-bfad-c9bf462f1e8d"), "Curel Body Lotion", 10.95m, new Guid("4a10fb95-d74b-401e-9eff-d0e1066ea505"), 0, null },
-                    { new Guid("81f8916e-65fe-444d-b85e-60137b366212"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5583), "Description", new Guid("dac0316d-6467-4f4b-a506-b781130c3d84"), "3D Style Eyelash Extensions", 35.60m, new Guid("c353ba75-d7a8-4198-8643-ed79980709b0"), 1, null },
-                    { new Guid("9d66c1e4-4373-4436-903b-dcae704b92b5"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5198), "Description", new Guid("9c030d35-4847-484a-bfad-c9bf462f1e8d"), "Aveeno Body Lotion", 10.95m, new Guid("4a10fb95-d74b-401e-9eff-d0e1066ea505"), 0, null },
-                    { new Guid("d60a2846-e96d-4e9c-8e3d-7f7e371bd662"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5558), "Description", new Guid("9c030d35-4847-484a-bfad-c9bf462f1e8d"), "Wet Look Style Eyelash Extensions", 30.60m, new Guid("c353ba75-d7a8-4198-8643-ed79980709b0"), 1, null },
-                    { new Guid("dbc49b58-c766-42a6-b36b-55c685e5c2cd"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5271), "Description", new Guid("dac0316d-6467-4f4b-a506-b781130c3d84"), "Vaseline Body Lotion", 10.95m, new Guid("4a10fb95-d74b-401e-9eff-d0e1066ea505"), 0, null },
-                    { new Guid("ff54ad1a-bc22-4275-b857-4f46ef71bb92"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5296), "Description", new Guid("41f8e9c7-8ae0-4d7a-a353-bb9fd9ceb507"), "Nivea Body Lotion", 10.95m, new Guid("4a10fb95-d74b-401e-9eff-d0e1066ea505"), 0, null }
+                    { new Guid("021b8052-06c1-4017-b953-6525fd87f23c"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5414), "Description", new Guid("569a70a7-87a7-44fe-97e8-c6f59f659c7c"), "Aveeno Body Lotion", 10.95m, new Guid("30ad4efc-ed66-4f54-8d56-b12006b3a331"), 0, null },
+                    { new Guid("13981371-e6c9-4cb3-a322-c6dbf6121261"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5588), "Description", new Guid("46b83dab-354c-41f2-a3e8-87177e383bd1"), "3D Style Eyelash Extensions", 35.60m, new Guid("3628ee5c-474d-43ca-b8dc-8973dfb7ecdf"), 1, null },
+                    { new Guid("5c783771-7ad0-49f8-9c7c-bffd7575daf0"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5535), "Description", new Guid("569a70a7-87a7-44fe-97e8-c6f59f659c7c"), "Curel Body Lotion", 10.95m, new Guid("30ad4efc-ed66-4f54-8d56-b12006b3a331"), 0, null },
+                    { new Guid("9c585caf-c771-4e53-bec8-b15c1825b86a"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5522), "Description", new Guid("569a70a7-87a7-44fe-97e8-c6f59f659c7c"), "Nivea Body Lotion", 10.95m, new Guid("30ad4efc-ed66-4f54-8d56-b12006b3a331"), 0, null },
+                    { new Guid("a54c2de5-e609-4d9e-a0a6-b4445e70f0d0"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5574), "Description", new Guid("46b83dab-354c-41f2-a3e8-87177e383bd1"), "Wet Look Style Eyelash Extensions", 30.60m, new Guid("3628ee5c-474d-43ca-b8dc-8973dfb7ecdf"), 1, null },
+                    { new Guid("d062a4d0-402e-4d32-b5cd-dbe34de701c8"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5549), "Description", new Guid("46b83dab-354c-41f2-a3e8-87177e383bd1"), "Classic Style Eyelash Extensions", 30.60m, new Guid("3628ee5c-474d-43ca-b8dc-8973dfb7ecdf"), 1, null },
+                    { new Guid("fd891922-8d6a-423f-81a4-16b056c39738"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5506), "Description", new Guid("569a70a7-87a7-44fe-97e8-c6f59f659c7c"), "Vaseline Body Lotion", 10.95m, new Guid("30ad4efc-ed66-4f54-8d56-b12006b3a331"), 0, null },
+                    { new Guid("fdbfe3ba-00e5-4ed6-828d-f14c63bd4564"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5561), "Description", new Guid("46b83dab-354c-41f2-a3e8-87177e383bd1"), "Volume Style Eyelash Extensions", 35.60m, new Guid("3628ee5c-474d-43ca-b8dc-8973dfb7ecdf"), 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -406,30 +406,30 @@ namespace JricaStudioWebApi.Migrations
                 columns: new[] { "Id", "Created", "Description", "Duration", "ImageUploadId", "Name", "Price", "ServiceCategoryId", "Updated" },
                 values: new object[,]
                 {
-                    { new Guid("002756b5-3a03-43ac-8f09-10a51b5f1da1"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5809), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("8bbec06a-0250-42ad-938e-b8d5e5cc656b"), "9D Lashes Infill", 120m, new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb"), null },
-                    { new Guid("046f3a6f-02f7-494e-bb6b-e209b9564d0a"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5925), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("be48c1bc-0f08-4dca-8669-8cee8751d2a2"), "Volume Eye Brow Trim and Shape", 90.00m, new Guid("2604b918-bdcb-4b5a-b601-d8a61c50d45b"), null },
-                    { new Guid("09ccd803-065a-47f8-bbbf-605c7af76179"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5969), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("08627b7f-f69c-4bde-972a-1aa8102bc0f8"), "Volume Eye Brow Lamination", 90.00m, new Guid("2604b918-bdcb-4b5a-b601-d8a61c50d45b"), null },
-                    { new Guid("20dbe763-5ecc-48c3-903d-ffb466289cb6"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5864), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("08627b7f-f69c-4bde-972a-1aa8102bc0f8"), "10D Lashes Infill", 120m, new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb"), null },
-                    { new Guid("356527b3-47f6-4707-b969-4266c5c24b56"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5686), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("cc63ccce-70b1-4e66-93f7-53d4ae1cb7c6"), "4D Lashes Infill", 120m, new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb"), null },
-                    { new Guid("6e0d1271-bea1-406b-a9e5-1b376ccfd5f6"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5901), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("e5bd97b7-c695-442c-8210-7974e24ee33e"), "Classic Eye Brow Trim and Shape", 90.00m, new Guid("2604b918-bdcb-4b5a-b601-d8a61c50d45b"), null },
-                    { new Guid("b4bd4ba5-610e-49e8-af9b-da4c35dd84a8"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5621), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("e3f3b967-4510-4b1d-92f4-545443e5067b"), "2D Lashes Infill", 120m, new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb"), null },
-                    { new Guid("be554741-3224-4501-9db8-263d19382cb8"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5660), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("aa38370d-0382-4986-bb28-82e6765a818e"), "3D Lashes Infill", 120m, new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb"), null },
-                    { new Guid("c5016612-bf23-4767-8755-f696fc977f4e"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5947), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("e3f3b967-4510-4b1d-92f4-545443e5067b"), "Classic Eye Brow lamination", 90.00m, new Guid("2604b918-bdcb-4b5a-b601-d8a61c50d45b"), null },
-                    { new Guid("c96a5f38-6be8-4131-a921-2d15b26977bf"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5738), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("e5bd97b7-c695-442c-8210-7974e24ee33e"), "6D Lashes Infill", 120m, new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb"), null },
-                    { new Guid("d3963e92-33d7-48d5-a75d-50ceb51aac0d"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5763), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("e3f3b967-4510-4b1d-92f4-545443e5067b"), "7D Lashes Infill", 120m, new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb"), null },
-                    { new Guid("e12f153b-ba51-4a86-82dd-3928ae94cf5e"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5713), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("aa38370d-0382-4986-bb28-82e6765a818e"), "5D Lashes Infill", 120m, new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb"), null },
-                    { new Guid("ed58add0-5f9d-4a04-9cc3-d239eb4e0e09"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(5786), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("e3f3b967-4510-4b1d-92f4-545443e5067b"), "8D Lashes Infill", 120m, new Guid("76a202b4-7831-4a77-8e44-e324c623cbeb"), null }
+                    { new Guid("00d654fa-3075-44dd-a823-8aabb415f8de"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5668), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("15303be6-ff19-444f-808f-9138f3ab7683"), "5D Lashes Infill", 120m, new Guid("0eea9506-3887-4b46-b6f7-dfbd463be983"), null },
+                    { new Guid("01dde994-25f9-4a79-aa90-7fed7da10fdf"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5642), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("62ad02b9-c784-4eba-bf9c-d672a19bfb72"), "3D Lashes Infill", 120m, new Guid("0eea9506-3887-4b46-b6f7-dfbd463be983"), null },
+                    { new Guid("1de24c0e-4169-430b-b34b-cb330b15cd43"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5788), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("15303be6-ff19-444f-808f-9138f3ab7683"), "Classic Eye Brow lamination", 90.00m, new Guid("70da8673-bb77-4a49-80bb-d893f85ddcd3"), null },
+                    { new Guid("30bfc842-9b50-4a8e-8347-13a346c56484"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5707), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("5911a2bb-5811-4362-90c1-abcb125c0fde"), "8D Lashes Infill", 120m, new Guid("0eea9506-3887-4b46-b6f7-dfbd463be983"), null },
+                    { new Guid("311f4f1f-ea70-484f-87e1-d34d832d7180"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5609), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("62ad02b9-c784-4eba-bf9c-d672a19bfb72"), "2D Lashes Infill", 120m, new Guid("0eea9506-3887-4b46-b6f7-dfbd463be983"), null },
+                    { new Guid("37f4335a-56df-4bfe-b7ad-4ef3d5c7c856"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5733), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("fe0900ac-8d15-46ce-8891-1f1160cdc507"), "10D Lashes Infill", 120m, new Guid("0eea9506-3887-4b46-b6f7-dfbd463be983"), null },
+                    { new Guid("45a40bf9-fbdb-455f-9ebb-97ef16342817"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5803), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("6bbf7b0b-e224-4b79-888f-7543abf59410"), "Volume Eye Brow Lamination", 90.00m, new Guid("70da8673-bb77-4a49-80bb-d893f85ddcd3"), null },
+                    { new Guid("64ba7397-8448-40bd-9c88-e344ed84365b"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5745), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("62ad02b9-c784-4eba-bf9c-d672a19bfb72"), "Classic Eye Brow Trim and Shape", 90.00m, new Guid("70da8673-bb77-4a49-80bb-d893f85ddcd3"), null },
+                    { new Guid("90415701-0ee3-49fa-81c3-96c96cad462f"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5695), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("00bdf40c-870a-42a5-a3be-0208d133edca"), "7D Lashes Infill", 120m, new Guid("0eea9506-3887-4b46-b6f7-dfbd463be983"), null },
+                    { new Guid("920a6164-4683-4f6c-aadf-ee5b584e731a"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5682), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("f537b478-4f69-4ecf-8452-08eceab8638f"), "6D Lashes Infill", 120m, new Guid("0eea9506-3887-4b46-b6f7-dfbd463be983"), null },
+                    { new Guid("93390daa-f6c8-4f77-93eb-645f00be7480"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5721), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("f2d1e8e9-258e-4dd1-b1f2-9b4b94b655ea"), "9D Lashes Infill", 120m, new Guid("0eea9506-3887-4b46-b6f7-dfbd463be983"), null },
+                    { new Guid("b83a7850-71f7-41b9-a679-3b697c8f25bc"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5656), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("f537b478-4f69-4ecf-8452-08eceab8638f"), "4D Lashes Infill", 120m, new Guid("0eea9506-3887-4b46-b6f7-dfbd463be983"), null },
+                    { new Guid("f7d099f9-7876-4027-a569-cd0c87240586"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5758), "Description", new TimeSpan(0, 3, 0, 0, 0), new Guid("15303be6-ff19-444f-808f-9138f3ab7683"), "Volume Eye Brow Trim and Shape", 90.00m, new Guid("70da8673-bb77-4a49-80bb-d893f85ddcd3"), null }
                 });
 
             migrationBuilder.InsertData(
                 table: "ProductShowcases",
                 columns: new[] { "Id", "Created", "ProductId", "Updated" },
-                values: new object[] { new Guid("3f92ce62-77ed-42dd-8a3a-77993b9c54da"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(6127), new Guid("3fb0e248-3163-44c3-8238-3aa0156067fb"), null });
+                values: new object[] { new Guid("be4bc69f-0b8c-487b-ab9c-05c635b519d2"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5912), new Guid("d062a4d0-402e-4d32-b5cd-dbe34de701c8"), null });
 
             migrationBuilder.InsertData(
                 table: "ServicesShowcases",
                 columns: new[] { "Id", "Created", "ServiceId", "Updated" },
-                values: new object[] { new Guid("f5ab07ab-f1a6-4680-a7d3-631f35ec87d2"), new DateTime(2025, 1, 23, 22, 15, 29, 90, DateTimeKind.Utc).AddTicks(6002), new Guid("b4bd4ba5-610e-49e8-af9b-da4c35dd84a8"), null });
+                values: new object[] { new Guid("80796371-d14a-4975-b347-149cae0e4c12"), new DateTime(2025, 1, 24, 0, 32, 44, 150, DateTimeKind.Utc).AddTicks(5825), new Guid("311f4f1f-ea70-484f-87e1-d34d832d7180"), null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AppointmentProducts_AppointmentId",
