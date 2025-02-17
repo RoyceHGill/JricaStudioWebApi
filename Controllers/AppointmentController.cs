@@ -472,17 +472,17 @@ namespace JricaStudioWebAPI.Controllers
 
 
 
-
+            //ToDO: Change DateTime Types to DateTimeOffset for the whole application so that the offset is available everywhere it needs to be. (Major Refactoring)
 #if DEBUG
             await _emailSenderService.SendNotificationEmail( "royce5862@gmail.com", $"Appointment for {appointment.StartTime.Value.DayOfWeek}",
                 "<html>" +
                     "<body>" +
                         "<div>" +
-                            $" {appointment.User.FirstName} has made and appointment for {appointment.StartTime.Value.ToLongDateString()}, at {appointment.StartTime.Value.ToShortTimeString()} Check the appointment details before approving this appointment." +
+                            $" {appointment.User.FirstName} has made and appointment for {( appointment.StartTime.Value + TimeSpan.FromHours( 10 ) ).ToLongDateString()}, at {appointment.StartTime.Value.ToShortTimeString()} Check the appointment details before approving this appointment." +
                         "</div>" +
                         "<br>" +
-                        "<a href=\"https://www.JRicaStudio.com/Login\">" +
-                            $" JricaStudio.com/Login" +
+                        "<a href=\"https://www.jricastudio.com/admin/login\">" +
+                            $" JricaStudio.com/admin/login" +
                         "</a>" +
                     "</body>" +
                 "</html>" );
@@ -491,11 +491,11 @@ namespace JricaStudioWebAPI.Controllers
                 "<html>" +
                     "<body>" +
                         "<div>" +
-                            $" {appointment.User.FirstName} has made and appointment for {appointment.StartTime.Value.ToLongDateString()}, at {appointment.StartTime.Value.ToShortTimeString()} Check the appointment details before approving this appointment." +
+                            $" {appointment.User.FirstName} has made and appointment for {( appointment.StartTime.Value + TimeSpan.FromHours( 10 ) ).ToLongDateString()}, at {appointment.StartTime.Value.ToShortTimeString()} Check the appointment details before approving this appointment." +
                         "</div>" +
                         "<br>" +
-                        "<a href=\"https://www.JRicaStudio.com/Login\">" +
-                            $" JricaStudio.com/Login" +
+                        "<a href=\"https://www.jricastudio.com/admin/login\">" +
+                            $" JricaStudio.com/admin/login" +
                         "</a>" +
                     "</body>" +
                 "</html>");
