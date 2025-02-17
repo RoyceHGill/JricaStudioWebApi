@@ -15,21 +15,21 @@ namespace JricaStudioWebAPI.Extentions
 
 
         #region Product
-        public static IEnumerable<ProductDto> ConvertToDtos(this IEnumerable<Product> products, Dictionary<Guid, string> productImageData)
+        public static IEnumerable<ProductDto> ConvertToDtos( this IEnumerable<Product> products, Dictionary<Guid, string> productImageData )
         {
             var dtos = new List<ProductDto>();
 
-            foreach (var product in products)
+            foreach ( var product in products )
             {
                 var imageData = productImageData[product.Id];
 
-                dtos.Add(product.ConvertToDto(imageData));
+                dtos.Add( product.ConvertToDto( imageData ) );
             }
 
             return dtos;
         }
 
-        public static ProductDto ConvertToDto(this Product product, string ImageData)
+        public static ProductDto ConvertToDto( this Product product, string ImageData )
         {
             return new ProductDto()
             {
@@ -45,7 +45,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static ProductDto ConvertToDto(this Product product, ProductCategory productCategory)
+        public static ProductDto ConvertToDto( this Product product, ProductCategory productCategory )
         {
             return new ProductDto()
             {
@@ -60,7 +60,7 @@ namespace JricaStudioWebAPI.Extentions
         }
 
 
-        public static Product ConvertToEntity(this ProductToAddDto productToAddDto)
+        public static Product ConvertToEntity( this ProductToAddDto productToAddDto )
         {
             return new Product()
             {
@@ -72,7 +72,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static Product ConvertToEntity(this ProductUpdateDto productUpdateDto, Guid id)
+        public static Product ConvertToEntity( this ProductUpdateDto productUpdateDto, Guid id )
         {
             return new Product()
             {
@@ -84,7 +84,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static AdminProductDto ConvertToAdminDto(this Product product)
+        public static AdminProductDto ConvertToAdminDto( this Product product )
         {
             return new AdminProductDto
             {
@@ -96,12 +96,12 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static IEnumerable<AdminProductDto> ConvertToAdminDtos(this IEnumerable<Product> products)
+        public static IEnumerable<AdminProductDto> ConvertToAdminDtos( this IEnumerable<Product> products )
         {
             var dtos = new List<AdminProductDto>();
-            foreach (var item in products)
+            foreach ( var item in products )
             {
-                dtos.Add(item.ConvertToAdminDto());
+                dtos.Add( item.ConvertToAdminDto() );
             }
 
             return dtos;
@@ -111,7 +111,7 @@ namespace JricaStudioWebAPI.Extentions
 
         #region Service
 
-        public static PreviousServiceDto ConvertToPreviousServiceDto(this Service service)
+        public static PreviousServiceDto ConvertToPreviousServiceDto( this Service service )
         {
             return new PreviousServiceDto
             {
@@ -119,7 +119,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static AdminEditServiceDto ConvertToEditDto(this Service service)
+        public static AdminEditServiceDto ConvertToEditDto( this Service service )
         {
             return new AdminEditServiceDto
             {
@@ -131,7 +131,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static AdminServiceToAddDto<IFormFile> ConvertToDto(this Service entity)
+        public static AdminServiceToAddDto<IFormFile> ConvertToDto( this Service entity )
         {
             return new AdminServiceToAddDto<IFormFile>()
             {
@@ -143,7 +143,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static Service ConvertToEntity(this AdminServiceToAddDto<IFormFile> serviceDto, Guid ImageUploadId)
+        public static Service ConvertToEntity( this AdminServiceToAddDto<IFormFile> serviceDto, Guid ImageUploadId )
         {
             return new Service()
             {
@@ -156,7 +156,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static ServiceDto ConvertToDto(this Service service, ServiceCategory serviceCategories, string imageData)
+        public static ServiceDto ConvertToDto( this Service service, ServiceCategory serviceCategories, string imageData )
         {
             return new ServiceDto()
             {
@@ -171,24 +171,24 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static IEnumerable<ServiceDto> ConvertToDto(this IEnumerable<Service> services, IEnumerable<ServiceCategory> serviceCategories, Dictionary<Guid, string> imageData)
+        public static IEnumerable<ServiceDto> ConvertToDto( this IEnumerable<Service> services, IEnumerable<ServiceCategory> serviceCategories, Dictionary<Guid, string> imageData )
         {
             var dtos = new List<ServiceDto>();
 
-            foreach (var item in services)
+            foreach ( var item in services )
             {
-                dtos.Add(new ServiceDto()
+                dtos.Add( new ServiceDto()
                 {
                     Id = item.Id,
                     Name = item.Name,
                     Description = item.Description,
-                    ImageData = imageData.Single(u => u.Key == item.Id).Value,
+                    ImageData = imageData.Single( u => u.Key == item.Id ).Value,
                     Price = item.Price,
                     ServiceCategoryId = item.ServiceCategoryId,
-                    CategoryName = serviceCategories.Single(n => n.Id == item.ServiceCategoryId).Name,
+                    CategoryName = serviceCategories.Single( n => n.Id == item.ServiceCategoryId ).Name,
                     Duration = item.Duration
 
-                });
+                } );
             }
             return dtos;
 
@@ -197,7 +197,7 @@ namespace JricaStudioWebAPI.Extentions
 
         #region AppointmentService
 
-        public static AppointmentServiceDto ConvertToDto(this AppointmentService appointmentService)
+        public static AppointmentServiceDto ConvertToDto( this AppointmentService appointmentService )
 
         {
             return new AppointmentServiceDto()
@@ -212,23 +212,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static AppointmentServiceDto ConvertToImageDto(this AppointmentService appointmentService, string imageData)
-
-        {
-            return new AppointmentServiceDto()
-            {
-                Id = appointmentService.Id,
-                ServiceId = appointmentService.Service.Id,
-                ServiceName = appointmentService.Service.Name,
-                ServiceDescription = appointmentService.Service.Description,
-                ServiceImagePath = imageData,
-                Duration = appointmentService.Service.Duration,
-                Price = appointmentService.Service.Price,
-                AppointmentId = appointmentService.AppointmentId
-            };
-        }
-
-        public static AppointmentServiceDto ConvertToFinalizationDto(this AppointmentService appointmentService, string imageData)
+        public static AppointmentServiceDto ConvertToImageDto( this AppointmentService appointmentService, string imageData )
 
         {
             return new AppointmentServiceDto()
@@ -244,45 +228,61 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static IEnumerable<AppointmentServiceDto> ConvertToImageDtos(this IEnumerable<AppointmentService> appointmentServices, Dictionary<Guid, string> serviceImageData)
+        public static AppointmentServiceDto ConvertToFinalizationDto( this AppointmentService appointmentService, string imageData )
+
+        {
+            return new AppointmentServiceDto()
+            {
+                Id = appointmentService.Id,
+                ServiceId = appointmentService.Service.Id,
+                ServiceName = appointmentService.Service.Name,
+                ServiceDescription = appointmentService.Service.Description,
+                ServiceImagePath = imageData,
+                Duration = appointmentService.Service.Duration,
+                Price = appointmentService.Service.Price,
+                AppointmentId = appointmentService.AppointmentId
+            };
+        }
+
+        public static IEnumerable<AppointmentServiceDto> ConvertToImageDtos( this IEnumerable<AppointmentService> appointmentServices, Dictionary<Guid, string> serviceImageData )
         {
             var dtos = new List<AppointmentServiceDto>();
-            foreach (var appointmentService in appointmentServices)
+            foreach ( var appointmentService in appointmentServices )
             {
                 var singleServiceImageData = serviceImageData[appointmentService.ServiceId];
-                dtos.Add(appointmentService.ConvertToImageDto(singleServiceImageData));
+                dtos.Add( appointmentService.ConvertToImageDto( singleServiceImageData ) );
             }
             return dtos;
         }
 
-        public static IEnumerable<AppointmentServiceDto> ConvertToDto(this IEnumerable<AppointmentService> appointmentServices)
+        public static IEnumerable<AppointmentServiceDto> ConvertToDto( this IEnumerable<AppointmentService> appointmentServices )
         {
             var dtos = new List<AppointmentServiceDto>();
-            foreach (var appointmentService in appointmentServices)
+            foreach ( var appointmentService in appointmentServices )
             {
-                dtos.Add(appointmentService.ConvertToDto());
+                dtos.Add( appointmentService.ConvertToDto() );
             }
             return dtos;
         }
 
-        public static IEnumerable<AppointmentServiceDto> ConvertToAdminDto(this IEnumerable<AppointmentService> appointmentServices)
+        public static IEnumerable<AppointmentServiceDto> ConvertToAdminDto( this IEnumerable<AppointmentService> appointmentServices )
         {
             var dtos = new List<AppointmentServiceDto>();
-            foreach (var appointmentService in appointmentServices)
+            foreach ( var appointmentService in appointmentServices )
             {
-                dtos.Add(appointmentService.ConvertToDto());
+                dtos.Add( appointmentService.ConvertToDto() );
             }
             return dtos;
         }
 
-        public static IEnumerable<AppointmentServiceDto> ConvertToFinalizationDto(this IEnumerable<AppointmentService> appointmentServices, Dictionary<Guid, string> serviceImageData)
+        public static IEnumerable<AppointmentServiceDto> ConvertToFinalizationDto( this IEnumerable<AppointmentService> appointmentServices, Dictionary<Guid, string> serviceImageData )
         {
             var dtos = new List<AppointmentServiceDto>();
-            foreach (var appointmentService in appointmentServices)
+            foreach ( var appointmentService in appointmentServices )
             {
                 var singleServieImageData = serviceImageData[appointmentService.ServiceId];
 
-                dtos.Add(appointmentService.ConvertToFinalizationDto(singleServieImageData));
+                dtos.Add( appointmentService.ConvertToFinalizationDto( singleServieImageData ) );
             }
             return dtos;
         }
@@ -291,7 +291,7 @@ namespace JricaStudioWebAPI.Extentions
 
         #region AppointmentProduct
 
-        public static AppointmentProductDto ConvertToDto(this AppointmentProduct appointmentProduct)
+        public static AppointmentProductDto ConvertToDto( this AppointmentProduct appointmentProduct )
         {
             return new AppointmentProductDto()
             {
@@ -305,7 +305,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static AppointmentProductDto ConvertToDto(this AppointmentProduct appointmentProduct, string ImageData)
+        public static AppointmentProductDto ConvertToDto( this AppointmentProduct appointmentProduct, string ImageData )
         {
             return new AppointmentProductDto()
             {
@@ -321,24 +321,24 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static IEnumerable<AppointmentProductDto> ConvertToImageDtos(this IEnumerable<AppointmentProduct> appointmentProducts, Dictionary<Guid, string>
-           imageData)
+        public static IEnumerable<AppointmentProductDto> ConvertToImageDtos( this IEnumerable<AppointmentProduct> appointmentProducts, Dictionary<Guid, string>
+           imageData )
         {
             var dtos = new List<AppointmentProductDto>();
-            foreach (var appointmentProduct in appointmentProducts)
+            foreach ( var appointmentProduct in appointmentProducts )
             {
                 var image = imageData[appointmentProduct.ProductId];
-                dtos.Add(appointmentProduct.ConvertToDto(image));
+                dtos.Add( appointmentProduct.ConvertToDto( image ) );
             }
             return dtos;
         }
 
-        public static IEnumerable<AppointmentProductDto> ConvertToDtos(this IEnumerable<AppointmentProduct> appointmentProducts)
+        public static IEnumerable<AppointmentProductDto> ConvertToDtos( this IEnumerable<AppointmentProduct> appointmentProducts )
         {
             var dtos = new List<AppointmentProductDto>();
-            foreach (var appointmentProduct in appointmentProducts)
+            foreach ( var appointmentProduct in appointmentProducts )
             {
-                dtos.Add(appointmentProduct.ConvertToDto());
+                dtos.Add( appointmentProduct.ConvertToDto() );
             }
             return dtos;
         }
@@ -347,19 +347,19 @@ namespace JricaStudioWebAPI.Extentions
 
         #region ServiceCategory
 
-        public static IEnumerable<AdminServiceCategoryDto> ConvetToDtos(this IEnumerable<ServiceCategory> categories)
+        public static IEnumerable<AdminServiceCategoryDto> ConvetToDtos( this IEnumerable<ServiceCategory> categories )
         {
             var newList = new List<AdminServiceCategoryDto>();
 
-            foreach (var category in categories)
+            foreach ( var category in categories )
             {
-                newList.Add(category.ConvertToDo());
+                newList.Add( category.ConvertToDo() );
             }
 
             return newList;
         }
 
-        public static AdminServiceCategoryDto ConvertToDo(this ServiceCategory category)
+        public static AdminServiceCategoryDto ConvertToDo( this ServiceCategory category )
         {
             return new AdminServiceCategoryDto()
             {
@@ -369,17 +369,17 @@ namespace JricaStudioWebAPI.Extentions
 
         }
 
-        public static IEnumerable<ServiceAdminPageDto> ConvertToAdminDtos(this IEnumerable<Service> services)
+        public static IEnumerable<ServiceAdminPageDto> ConvertToAdminDtos( this IEnumerable<Service> services )
         {
             var dtos = new List<ServiceAdminPageDto>();
-            foreach (var service in services)
+            foreach ( var service in services )
             {
-                dtos.Add(service.ConvertToAdminDto());
+                dtos.Add( service.ConvertToAdminDto() );
             }
             return dtos;
         }
 
-        public static ServiceAdminPageDto ConvertToAdminDto(this Service service)
+        public static ServiceAdminPageDto ConvertToAdminDto( this Service service )
         {
             return new ServiceAdminPageDto()
             {
@@ -393,7 +393,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static ServiceAdminPageDto ConvertToAdminImageDto(this Service service, string imageData)
+        public static ServiceAdminPageDto ConvertToAdminImageDto( this Service service, string imageData )
         {
             return new ServiceAdminPageDto()
             {
@@ -412,18 +412,18 @@ namespace JricaStudioWebAPI.Extentions
 
         #region ProductCategory
 
-        public static IEnumerable<AdminProductCategoryDto> ConvertToAdminDtos(this IEnumerable<ProductCategory> productCategories)
+        public static IEnumerable<AdminProductCategoryDto> ConvertToAdminDtos( this IEnumerable<ProductCategory> productCategories )
         {
             var dtos = new List<AdminProductCategoryDto>();
 
-            foreach (var item in productCategories)
+            foreach ( var item in productCategories )
             {
-                dtos.Add(item.ConvertToAdminDto());
+                dtos.Add( item.ConvertToAdminDto() );
             }
             return dtos;
         }
 
-        public static AdminProductCategoryDto ConvertToAdminDto(this ProductCategory productCategory)
+        public static AdminProductCategoryDto ConvertToAdminDto( this ProductCategory productCategory )
         {
             return new AdminProductCategoryDto
             {
@@ -436,7 +436,7 @@ namespace JricaStudioWebAPI.Extentions
 
         #region Appointment
 
-        public static Appointment ConvertToEntity(this AppointmentAdminToAddDto dto)
+        public static Appointment ConvertToEntity( this AppointmentAdminToAddDto dto )
         {
             return new Appointment()
             {
@@ -451,7 +451,7 @@ namespace JricaStudioWebAPI.Extentions
 
         }
 
-        public static AppointmentDto ConvertToDto(this Appointment appointment)
+        public static AppointmentDto ConvertToDto( this Appointment appointment )
         {
             return new AppointmentDto()
             {
@@ -464,7 +464,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static AppointmentDto ConvertToDto(this Appointment appointment, IEnumerable<AppointmentServiceDto> serviceDtos, IEnumerable<AppointmentProductDto> productDtos)
+        public static AppointmentDto ConvertToDto( this Appointment appointment, IEnumerable<AppointmentServiceDto> serviceDtos, IEnumerable<AppointmentProductDto> productDtos )
         {
             return new AppointmentDto()
             {
@@ -478,7 +478,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static AppointmentIndemnityDto ConvertToIndemnityDto(this Appointment appointment)
+        public static AppointmentIndemnityDto ConvertToIndemnityDto( this Appointment appointment )
         {
             return new AppointmentIndemnityDto()
             {
@@ -489,13 +489,13 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static AppointmentFinalizationDto ConvertToFinalizationDto(this Appointment appointment, Dictionary<Guid, string> serviceImageData, Dictionary<Guid, string> productImageData)
+        public static AppointmentFinalizationDto ConvertToFinalizationDto( this Appointment appointment, Dictionary<Guid, string> serviceImageData, Dictionary<Guid, string> productImageData )
         {
             return new AppointmentFinalizationDto()
             {
                 Id = appointment.Id,
-                Products = appointment.AppointmentProducts.ConvertToImageDtos(productImageData),
-                Services = appointment.AppointmentServices.ConvertToFinalizationDto(serviceImageData),
+                Products = appointment.AppointmentProducts.ConvertToImageDtos( productImageData ),
+                Services = appointment.AppointmentServices.ConvertToFinalizationDto( serviceImageData ),
                 FirstName = appointment.User.FirstName,
                 LastName = appointment.User.LastName,
                 Phone = appointment.User.Phone,
@@ -513,11 +513,11 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static AdminAppointmentWidgetDto ConvertToRequestDto(this Appointment appointment)
+        public static AdminAppointmentWidgetDto ConvertToRequestDto( this Appointment appointment )
         {
             try
             {
-                if (appointment.StartTime == null || appointment.EndTime == null)
+                if ( appointment.StartTime == null || appointment.EndTime == null )
                 {
                     throw new NullReferenceException();
                 }
@@ -526,28 +526,28 @@ namespace JricaStudioWebAPI.Extentions
                 {
                     Id = appointment.Id,
                     FirstName = appointment.User.FirstName,
-                    StartTime = (DateTime)appointment.StartTime,
-                    EndTime = (DateTime)appointment.EndTime
+                    StartTime = ( DateTime ) appointment.StartTime,
+                    EndTime = ( DateTime ) appointment.EndTime
                 };
             }
-            catch (Exception e)
+            catch ( Exception e )
             {
                 throw;
             }
 
         }
 
-        public static IEnumerable<AdminAppointmentWidgetDto> ConvertToWidgetDtos(this IEnumerable<Appointment> appointments)
+        public static IEnumerable<AdminAppointmentWidgetDto> ConvertToWidgetDtos( this IEnumerable<Appointment> appointments )
         {
             var dtos = new List<AdminAppointmentWidgetDto>();
-            foreach (var item in appointments)
+            foreach ( var item in appointments )
             {
-                dtos.Add(item.ConvertToRequestDto());
+                dtos.Add( item.ConvertToRequestDto() );
             }
             return dtos;
         }
 
-        public static AdminAppointmentDto ConvertToAdminImageDto(this Appointment appointment, Dictionary<Guid, string> serviceImageData, Dictionary<Guid, string> productImageData)
+        public static AdminAppointmentDto ConvertToAdminImageDto( this Appointment appointment, Dictionary<Guid, string> serviceImageData, Dictionary<Guid, string> productImageData )
         {
             try
             {
@@ -564,21 +564,21 @@ namespace JricaStudioWebAPI.Extentions
                     EndTime = appointment.EndTime,
                     SampleSetCompleted = appointment.SampleSetCompleted,
                     IsDepositPaid = appointment.IsDepositPaid,
-                    Services = appointment.AppointmentServices.ConvertToImageDtos(serviceImageData),
-                    Products = appointment.AppointmentProducts.ConvertToImageDtos(productImageData),
+                    Services = appointment.AppointmentServices.ConvertToImageDtos( serviceImageData ),
+                    Products = appointment.AppointmentProducts.ConvertToImageDtos( productImageData ),
                     HasHadEyelashExtentions = appointment.HasHadEyelashExtentions,
                     IsSampleSetComplete = appointment.IsSampleSetComplete,
                     Status = appointment.Status
                 };
             }
-            catch (Exception e)
+            catch ( Exception e )
             {
                 throw;
             }
 
         }
 
-        public static AdminAppointmentDto ConvertToAdminDto(this Appointment appointment)
+        public static AdminAppointmentDto ConvertToAdminDto( this Appointment appointment )
         {
             try
             {
@@ -602,29 +602,29 @@ namespace JricaStudioWebAPI.Extentions
                     Status = appointment.Status
                 };
             }
-            catch (Exception e)
+            catch ( Exception e )
             {
                 throw;
             }
 
         }
 
-        public static IEnumerable<AdminAppointmentDto> ConvertToAdminDtos(this IEnumerable<Appointment> appointments)
+        public static IEnumerable<AdminAppointmentDto> ConvertToAdminDtos( this IEnumerable<Appointment> appointments )
         {
             var dtos = new List<AdminAppointmentDto>();
-            foreach (var item in appointments)
+            foreach ( var item in appointments )
             {
-                dtos.Add(item.ConvertToAdminDto());
+                dtos.Add( item.ConvertToAdminDto() );
             }
             return dtos;
         }
 
-        private static IEnumerable<Service> ExtractServices(Appointment appointment)
+        private static IEnumerable<Service> ExtractServices( Appointment appointment )
         {
             var services = new List<Service>();
-            foreach (var appointmentService in appointment.AppointmentServices)
+            foreach ( var appointmentService in appointment.AppointmentServices )
             {
-                services.Add(appointmentService.Service);
+                services.Add( appointmentService.Service );
             }
             return services;
         }
@@ -633,7 +633,7 @@ namespace JricaStudioWebAPI.Extentions
 
         #region Users
 
-        public static User ConvertToEntity(this UserToAddDto addDto)
+        public static User ConvertToEntity( this UserToAddDto addDto )
         {
             return new User()
             {
@@ -643,7 +643,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static User ConvertToEntity(this UserAdminAddDto addDto)
+        public static User ConvertToEntity( this UserAdminAddDto addDto )
         {
             return new User()
             {
@@ -660,7 +660,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static UserDto ConvertToDto(this User user)
+        public static UserDto ConvertToDto( this User user )
         {
             return new UserDto()
             {
@@ -670,7 +670,7 @@ namespace JricaStudioWebAPI.Extentions
 
             };
         }
-        public static AdminUserDto ConvertToAdminDto(this User user)
+        public static AdminUserDto ConvertToAdminDto( this User user )
         {
             return new AdminUserDto()
             {
@@ -689,18 +689,18 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static IEnumerable<AdminUserDto> ConvertToAdminDtos(this IEnumerable<User> users)
+        public static IEnumerable<AdminUserDto> ConvertToAdminDtos( this IEnumerable<User> users )
         {
             var convertedUsers = new List<AdminUserDto>();
-            foreach (var user in users)
+            foreach ( var user in users )
             {
-                convertedUsers.Add(user.ConvertToAdminDto());
+                convertedUsers.Add( user.ConvertToAdminDto() );
             }
 
             return convertedUsers;
         }
 
-        public static AdminUserDetailsDto ConvertToAdminDetailsDto(this User user)
+        public static AdminUserDetailsDto ConvertToAdminDetailsDto( this User user )
         {
             return new AdminUserDetailsDto()
             {
@@ -721,18 +721,18 @@ namespace JricaStudioWebAPI.Extentions
         }
 
 
-        public static IEnumerable<AdminUserDetailsDto> ConvertToAdminDetailsDtos(this IEnumerable<User> users)
+        public static IEnumerable<AdminUserDetailsDto> ConvertToAdminDetailsDtos( this IEnumerable<User> users )
         {
             var convertedUsers = new List<AdminUserDetailsDto>();
-            foreach (var user in users)
+            foreach ( var user in users )
             {
-                convertedUsers.Add(user.ConvertToAdminDetailsDto());
+                convertedUsers.Add( user.ConvertToAdminDetailsDto() );
             }
 
             return convertedUsers;
         }
 
-        public static UserIndemnityDto ConvertToIndemnityDto(this User user)
+        public static UserIndemnityDto ConvertToIndemnityDto( this User user )
         {
             return new UserIndemnityDto()
             {
@@ -749,7 +749,7 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static UserWaiverDto ConvertToWaiverDto(this User user)
+        public static UserWaiverDto ConvertToWaiverDto( this User user )
         {
             return new UserWaiverDto()
             {
@@ -764,12 +764,12 @@ namespace JricaStudioWebAPI.Extentions
 
         #region BusinessHours
 
-        public static IEnumerable<BusinessHoursDto> ConvertToDto(this IEnumerable<BusinessHours> businessHours)
+        public static IEnumerable<BusinessHoursDto> ConvertToDto( this IEnumerable<BusinessHours> businessHours )
         {
             var dtos = new List<BusinessHoursDto>();
-            foreach (var item in businessHours)
+            foreach ( var item in businessHours )
             {
-                dtos.Add(new BusinessHoursDto()
+                dtos.Add( new BusinessHoursDto()
                 {
                     Day = item.Day,
                     OpenTime = item.OpenTime,
@@ -777,22 +777,22 @@ namespace JricaStudioWebAPI.Extentions
                     LocalTimeOffset = item.LocalTimeOffset,
                     IsDisabled = item.IsDisabled,
                     AfterHoursGraceRange = item.AfterHoursGraceRange,
-                });
+                } );
             }
             return dtos;
         }
 
-        public static IEnumerable<AdminBusinessHoursDto> ConvertToAdminDtoa(this IEnumerable<BusinessHours> businessHours)
+        public static IEnumerable<AdminBusinessHoursDto> ConvertToAdminDtoa( this IEnumerable<BusinessHours> businessHours )
         {
             var dtos = new List<AdminBusinessHoursDto>();
-            foreach (var item in businessHours)
+            foreach ( var item in businessHours )
             {
-                dtos.Add(item.ConvertToAdminDto());
+                dtos.Add( item.ConvertToAdminDto() );
             }
             return dtos;
         }
 
-        public static AdminBusinessHoursDto ConvertToAdminDto(this BusinessHours businessHours)
+        public static AdminBusinessHoursDto ConvertToAdminDto( this BusinessHours businessHours )
         {
             return new AdminBusinessHoursDto
             {
@@ -811,7 +811,7 @@ namespace JricaStudioWebAPI.Extentions
 
         #region Admins
 
-        public static AdminUserLoginDto ConvertToDto(this Admin admin)
+        public static AdminUserLoginDto ConvertToDto( this Admin admin )
         {
             return new AdminUserLoginDto()
             {
@@ -828,7 +828,7 @@ namespace JricaStudioWebAPI.Extentions
 
         #region BlockOutDates
 
-        public static BlockOutDatesAdminDto ConvertToAdminDto(this BlockOutDate entity)
+        public static BlockOutDatesAdminDto ConvertToAdminDto( this BlockOutDate entity )
         {
             return new BlockOutDatesAdminDto
             {
@@ -837,12 +837,12 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static IEnumerable<BlockOutDatesAdminDto> ConvertToAdminDtos(this IEnumerable<BlockOutDate> entities)
+        public static IEnumerable<BlockOutDatesAdminDto> ConvertToAdminDtos( this IEnumerable<BlockOutDate> entities )
         {
             var dtos = new List<BlockOutDatesAdminDto>();
-            foreach (var entity in entities)
+            foreach ( var entity in entities )
             {
-                dtos.Add(ConvertToAdminDto(entity));
+                dtos.Add( ConvertToAdminDto( entity ) );
             }
             return dtos;
         }
@@ -851,7 +851,7 @@ namespace JricaStudioWebAPI.Extentions
 
         #region Policies
 
-        public static PolicyDto ConvertToDto(this Policy policy)
+        public static PolicyDto ConvertToDto( this Policy policy )
         {
             return new PolicyDto
             {
@@ -860,17 +860,17 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static IEnumerable<PolicyDto> ConvertToDtos(this IEnumerable<Policy> policies)
+        public static IEnumerable<PolicyDto> ConvertToDtos( this IEnumerable<Policy> policies )
         {
             var policiesDtos = new List<PolicyDto>();
-            foreach (var item in policies)
+            foreach ( var item in policies )
             {
-                policiesDtos.Add(item.ConvertToDto());
+                policiesDtos.Add( item.ConvertToDto() );
             }
             return policiesDtos;
         }
 
-        public static PolicyAdminDto ConvertToAdminDto(this Policy policy)
+        public static PolicyAdminDto ConvertToAdminDto( this Policy policy )
         {
             return new PolicyAdminDto
             {
@@ -880,12 +880,12 @@ namespace JricaStudioWebAPI.Extentions
             };
         }
 
-        public static IEnumerable<PolicyAdminDto> ConvertToAdminDtos(this IEnumerable<Policy> policies)
+        public static IEnumerable<PolicyAdminDto> ConvertToAdminDtos( this IEnumerable<Policy> policies )
         {
             var policiesDtos = new List<PolicyAdminDto>();
-            foreach (var item in policies)
+            foreach ( var item in policies )
             {
-                policiesDtos.Add(item.ConvertToAdminDto());
+                policiesDtos.Add( item.ConvertToAdminDto() );
             }
             return policiesDtos;
         }

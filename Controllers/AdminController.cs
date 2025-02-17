@@ -10,7 +10,7 @@ namespace JricaStudioWebAPI.Controllers
 {
     [Route( "api/[controller]" )]
     [ApiController]
-    public class AdminController : ControllerBase
+    public class AdminController : ControllerBase, IAdminController
     {
         private readonly IAdministratorRepository _adminRepository;
         private readonly IHttpContextAccessor _httpContext;
