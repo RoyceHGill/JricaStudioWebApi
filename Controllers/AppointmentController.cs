@@ -491,7 +491,7 @@ namespace JricaStudioWebAPI.Controllers
                 "<html>" +
                     "<body>" +
                         "<div>" +
-                            $" {appointment.User.FirstName} has made and appointment for {( appointment.StartTime.Value ).ToLongDateString()}, at {( appointment.StartTime.Value - TimeSpan.FromHours( 10 ) ).ToLongDateString()} Check the appointment details before approving this appointment." +
+                            $" {appointment.User.FirstName} has made and appointment for {( appointment.StartTime.Value ).ToLongDateString()}, at {( appointment.StartTime.Value + TimeSpan.FromHours( 10 ) ).ToShortTimeString()} Check the appointment details before approving this appointment." +
                         "</div>" +
                         "<br>" +
                         "<a href=\"https://www.jricastudio.com/admin/login\">" +
