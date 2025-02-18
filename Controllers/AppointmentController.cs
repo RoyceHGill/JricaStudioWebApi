@@ -478,7 +478,7 @@ namespace JricaStudioWebAPI.Controllers
                 "<html>" +
                     "<body>" +
                         "<div>" +
-                            $" {appointment.User.FirstName} has made and appointment for {( appointment.StartTime.Value + TimeSpan.FromHours( 10 ) ).ToLongDateString()}, at {appointment.StartTime.Value.ToShortTimeString()} Check the appointment details before approving this appointment." +
+                            $" {appointment.User.FirstName} has made and appointment for {( appointment.StartTime.Value ).ToLongDateString()}, at {( appointment.StartTime.Value + TimeSpan.FromHours( 10 ) ).ToShortTimeString()} Check the appointment details before approving this appointment." +
                         "</div>" +
                         "<br>" +
                         "<a href=\"https://www.jricastudio.com/admin/login\">" +
@@ -487,18 +487,18 @@ namespace JricaStudioWebAPI.Controllers
                     "</body>" +
                 "</html>" );
 #else
-            await _emailSenderService.SendNotificationEmail(_configuration.GetValue<string>("EmailUsername"), $"Appointment for {appointment.StartTime.Value.DayOfWeek}",
+            await _emailSenderService.SendNotificationEmail( _configuration.GetValue<string>( "EmailUsername" ), $"Appointment for {appointment.StartTime.Value.DayOfWeek}",
                 "<html>" +
                     "<body>" +
                         "<div>" +
-                            $" {appointment.User.FirstName} has made and appointment for {( appointment.StartTime.Value + TimeSpan.FromHours( 10 ) ).ToLongDateString()}, at {appointment.StartTime.Value.ToShortTimeString()} Check the appointment details before approving this appointment." +
+                            $" {appointment.User.FirstName} has made and appointment for {( appointment.StartTime.Value ).ToLongDateString()}, at {( appointment.StartTime.Value - TimeSpan.FromHours( 10 ) ).ToLongDateString()} Check the appointment details before approving this appointment." +
                         "</div>" +
                         "<br>" +
                         "<a href=\"https://www.jricastudio.com/admin/login\">" +
                             $" JricaStudio.com/admin/login" +
                         "</a>" +
                     "</body>" +
-                "</html>");
+                "</html>" );
 
 #endif
             var services = new List<Service>();
