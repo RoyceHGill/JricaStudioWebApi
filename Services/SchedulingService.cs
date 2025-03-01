@@ -1,6 +1,7 @@
 ﻿using JricaStudioSharedLibrary.Dtos;
 using JricaStudioWebAPI.Entities;
 using JricaStudioWebAPI.Services.Contracts;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JricaStudioWebAPI.Services
 {
@@ -156,28 +157,32 @@ namespace JricaStudioWebAPI.Services
             {
                 return default;
             }
-            DateTime seeker = DateTime.UtcNow.Date;
+            DateTime date = DateTime.UtcNow.Date;
+
+            DateTime seeker = date.Add( -businessHours.Single( b => b.Day == date.DayOfWeek ).LocalTimeOffset );
             DateTime nextAppointment = DateTime.MinValue;
             for ( int i = 0; i < dateRange; i++ )
             {
 
-                if ( blockOutDates.Any() )
-                {
-                    if ( CheckBlockOutDateConflicts( seeker, duration, blockOutDates ) )
-                    {
-                        seeker = seeker.AddDays( 1 ).Date;
-                        continue;
-                    }
-                }
 
-                if ( CheckBussinessHoursDisabled( seeker, businessHours ) )
-                {
-                    seeker = seeker.AddDays( 1 ).Date;
-                    continue;
-                }
 
                 for ( int j = 0; j < 24; j++ )
                 {
+                    if ( blockOutDates.Any() )
+                    {
+                        if ( CheckBlockOutDateConflicts( seeker, duration, blockOutDates ) )
+                        {
+                            seeker = seeker.AddHours( 1 );
+                            continue;
+                        }
+                    }
+
+                    if ( CheckBussinessHoursDisabled( seeker, businessHours ) )
+                    {
+                        seeker = seeker.AddHours( 1 );
+                        continue;
+                    }
+
 
                     if ( seeker < DateTime.UtcNow )
                     {
