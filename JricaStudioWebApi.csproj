@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <File Include="Data\JaysLashes.db" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11" />
@@ -28,8 +32,6 @@
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="Services\Contracts\" />
-    <Folder Include="wwwroot\Images\ProductImages\" />
-    <Folder Include="wwwroot\Images\ServiceImages\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,9 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Data\JaysLashes.db">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
+    <Resource Include="Data\JaysLashes.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

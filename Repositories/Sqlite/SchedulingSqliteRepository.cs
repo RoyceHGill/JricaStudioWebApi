@@ -175,7 +175,7 @@ namespace JricaStudioWebAPI.Repositories.SqLite
 
                 await _jaysLashesDbContext.SaveChangesAsync();
 
-                return _jaysLashesDbContext.BlockOutDates.Where( b => b.Date <= todaysDate ).AsEnumerable();
+                return _jaysLashesDbContext.BlockOutDates.Where( b => b.Date >= todaysDate ).AsEnumerable();
             }
             catch ( Exception e )
             {
