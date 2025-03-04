@@ -31,6 +31,7 @@ namespace JricaStudioWebAPI
             builder.Services.AddDbContext<JaysLashesDbContext>( options =>
                             options.UseSqlite( connectionString.ToString() ) );
 
+
             builder.Services.AddHttpContextAccessor();
 
             builder.Services.AddTransient<IEncryptionService, EncryptionService>();
@@ -70,6 +71,7 @@ namespace JricaStudioWebAPI
 
                 app.UseCors( policy => policy.WithOrigins( "https://localhost:7239/", "https://localhost:7239" ).AllowAnyMethod().WithHeaders( HeaderNames.ContentType, "adminkey" ) );
             }
+
 
             app.UseHttpsRedirection();
 

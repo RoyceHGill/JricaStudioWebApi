@@ -90,8 +90,9 @@ namespace JricaStudioWebAPI.Services
             {
                 return Enumerable.Empty<AppointmentAvailableDto>();
             }
+            var offset = businessHours.Single( b => b.Day == date.DayOfWeek ).LocalTimeOffset;
 
-            DateTime seeker = date.Add( -businessHours.Single( b => b.Day == date.DayOfWeek ).LocalTimeOffset );
+            DateTime seeker = date.Add( -offset );
 
 
 
@@ -100,13 +101,13 @@ namespace JricaStudioWebAPI.Services
             for ( int j = 0; j < 24; j++ )
             {
 
-                if ( CheckBussinessHoursDisabled( seeker, businessHours ) )
+                if ( CheckBussinessHoursDisabled( seeker + offset, businessHours ) )
                 {
                     seeker = seeker.AddHours( 1 );
                     continue;
                 }
 
-                if ( CheckBlockOutDateConflicts( seeker, duration, blockOutDates ) )
+                if ( CheckBlockOutDateConflicts( seeker + offset, duration, blockOutDates ) )
                 {
                     seeker = seeker.AddHours( 1 );
                     continue;
@@ -157,20 +158,21 @@ namespace JricaStudioWebAPI.Services
             {
                 return default;
             }
-            DateTime date = DateTime.UtcNow.Date;
 
-            DateTime seeker = date.Add( -businessHours.Single( b => b.Day == date.DayOfWeek ).LocalTimeOffset );
+            DateTime date = DateTime.UtcNow;
+            var offset = businessHours.Single( b => b.Day == date.DayOfWeek ).LocalTimeOffset;
+            date = date.AddMinutes( -date.Minute );
+            date = date.AddSeconds( -date.Second );
+
+            DateTime seeker = date;
             DateTime nextAppointment = DateTime.MinValue;
             for ( int i = 0; i < dateRange; i++ )
             {
-
-
-
                 for ( int j = 0; j < 24; j++ )
                 {
                     if ( blockOutDates.Any() )
                     {
-                        if ( CheckBlockOutDateConflicts( seeker, duration, blockOutDates ) )
+                        if ( CheckBlockOutDateConflicts( seeker + offset, duration, blockOutDates ) )
                         {
                             seeker = seeker.AddHours( 1 );
                             continue;
