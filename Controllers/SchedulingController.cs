@@ -89,28 +89,34 @@ namespace JricaStudioWebAPI.Controllers
         [HttpGet( "GetAvailability/NextTime" )]
         public async Task<ActionResult<AppointmentAvailableDto>> GetNextAvailableAppointments( [FromQuery] int dateRange, TimeSpan duration )
         {
+            try
+            {
+                var blockoutDatesAll = await _schedulingRepository.GetBlockOutDatesByDates( DateTime.UtcNow, DateTime.UtcNow.AddDays( dateRange ) );
 
-            //var blockoutDatesAll = await _schedulingRepository.GetBlockOutDatesByDates( DateTime.UtcNow, DateTime.UtcNow.AddDays( dateRange ) );
+                var businessHours = await _schedulingRepository.GetBusinessHours();
 
-            //var businessHours = await _schedulingRepository.GetBusinessHours();
+                var appointments = await _appointmentRepository.GetBookedAppointmentsByRange( DateTime.UtcNow, DateTime.UtcNow.AddDays( dateRange ) );
 
-            //var appointments = await _appointmentRepository.GetBookedAppointmentsByRange( DateTime.UtcNow, DateTime.UtcNow.AddDays( dateRange ) );
+                var availableTime = _schedulingService.GetNextAvailableAppointmentWindow( blockoutDatesAll, appointments, businessHours, dateRange, duration );
+                if ( availableTime == default )
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return Ok( new AppointmentAvailableDto()
+                    {
+                        Duration = duration,
+                        StartTime = availableTime.GetValueOrDefault()
+                    } );
+                }
+            }
+            catch ( Exception e )
+            {
+                return StatusCode( StatusCodes.Status500InternalServerError, e.Message );
+            }
 
-            //var availableTime = _schedulingService.GetNextAvailableAppointmentWindow( blockoutDatesAll, appointments, businessHours, dateRange, duration );
-            //if ( availableTime == default )
-            //{
-            //    return NoContent();
-            //}
-            //else
-            //{
-            //    return Ok( new AppointmentAvailableDto()
-            //    {
-            //        Duration = duration,
-            //        StartTime = availableTime.GetValueOrDefault()
-            //    } );
-            //}
 
-            return Ok();
         }
 
         [AdministratorKey]
