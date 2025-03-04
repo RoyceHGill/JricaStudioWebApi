@@ -40,7 +40,7 @@
 
   <ItemGroup>
     <Resource Include="Data\JaysLashes.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 

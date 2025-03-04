@@ -90,27 +90,27 @@ namespace JricaStudioWebAPI.Controllers
         public async Task<ActionResult<AppointmentAvailableDto>> GetNextAvailableAppointments( [FromQuery] int dateRange, TimeSpan duration )
         {
 
-            var blockoutDatesAll = await _schedulingRepository.GetBlockOutDatesByDates( DateTime.UtcNow, DateTime.UtcNow.AddDays( dateRange ) );
+            //var blockoutDatesAll = await _schedulingRepository.GetBlockOutDatesByDates( DateTime.UtcNow, DateTime.UtcNow.AddDays( dateRange ) );
 
-            var businessHours = await _schedulingRepository.GetBusinessHours();
+            //var businessHours = await _schedulingRepository.GetBusinessHours();
 
-            var appointments = await _appointmentRepository.GetBookedAppointmentsByRange( DateTime.UtcNow, DateTime.UtcNow.AddDays( dateRange ) );
+            //var appointments = await _appointmentRepository.GetBookedAppointmentsByRange( DateTime.UtcNow, DateTime.UtcNow.AddDays( dateRange ) );
 
-            var availableTime = _schedulingService.GetNextAvailableAppointmentWindow( blockoutDatesAll, appointments, businessHours, dateRange, duration );
-            if ( availableTime == default )
-            {
-                return NoContent();
-            }
-            else
-            {
-                return Ok( new AppointmentAvailableDto()
-                {
-                    Duration = duration,
-                    StartTime = availableTime.GetValueOrDefault()
-                } );
-            }
+            //var availableTime = _schedulingService.GetNextAvailableAppointmentWindow( blockoutDatesAll, appointments, businessHours, dateRange, duration );
+            //if ( availableTime == default )
+            //{
+            //    return NoContent();
+            //}
+            //else
+            //{
+            //    return Ok( new AppointmentAvailableDto()
+            //    {
+            //        Duration = duration,
+            //        StartTime = availableTime.GetValueOrDefault()
+            //    } );
+            //}
 
-
+            return Ok();
         }
 
         [AdministratorKey]
